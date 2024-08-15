@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Trans-Brat</string>
+    <string name="cont_desc_imagem">imagem</string>
+    <string name="content_desc_trlogo_imagem">trlogo_imagem</string>
+</resources>
