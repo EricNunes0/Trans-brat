@@ -2,20 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".login">
 
     <ImageView
-        android:id="@+id/trlogo"
+        android:id="@+id/onibus"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:contentDescription="@string/content_desc_trlogo_imagem"
         android:src="@drawable/trlogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <View
         android:id="@+id/container"
@@ -24,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trlogo" />
+        app:layout_constraintTop_toBottomOf="@+id/onibus" />
 
     <EditText
         android:id="@+id/edit_email"
