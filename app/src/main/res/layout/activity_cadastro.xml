@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cadastro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".CadastroActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cadastro_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".cadastro">
+
+        <ImageView
+            android:id="@+id/trlogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="@string/content_desc_trlogo_imagem"
+            android:src="@drawable/trlogo"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cadastro_layout"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/cadastro_container"
+            style="@style/container"
+            android:layout_height="560dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cadastro_layout"
+            app:layout_constraintEnd_toEndOf="@+id/cadastro_layout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cadastro_layout" />
+
+        <!--<TextView
+            android:id="@+id/cadastrese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/Title_cadastro"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_container"
+            app:layout_constraintStart_toStartOf="@id/cadastro_container"
+            app:layout_constraintTop_toBottomOf="@id/trlogo" />-->
+
+        <EditText
+            android:id="@+id/edit_name"
+            style="@style/Edit"
+            android:layout_marginTop="40dp"
+            android:drawableRight="@drawable/imagem_person"
+            android:fontFamily="@font/poppins"
+            android:inputType="text"
+            android:hint="Nome Completo"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_placeholder"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_container"
+            app:layout_constraintStart_toStartOf="@id/cadastro_container"
+            app:layout_constraintTop_toTopOf="@id/cadastro_container"
+            />
+
+        <EditText
+            android:id="@+id/edit_matricula"
+            style="@style/Edit"
+            android:drawableRight="@drawable/imagem_login"
+            android:fontFamily="@font/poppins"
+            android:hint="Matrícula"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_placeholder"
+            android:inputType="number"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_container"
+            app:layout_constraintStart_toStartOf="@id/cadastro_container"
+            app:layout_constraintTop_toBottomOf="@+id/edit_name"
+            />
+
+        <EditText
+            android:id="@+id/edit_password"
+            style="@style/Edit"
+            android:drawableRight="@drawable/senha_login"
+            android:fontFamily="@font/poppins"
+            android:hint="Senha"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_placeholder"
+            android:inputType="numberPassword"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_container"
+            app:layout_constraintStart_toStartOf="@id/cadastro_container"
+            app:layout_constraintTop_toBottomOf="@id/edit_matricula"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_cadastro"
+            style="@style/button"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/cadastrar"
+            android:padding="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_password"
+            />
+
+        <TextView
+            android:id="@+id/cadastro_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/Button_cadastro"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/cadastro_container"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_container"
+            app:layout_constraintEnd_toStartOf="@id/cadastro_redirect"
+            app:layout_constraintHorizontal_bias="0.547"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="665dp"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cadastro_redirect"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/white_button_thin"
+            android:elevation="0dp"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="8dp"
+            android:stateListAnimator="@null"
+            android:text="Faça login"
+            android:textColor="@color/blue2"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/cadastro_container"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_container"
+            app:layout_constraintHorizontal_bias="0.547"
+            app:layout_constraintStart_toEndOf="@id/cadastro_text_1"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

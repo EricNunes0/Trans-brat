@@ -29,6 +29,14 @@
             android:name=".LoginActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".CadastroActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".NavigationActivity"
+            android:exported="false">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

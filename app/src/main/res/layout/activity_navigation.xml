@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".NavigationActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navigation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        tools:context=".Navigation">
+
+        <View
+            android:id="@+id/navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#FFF"
+            app:layout_constraintStart_toStartOf="@+id/navigation_layout"
+            app:layout_constraintTop_toTopOf="@+id/navigation_layout" />
+
+        <ImageView
+            android:id="@+id/trlogo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/content_desc_trlogo_imagem"
+            android:src="@drawable/trlogo"
+            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="20dp" />
+
+        <!-- Ícone de menu -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nav_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <ImageView
+            android:id="@+id/nav_button_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/baseline_menu_24"
+            app:layout_constraintStart_toStartOf="@+id/nav_button"
+            app:layout_constraintTop_toTopOf="@+id/nav_button"
+            tools:ignore="MissingConstraints"/>
+
+        <View
+            android:id="@+id/username_container"
+            style="@style/container2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
+            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
+            app:layout_constraintTop_toBottomOf="@+id/navigation_bar"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Olá, Fulano"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@id/username_container"
+            app:layout_constraintTop_toTopOf="@id/username_container"
+            />
+
+        <View
+            android:id="@+id/home_main"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="#FFF"
+            app:layout_constraintStart_toStartOf="@id/username_container"
+            app:layout_constraintTop_toBottomOf="@id/username_container" />
+
+        <TextView
+            android:id="@+id/my_brats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Meus e-brats"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/home_main"
+            app:layout_constraintTop_toTopOf="@id/home_main"
+            />
+
+        <EditText
+            android:id="@+id/pesquisa"
+            style="@style/Edit"
+            android:layout_marginTop="60sp"
+            android:drawableEnd="@drawable/lupa"
+            android:hint="Digite seu protocolo"
+            android:inputType="number"
+            android:padding="15dp"
+            android:textColorHint="@color/black"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_brats"
+            tools:ignore="Autofill" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Criar_brat"
+            style="@style/button"
+            android:layout_marginTop="95sp"
+            android:text="Criar novo e-brat"
+            android:drawableStart="@drawable/add_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_brats"
+            />
+
+        <TextView
+            android:id="@+id/lista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="Listagem de solicitações"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Criar_brat"
+            />
+
+        <View
+            android:id="@+id/cont"
+            style="@style/container2"
+            android:layout_marginTop="10dp"
+            android:layout_height="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lista"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="17dp"
+            android:text="Protocolo"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lista" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="16dp"
+            android:text="Status"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lista" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>

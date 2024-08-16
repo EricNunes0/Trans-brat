@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Cidade" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/Button_to_Signup"
+        android:id="@+id/Button_to_Cadastro"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="60dp"

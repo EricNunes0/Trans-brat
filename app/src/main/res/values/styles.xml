@@ -7,6 +7,13 @@
         <item name="android:background">@drawable/container_login</item>
     </style>
 
+    <style name="container2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="background">@drawable/container_nav</item>
+        <item name="android:background">@drawable/container_nav</item>
+    </style>
+
     <style name="Edit">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
