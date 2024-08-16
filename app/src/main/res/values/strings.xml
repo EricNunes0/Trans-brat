@@ -2,4 +2,8 @@
     <string name="app_name">Trans-Brat</string>
     <string name="cont_desc_imagem">imagem</string>
     <string name="content_desc_trlogo_imagem">trlogo_imagem</string>
+<<<<<<< HEAD
+=======
+    <string name="entrar">Entrar</string>
+>>>>>>> 5b9b212b6e4fa7b12173a271f04148e4eb9b7426
 </resources>

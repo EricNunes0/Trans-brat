@@ -2,6 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
     <color name="blue1">#0585FF</color>
     <color name="blue2">#06D0E0</color>
+=======
+    <color name="gray">#DDDDDD</color>
+    <color name="blue1">#0585FF</color>
+    <color name="blue2">#0620E0</color>
+>>>>>>> 5b9b212b6e4fa7b12173a271f04148e4eb9b7426
 </resources>
