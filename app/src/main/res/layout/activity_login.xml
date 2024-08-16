@@ -40,7 +40,7 @@
         android:layout_marginTop="45dp"
         android:drawableRight="@drawable/imagem_login"
         android:inputType="number"
-        android:hint="Matrícula"
+        android:hint="@string/matricula"
         android:textColorHint="@color/black"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="@+id/container"
@@ -50,9 +50,8 @@
     <EditText
         android:id="@+id/edit_senha"
         style="@style/Edit"
-
         android:drawableRight="@drawable/senha_login"
-        android:hint="Senha"
+        android:hint="@string/senha"
         android:inputType="numberPassword"
         android:padding="15dp"
         android:textColorHint="@color/black"

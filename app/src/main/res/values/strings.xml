@@ -11,4 +11,6 @@
     <string name="Brats">Meus e-brats</string>
     <string name="lupa">Digite seu protocolo</string>
     <string name="add">Criar novo e-brat</string>
+    <string name="senha">Senha</string>
+    <string name="matricula">Matrícula</string>
 </resources>
