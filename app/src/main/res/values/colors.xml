@@ -5,4 +5,5 @@
     <color name="gray">#DDDDDD</color>
     <color name="blue1">#0585FF</color>
     <color name="blue2">#0620E0</color>
+    <color name="splash_background">@color/blue1</color>
 </resources>
