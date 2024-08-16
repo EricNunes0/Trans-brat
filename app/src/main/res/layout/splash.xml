@@ -9,7 +9,7 @@
     tools:context=".splash">
 
     <ImageView
-        android:id="@+id/onibus"
+        android:id="@+id/Onibus"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:contentDescription="@string/content_desc_trlogo_imagem"
