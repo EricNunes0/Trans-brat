@@ -45,40 +45,40 @@
         android:id="@+id/nome"
         style="@style/Edit"
         android:layout_marginTop="15dp"
-        android:drawableRight="@drawable/person"
-        android:hint="Nome Completo"
+        android:drawableEnd="@drawable/person"
+        android:hint="@string/nome"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/container"
         app:layout_constraintStart_toStartOf="@id/container"
         app:layout_constraintTop_toBottomOf="@id/cadastrese"
         android:padding="15dp"
-        />
+        tools:ignore="Autofill,TextFields" />
 
     <EditText
         android:id="@+id/matricula"
         style="@style/Edit"
-        android:drawableRight="@drawable/imagem_login"
-        android:hint="Matrícula"
+        android:drawableEnd="@drawable/imagem_login"
+        android:hint="@string/matricula"
         android:textColorHint="@color/black"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@id/container"
         app:layout_constraintStart_toStartOf="@id/container"
         app:layout_constraintTop_toBottomOf="@id/nome"
         android:padding="15dp"
-        />
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/senha"
         style="@style/Edit"
-        android:drawableRight="@drawable/senha_login"
-        android:hint="Senha"
+        android:drawableEnd="@drawable/senha_login"
+        android:hint="@string/senha"
         android:textColorHint="@color/black"
         android:inputType="numberPassword"
         app:layout_constraintEnd_toEndOf="@id/container"
         app:layout_constraintStart_toStartOf="@id/container"
         app:layout_constraintTop_toBottomOf="@id/matricula"
         android:padding="15dp"
-        />
+        tools:ignore="Autofill" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_login"

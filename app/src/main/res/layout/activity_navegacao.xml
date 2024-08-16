@@ -19,6 +19,14 @@
         tools:layout_editor_absoluteY="16dp"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/baseline_menu_24"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
+
     <View
         android:id="@+id/container2"
         style="@style/container2"
@@ -60,15 +68,15 @@
         android:id="@+id/pesquisa"
         style="@style/Edit"
         android:layout_marginTop="60sp"
-        android:drawableRight="@drawable/lupa"
-        android:inputType="number"
+        android:drawableEnd="@drawable/lupa"
         android:hint="@string/lupa"
-        android:textColorHint="@color/black"
+        android:inputType="number"
         android:padding="15dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/brats"
-        />
+        tools:ignore="Autofill" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Criar_brat"
@@ -87,14 +95,50 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="@string/Brats"
+        android:text="@string/lista"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="20dp"
+        app:layout_constraintEnd_toEndOf="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Criar_brat"
         />
 
+    <View
+        android:id="@+id/cont"
+        style="@style/container2"
+        android:layout_marginTop="10dp"
+        android:layout_height="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lista"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/protocolo"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lista" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/status"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="25dp"
+        app:layout_constraintTop_toBottomOf="@id/lista" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
