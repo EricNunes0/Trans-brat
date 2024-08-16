@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Trans-Brat</string>
+    <string name="cont_desc_imagem">imagem</string>
+    <string name="content_desc_trlogo_imagem">trlogo_imagem</string>
+    <string name="entrar">Entrar</string>
+    <string name="Cadastro">Não tem um conta? Cadastre-se</string>
+    <string name="cadastro">Cadastre-se</string>
+    <string name="buttomCadastro">Cadastrar</string>
+    <string name="Buttomlogar">Já tem uma conta? Faça o login</string>
+    <string name="Ola">Olá, Fulano</string>
+    <string name="Brats">Meus e-brats</string>
+    <string name="lupa">Digite seu protocolo</string>
+    <string name="add">Criar novo e-brat</string>
+</resources>

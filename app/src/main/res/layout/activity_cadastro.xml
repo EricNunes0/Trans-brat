@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".Cadastro">
+
+    <ImageView
+        android:id="@+id/trlogo"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/content_desc_trlogo_imagem"
+        android:src="@drawable/trlogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/container"
+        style="@style/container"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trlogo"
+        />
+
+    <TextView
+        android:id="@+id/cadastrese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/cadastro"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/trlogo" />
+
+    <EditText
+        android:id="@+id/nome"
+        style="@style/Edit"
+        android:layout_marginTop="15dp"
+        android:drawableRight="@drawable/person"
+        android:hint="Nome Completo"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/cadastrese"
+        android:padding="15dp"
+        />
+
+    <EditText
+        android:id="@+id/matricula"
+        style="@style/Edit"
+        android:drawableRight="@drawable/imagem_login"
+        android:hint="Matrícula"
+        android:textColorHint="@color/black"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/nome"
+        android:padding="15dp"
+        />
+
+    <EditText
+        android:id="@+id/senha"
+        style="@style/Edit"
+        android:drawableRight="@drawable/senha_login"
+        android:hint="Senha"
+        android:textColorHint="@color/black"
+        android:inputType="numberPassword"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/matricula"
+        android:padding="15dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_login"
+        style="@style/button"
+        android:text="@string/buttomCadastro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/senha"
+        android:padding="15dp"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_login" />
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/Buttomlogar"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/button_login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
