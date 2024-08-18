@@ -8,4 +8,37 @@
     <string name="Button_cadastro">Já tem uma conta?</string>
     <string name="Title_login">Login</string>
     <string name="Title_cadastro">Cadastro</string>
+    <string name="form_1_section_1_question_1">O acidente ocorreu no estado do Rio de Janeiro?</string>
+    <string name="form_1_section_2_question_1">Sua nacionalidade é brasileira?</string>
+    <string name="form_1_section_3_question_1">O acidente ocorreu em uma rodovia federal (BR)?</string>
+    <string name="form_1_section_4_question_1">O acidente causou vítimas?</string>
+    <string name="form_1_section_5_question_1">O acidente envolveu mais de 5 (cinco) veículos?</string>
+    <string name="form_2_section_1_question_1">Quando ocorreu o acidente?</string>
+    <string name="form_2_section_1_question_2">Data</string>
+    <string name="form_2_section_1_question_2_placeholder">Escolha uma data</string>
+    <string name="form_2_section_1_question_3">Horário</string>
+    <string name="form_2_section_1_question_3_placeholder">--:--</string>
+    <string name="form_2_section_2_question_1">Onde ocorreu o acidente?</string>
+    <string name="form_2_section_2_question_2">Local do acidente</string>
+    <string name="form_2_section_2_question_2_placeholder">Selecione uma opção</string>
+    <string name="form_2_section_2_question_3">Especifique</string>
+    <string name="form_2_section_2_question_3_placeholder">Selecione uma opção</string>
+    <!-- Formulário 2 - Pergunta 3-->
+    <string name="form_2_section_3_question_1">Endereço</string>
+    <string name="form_2_section_3_question_2">CEP</string>
+    <string name="form_2_section_3_question_2_placeholder">_____-___</string>
+    <string name="form_2_section_3_question_3">Lograd.</string>
+    <string name="form_2_section_3_question_4">Número</string>
+    <string name="form_2_section_3_question_5">Complemento</string>
+    <string name="form_2_section_3_question_6">Bairro</string>
+    <string name="form_2_section_3_question_7">Cidade</string>
+    <string name="form_2_section_3_question_8">UF</string>
+    <string name="form_2_section_3_question_9">Ponto de referência</string>
+    <!-- Formulário 2 - Pergunta 4-->
+    <string name="form_2_section_4_question_1">Condições do local</string>
+    <string name="form_2_section_4_question_2">Quais as condições de visibilidade?</string>
+    <string name="form_2_section_4_question_3">Quais as condições da pista?</string>
+    <string name="form_2_section_4_question_4">Quais as condições da sinalização?</string>
+    <!-- Formulário 2 - Pergunta 5-->
+    <string name="form_2_section_5_question_1">Qual foi o tipo de acidente?</string>
 </resources>

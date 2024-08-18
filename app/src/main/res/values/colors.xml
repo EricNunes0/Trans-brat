@@ -3,8 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#DDDDDD</color>
+    <color name="red">#FFFF0000</color>
     <color name="blue1">#0585FF</color>
     <color name="blue2">#0620E0</color>
+    <color name="blue_text">#3060FF</color>
     <color name="splash_background">@color/blue2</color>
     <color name="input_placeholder">#BBB</color>
+    <color name="form_back_button">#D0D0D0</color> <!-- Formulário: Botão de voltar -->
+    <color name="form_cancel_button">#F04040</color> <!-- Formulário: Botão de cancelar -->
+    <color name="form_next_button">#D0D0D0</color> <!-- Formulário: Botão de avançar -->
 </resources>

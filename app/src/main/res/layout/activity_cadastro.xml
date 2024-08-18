@@ -55,7 +55,7 @@
             android:id="@+id/edit_name"
             style="@style/Edit"
             android:layout_marginTop="40dp"
-            android:drawableRight="@drawable/imagem_person"
+            android:drawableRight="@drawable/icon_person"
             android:fontFamily="@font/poppins"
             android:inputType="text"
             android:hint="Nome Completo"
@@ -70,7 +70,7 @@
         <EditText
             android:id="@+id/edit_matricula"
             style="@style/Edit"
-            android:drawableRight="@drawable/imagem_login"
+            android:drawableRight="@drawable/icon_mail"
             android:fontFamily="@font/poppins"
             android:hint="Matrícula"
             android:textColor="@color/black"
@@ -85,7 +85,7 @@
         <EditText
             android:id="@+id/edit_password"
             style="@style/Edit"
-            android:drawableRight="@drawable/senha_login"
+            android:drawableRight="@drawable/icon_eye"
             android:fontFamily="@font/poppins"
             android:hint="Senha"
             android:textColor="@color/black"
