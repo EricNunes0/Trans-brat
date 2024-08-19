@@ -66,7 +66,6 @@
         <item name="textAllCaps">false</item>
     </style>
 
-
     <!-- Grupo dos inputs radio -->
     <style name="form_rg_vertical">
         <item name="android:layout_width">match_parent</item>
@@ -81,10 +80,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:scaleType">center</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">20dp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:buttonTint">@color/radio_selector</item>
+        <!--<item name="android:button">@drawable/radio_selector</item>-->
     </style>
 
     <!-- Campos de entrada de texto -->
@@ -146,6 +146,21 @@
         <item name="android:textSize">18dp</item>
         <item name="android:textStyle">normal</item>
         <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- Imagem da área danificada do veículo -->
+    <style name="form_damage_image">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:rotation">180</item>
+    </style>
+
+    <!-- Botão de área danificada do veículo -->
+    <style name="form_damage_button">
+        <item name="android:layout_width">105dp</item>
+        <item name="android:layout_height">98.5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/damage_area</item>
     </style>
         
 </resources>

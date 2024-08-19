@@ -23,7 +23,7 @@
     <string name="form_2_section_2_question_2_placeholder">Selecione uma opção</string>
     <string name="form_2_section_2_question_3">Especifique</string>
     <string name="form_2_section_2_question_3_placeholder">Selecione uma opção</string>
-    <!-- Formulário 2 - Pergunta 3-->
+    <!-- Formulário 2 - Pergunta 3 -->
     <string name="form_2_section_3_question_1">Endereço</string>
     <string name="form_2_section_3_question_2">CEP</string>
     <string name="form_2_section_3_question_2_placeholder">_____-___</string>
@@ -34,11 +34,86 @@
     <string name="form_2_section_3_question_7">Cidade</string>
     <string name="form_2_section_3_question_8">UF</string>
     <string name="form_2_section_3_question_9">Ponto de referência</string>
-    <!-- Formulário 2 - Pergunta 4-->
+    <!-- Formulário 2 - Pergunta 4 -->
     <string name="form_2_section_4_question_1">Condições do local</string>
     <string name="form_2_section_4_question_2">Quais as condições de visibilidade?</string>
     <string name="form_2_section_4_question_3">Quais as condições da pista?</string>
     <string name="form_2_section_4_question_4">Quais as condições da sinalização?</string>
-    <!-- Formulário 2 - Pergunta 5-->
+    <!-- Formulário 2 - Pergunta 5 -->
     <string name="form_2_section_5_question_1">Qual foi o tipo de acidente?</string>
+    <!-- Formulário 3 - Pergunta 1 -->
+    <string name="form_3_section_1_question_1">Dados do veículo</string>
+    <string name="form_3_section_1_question_2">Placa</string>
+    <string name="form_3_section_1_question_2_placeholder">___-____</string>
+    <string name="form_3_section_1_question_3">Marca/Modelo</string>
+    <string name="form_3_section_1_question_4">Tipo do veículo</string>
+    <string name="form_3_section_1_question_5">Cor predominante</string>
+    <string name="form_3_section_1_question_6">UF</string>
+    <string name="form_3_section_1_question_7">Ano de fabricação</string>
+    <string name="form_3_section_1_question_8">Ano do modelo</string>
+    <string name="form_3_section_1_question_9">Nº do Chassi</string>
+    <string name="form_3_section_1_question_10">RENAVAM</string>
+    <string name="form_3_section_1_question_11">O veículo é da empresa?</string>
+    <!-- Formulário 3 - Pergunta 2 -->
+    <string name="form_3_section_2_question_1">Dados do proprietário</string>
+    <string name="form_3_section_2_question_2">Nome</string>
+    <string name="form_3_section_2_question_3">CPF</string>
+    <string name="form_3_section_2_question_3_placeholder">___.___.___-__</string>
+    <string name="form_3_section_2_question_4">Data de nascimento</string>
+    <string name="form_3_section_2_question_4_placeholder">Escolha uma data</string>
+    <string name="form_3_section_2_question_5">O proprietário é o condutor?</string>
+    <!-- Formulário 3 - Pergunta 3 -->
+    <string name="form_3_section_3_question_1">Dados do condutor</string>
+    <string name="form_3_section_3_question_2">Nome</string>
+    <string name="form_3_section_3_question_3">CPF</string>
+    <string name="form_3_section_3_question_3_placeholder">___.___.___-__</string>
+    <string name="form_3_section_3_question_4">Data de nascimento</string>
+    <string name="form_3_section_3_question_4_placeholder">Escolha uma data</string>
+    <string name="form_3_section_3_question_5">Nº CNH</string>
+    <string name="form_3_section_3_question_5_placeholder">_________-__</string>
+    <string name="form_3_section_3_question_6">Validade</string>
+    <string name="form_3_section_3_question_6_placeholder">Escolha uma data</string>
+    <!-- Formulário 3 - Pergunta 4 -->
+    <string name="form_3_section_4_question_1">Endereço do condutor</string>
+    <string name="form_3_section_4_question_2">CEP</string>
+    <string name="form_3_section_4_question_2_placeholder">_____-___</string>
+    <string name="form_3_section_4_question_3">Lograd.</string>
+    <string name="form_3_section_4_question_4">Número</string>
+    <string name="form_3_section_4_question_5">Complemento</string>
+    <string name="form_3_section_4_question_6">Bairro</string>
+    <string name="form_3_section_4_question_7">Cidade</string>
+    <string name="form_3_section_4_question_8">UF</string>
+    <!-- Formulário 3 - Pergunta 5 -->
+    <string name="form_3_section_5_question_1">Danos</string>
+    <string name="form_3_section_5_question_2">A imagem abaixo é meramente ilustrativa. Seja qual for o tipo de veículo (caminhão, moto, ônibus, etc.), clique nos locais correspondentes aos danos:</string>
+    <!-- Formulário 4 - Pergunta 1 -->
+    <string name="form_4_section_1_question_1">Quantidade de veículos envolvidos no acidente</string>
+    <!-- Formulário 5 - Pergunta 1 -->
+    <string name="form_5_section_1_question_1">Testemunha 1</string>
+    <string name="form_5_section_1_question_2">Nome</string>
+    <string name="form_5_section_1_question_3">CPF</string>
+    <string name="form_5_section_1_question_3_placeholder">___.___.___-__</string>
+    <string name="form_5_section_1_question_4">Celular</string>
+    <string name="form_5_section_1_question_4_placeholder">(  ) _____-____</string>
+    <!-- Formulário 5 - Pergunta 2 -->
+    <string name="form_5_section_2_question_1">Testemunha 2</string>
+    <string name="form_5_section_2_question_2">Nome</string>
+    <string name="form_5_section_2_question_3">CPF</string>
+    <string name="form_5_section_2_question_3_placeholder">___.___.___-__</string>
+    <string name="form_5_section_2_question_4">Celular</string>
+    <string name="form_5_section_2_question_4_placeholder">(  ) _____-____</string>
+    <!-- Formulário 5 - Pergunta 3 -->
+    <string name="form_5_section_3_question_1">Testemunha 3</string>
+    <string name="form_5_section_3_question_2">Nome</string>
+    <string name="form_5_section_3_question_3">CPF</string>
+    <string name="form_5_section_3_question_3_placeholder">___.___.___-__</string>
+    <string name="form_5_section_3_question_4">Celular</string>
+    <string name="form_5_section_3_question_4_placeholder">(  ) _____-____</string>
+    <!-- Formulário 5 - Pergunta 4 -->
+    <string name="form_5_section_4_question_1">Testemunha 4</string>
+    <string name="form_5_section_4_question_2">Nome</string>
+    <string name="form_5_section_4_question_3">CPF</string>
+    <string name="form_5_section_4_question_3_placeholder">___.___.___-__</string>
+    <string name="form_5_section_4_question_4">Celular</string>
+    <string name="form_5_section_4_question_4_placeholder">(  ) _____-____</string>
 </resources>

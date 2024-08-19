@@ -73,6 +73,21 @@
             app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
             app:layout_constraintTop_toBottomOf="@+id/navigation_bar" />
 
+        <!-- Barra de progresso -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="15"
+            android:progressDrawable="@drawable/progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
+            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
+            app:layout_constraintBottom_toTopOf="@+id/form_title_line" />
+
+        <!-- Linha horizontal -->
         <View
             android:id="@+id/form_title_line"
             android:layout_width="match_parent"

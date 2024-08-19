@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         Button buttonNavegacaoRedirect = findViewById(R.id.button_login);
         buttonNavegacaoRedirect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
             }
         });

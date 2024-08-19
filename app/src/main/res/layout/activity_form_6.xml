@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Form6Activity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/form_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        tools:context=".Form6">
+
+        <!-- Barra de navegação -->
+        <View
+            android:id="@+id/navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#FFF"
+            app:layout_constraintStart_toStartOf="@+id/form_layout"
+            app:layout_constraintTop_toTopOf="@+id/form_layout" />
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/trlogo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/content_desc_trlogo_imagem"
+            android:src="@drawable/trlogo"
+            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="20dp" />
+
+        <!-- Ícone de menu -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nav_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <ImageView
+            android:id="@+id/nav_button_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/icon_menu"
+            app:layout_constraintStart_toStartOf="@+id/nav_button"
+            app:layout_constraintTop_toTopOf="@+id/nav_button"
+            tools:ignore="MissingConstraints"/>
+
+        <TextView
+            android:id="@+id/form_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Detalhes"
+            android:textAlignment="center"
+            android:textColor="@color/blue1"
+            android:textSize="28dp"
+            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
+            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
+            app:layout_constraintTop_toBottomOf="@+id/navigation_bar" />
+
+        <!-- Barra de progresso -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="90"
+            android:progressDrawable="@drawable/progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
+            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
+            app:layout_constraintBottom_toTopOf="@+id/form_title_line" />
+
+        <!-- Linha horizontal -->
+        <View
+            android:id="@+id/form_title_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/form_title"
+            />
+
+
+        <!-- Pergunta 1 -->
+        <View
+            android:id="@+id/section_1"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/form_title_line"
+            />
+
+        <!-- Texto da pergunta 1 -->
+        <TextView
+            android:id="@+id/section_1_question_1"
+            style="@style/form_question"
+            android:text="Descreva o acidente"
+            app:layout_constraintStart_toStartOf="@+id/section_1"
+            app:layout_constraintEnd_toEndOf="@+id/section_1"
+            app:layout_constraintTop_toTopOf="@+id/section_1" />
+
+        <!-- Texto do Input 1 -->
+        <TextView
+            android:id="@+id/section_1_question_2"
+            style="@style/form_subquestion"
+            android:text="Forneça informações complementares que julgar relevantes. Este campo de descrição é muito importante para o entendimento do acidente.\n\nNeste espaço devem ser relatados detalhadamente os fatos relacionados ao acidente."
+            app:layout_constraintStart_toStartOf="@+id/section_1_question_1"
+            app:layout_constraintEnd_toEndOf="@+id/section_1_question_1"
+            app:layout_constraintTop_toBottomOf="@+id/section_1_question_1" />
+
+        <!-- Input 1 -->
+        <EditText
+            android:id="@+id/section_1_question_2_input"
+            style="@style/form_input_text"
+            android:drawableRight="@drawable/icon_select"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:minLines="5"
+            android:maxLines="5"
+            android:scrollbars="vertical"
+            android:hint="Descreva..."
+            app:layout_constraintEnd_toEndOf="@+id/section_1_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_1_question_2"
+            app:layout_constraintTop_toBottomOf="@id/section_1_question_2" />
+
+        <!-- Pergunta 2 -->
+        <View
+            android:id="@+id/section_2"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/section_1_question_2_input"
+            />
+
+        <!-- Texto da pergunta 2 -->
+        <TextView
+            android:id="@+id/section_2_question_1"
+            style="@style/form_question"
+            android:text="Upload de arquivos"
+            app:layout_constraintStart_toStartOf="@+id/section_2"
+            app:layout_constraintEnd_toEndOf="@+id/section_2"
+            app:layout_constraintTop_toTopOf="@+id/section_2" />
+
+        <!-- Input 1 -->
+        <Button
+            android:id="@+id/section_2_question_1_input"
+            style="@style/form_input_text"
+            android:scrollbars="vertical"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:hint="Adicionar imagens"
+            app:layout_constraintEnd_toEndOf="@+id/section_2_question_1"
+            app:layout_constraintStart_toStartOf="@+id/section_2_question_1"
+            app:layout_constraintTop_toBottomOf="@id/section_2_question_1" />
+
+        <!-- Botões inferiores -->
+        <View
+            android:id="@+id/buttons_section"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/section_2"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back_button"
+            style="@style/form_back_button"
+            app:layout_constraintEnd_toStartOf="@+id/cancel_button"
+            app:layout_constraintStart_toStartOf="@+id/buttons_section"
+            app:layout_constraintTop_toTopOf="@+id/buttons_section" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_button"
+            style="@style/form_cancel_button"
+            app:layout_constraintEnd_toStartOf="@+id/next_button"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="@+id/buttons_section" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/next_button"
+            style="@style/form_next_button"
+            app:layout_constraintEnd_toEndOf="@+id/buttons_section"
+            app:layout_constraintStart_toEndOf="@+id/cancel_button"
+            app:layout_constraintTop_toTopOf="@+id/buttons_section" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>

@@ -1,10 +1,13 @@
 package com.example.trans_brat;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +30,35 @@ public class Form2Activity extends AppCompatActivity {
         });
 
         //requiredQuestions();
+
+        /* Botões inferiores */
+        Button buttonBack = findViewById(R.id.back_button);
+        Button buttonCancel = findViewById(R.id.cancel_button);
+        Button buttonNext = findViewById(R.id.next_button);
+
+        /* (Voltar) Voltando para o formulário 1 */
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        /* (Cancelar) Voltando para o menu principal */
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Form2Activity.this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        /* (Avançar) Avançando para o formulário 3 */
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Form2Activity.this, Form3Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /* Função para perguntas obrigatórias */

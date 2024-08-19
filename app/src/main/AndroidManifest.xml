@@ -34,7 +34,7 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".NavigationActivity"
+            android:name=".HomeActivity"
             android:exported="false">
         </activity>
         <activity
@@ -43,6 +43,22 @@
         </activity>
         <activity
             android:name=".Form2Activity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".Form3Activity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".Form4Activity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".Form5Activity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".Form6Activity"
             android:exported="false">
         </activity>
 

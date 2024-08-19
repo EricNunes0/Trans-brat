@@ -16,52 +16,57 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Form1Activity extends AppCompatActivity {
+public class Form6Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_form_1);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.form_1), (v, insets) -> {
+        setContentView(R.layout.activity_form_6);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.form_6), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        requiredQuestions();
+        //requiredQuestions();
 
         /* Botões inferiores */
+        Button buttonBack = findViewById(R.id.back_button);
         Button buttonCancel = findViewById(R.id.cancel_button);
         Button buttonNext = findViewById(R.id.next_button);
+
+        /* (Voltar) Voltando para o formulário 5 */
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         /* (Cancelar) Voltando para o menu principal */
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Form1Activity.this, HomeActivity.class);
+                Intent intent = new Intent(Form6Activity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
 
-        /* Avançando para o formulário 2 */
+        /* (Avançar) Avançando para o formulário ? */
+        /*
         buttonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Form1Activity.this, Form2Activity.class);
+                Intent intent = new Intent(Form6Activity.this, Form6Activity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     /* Função para perguntas obrigatórias */
     private void requiredQuestions() {
         /* Definindo perguntas obrigatórias */
         int[] questions_ids = {
-                R.id.section_1_question_1,
-                R.id.section_2_question_1,
-                R.id.section_3_question_1,
-                R.id.section_4_question_1,
-                R.id.section_5_question_1
+                R.id.section_3_question_1
         };
 
         /* Para cada pergunta obrigatória */
