@@ -7,7 +7,9 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +32,9 @@ public class Form4Activity extends AppCompatActivity {
         });
 
         //requiredQuestions();
+
+        /* Adicionando opções aos dropdowns */
+        dropdownQuestions();
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -86,6 +91,24 @@ public class Form4Activity extends AppCompatActivity {
                 spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 textView.setText(spannableString);
             }
+        }
+    }
+
+    /* Função para dropdowns */
+    private void dropdownQuestions() {
+        int[] spinnerIds = {
+                R.id.section_1_question_1_input
+        };
+        String[][] spinnerOptions = {
+                {"1", "2", "3", "4", "5"}
+        };
+
+        for (int i = 0; i < spinnerIds.length; i++) {
+            Spinner spinner = findViewById(spinnerIds[i]);
+            String[] options = spinnerOptions[i];
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, options);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
         }
     }
 }

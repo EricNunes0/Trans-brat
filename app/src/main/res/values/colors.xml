@@ -10,6 +10,7 @@
     <color name="splash_background">@color/blue2</color>
     <color name="input_placeholder">#BBB</color>
     <color name="form_info_button">#F0A040</color> <!-- Formulário: Botão de informação -->
+    <color name="form_image_upload_button">#E0E0E0</color> <!-- Formulário: Botão de fazer upload de imagens -->
     <color name="form_back_button">#D0D0D0</color> <!-- Formulário: Botão de voltar -->
     <color name="form_cancel_button">#F04040</color> <!-- Formulário: Botão de cancelar -->
     <color name="form_next_button">#306090</color> <!-- Formulário: Botão de avançar -->

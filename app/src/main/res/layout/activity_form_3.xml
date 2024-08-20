@@ -142,7 +142,8 @@
         <EditText
             android:id="@+id/section_1_question_2_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="number"
+            android:maxLength="8"
             android:hint="@string/form_3_section_1_question_2_placeholder"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_2"
@@ -161,7 +162,7 @@
         <EditText
             android:id="@+id/section_1_question_3_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_3" />
@@ -179,7 +180,7 @@
         <EditText
             android:id="@+id/section_1_question_4_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_4" />
@@ -197,7 +198,7 @@
         <EditText
             android:id="@+id/section_1_question_5_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_5"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_5"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_5" />
@@ -215,7 +216,8 @@
         <EditText
             android:id="@+id/section_1_question_6_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
+            android:maxLength="2"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_6"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_6"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_6" />
@@ -233,7 +235,8 @@
         <EditText
             android:id="@+id/section_1_question_7_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="number"
+            android:maxLength="4"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_7"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_7"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_7" />
@@ -251,7 +254,8 @@
         <EditText
             android:id="@+id/section_1_question_8_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="number"
+            android:maxLength="4"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_8"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_8"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_8" />
@@ -269,7 +273,8 @@
         <EditText
             android:id="@+id/section_1_question_9_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
+            android:maxLength="20"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_9"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_9"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_9" />
@@ -287,7 +292,8 @@
         <EditText
             android:id="@+id/section_1_question_10_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
+            android:maxLength="11"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_10"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_10"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_10" />
@@ -306,8 +312,8 @@
             android:id="@+id/section_1_question_11_radio_group"
             style="@style/form_rg_vertical"
             app:layout_constraintTop_toBottomOf="@+id/section_1_question_11"
-            app:layout_constraintStart_toStartOf="@+id/section_1"
-            app:layout_constraintEnd_toEndOf="@+id/section_1">
+            app:layout_constraintStart_toStartOf="@+id/section_1_question_11"
+            app:layout_constraintEnd_toEndOf="@+id/section_1_question_11">
 
             <RadioButton
                 android:id="@+id/section_1_question_11_radio_1"
@@ -342,7 +348,7 @@
         <EditText
             android:id="@+id/section_2_question_2_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_2" />
@@ -360,67 +366,21 @@
         <EditText
             android:id="@+id/section_2_question_3_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_3_section_2_question_3_placeholder"
+            android:maxLength="18"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_3" />
-
-        <!-- Texto do Input 3 -->
-        <TextView
-            android:id="@+id/section_2_question_4"
-            style="@style/form_subquestion"
-            android:text="@string/form_3_section_2_question_4"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_3"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_3"
-            app:layout_constraintTop_toBottomOf="@+id/section_2_question_3_input" />
-
-        <!-- Input 3 -->
-        <EditText
-            android:id="@+id/section_2_question_4_input"
-            style="@style/form_input_text"
-            android:inputType="date"
-            android:hint="@string/form_3_section_2_question_4_placeholder"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_4"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_4"
-            app:layout_constraintTop_toBottomOf="@id/section_2_question_4" />
-
-        <!-- Texto do Input 4 -->
-        <TextView
-            android:id="@+id/section_2_question_5"
-            style="@style/form_subquestion"
-            android:text="@string/form_3_section_2_question_5"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_4"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_4"
-            app:layout_constraintTop_toBottomOf="@+id/section_2_question_4_input" />
-
-        <!-- Opções de Input radio 4-->
-        <RadioGroup
-            android:id="@+id/section_2_question_5_radio_group"
-            style="@style/form_rg_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/section_2_question_5"
-            app:layout_constraintStart_toStartOf="@+id/section_2"
-            app:layout_constraintEnd_toEndOf="@+id/section_2">
-
-            <RadioButton
-                android:id="@+id/section_2_question_5_radio_1"
-                style="@style/form_radio"
-                android:text="Sim"/>
-
-            <RadioButton
-                android:id="@+id/section_2_question_5_radio_2"
-                style="@style/form_radio"
-                android:text="Não"/>
-        </RadioGroup>
 
         <!-- Pergunta 3 -->
         <TextView
             android:id="@+id/section_3_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_3_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_5_radio_group"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_5_radio_group"
-            app:layout_constraintTop_toBottomOf="@+id/section_2_question_5_radio_group" />
+            app:layout_constraintStart_toStartOf="@+id/section_2_question_3_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_2_question_3_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_2_question_3_input" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -435,7 +395,7 @@
         <EditText
             android:id="@+id/section_3_question_2_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_2" />
@@ -453,8 +413,9 @@
         <EditText
             android:id="@+id/section_3_question_3_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_3_section_3_question_3_placeholder"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_3" />
@@ -472,6 +433,9 @@
         <EditText
             android:id="@+id/section_3_question_4_input"
             style="@style/form_input_text"
+            android:clickable="true"
+            android:drawableRight="@drawable/icon_calendar"
+            android:focusable="false"
             android:inputType="date"
             android:hint="@string/form_3_section_3_question_4_placeholder"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_4"
@@ -488,42 +452,32 @@
             app:layout_constraintTop_toBottomOf="@+id/section_3_question_4_input" />
 
         <!-- Input 4 -->
-        <EditText
-            android:id="@+id/section_3_question_5_input"
-            style="@style/form_input_text"
-            android:inputType="date"
-            android:hint="@string/form_3_section_3_question_5_placeholder"
-            app:layout_constraintEnd_toEndOf="@+id/section_3_question_5"
+        <RadioGroup
+            android:id="@+id/section_3_question_5_radio_group"
+            style="@style/form_rg_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/section_3_question_5"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_5"
-            app:layout_constraintTop_toBottomOf="@id/section_3_question_5" />
+            app:layout_constraintEnd_toEndOf="@+id/section_3_question_5">
 
-        <!-- Texto do Input 5 -->
-        <TextView
-            android:id="@+id/section_3_question_6"
-            style="@style/form_subquestion"
-            android:text="@string/form_3_section_3_question_6"
-            app:layout_constraintStart_toStartOf="@+id/section_3_question_5"
-            app:layout_constraintEnd_toEndOf="@+id/section_3_question_5"
-            app:layout_constraintTop_toBottomOf="@+id/section_3_question_5_input" />
+            <RadioButton
+                android:id="@+id/section_3_question_5_radio_1"
+                style="@style/form_radio"
+                android:text="Sim"/>
 
-        <!-- Input 5 -->
-        <EditText
-            android:id="@+id/section_3_question_6_input"
-            style="@style/form_input_text"
-            android:inputType="date"
-            android:hint="@string/form_3_section_3_question_6_placeholder"
-            app:layout_constraintEnd_toEndOf="@+id/section_3_question_6"
-            app:layout_constraintStart_toStartOf="@+id/section_3_question_6"
-            app:layout_constraintTop_toBottomOf="@id/section_3_question_6" />
+            <RadioButton
+                android:id="@+id/section_3_question_5_radio_2"
+                style="@style/form_radio"
+                android:text="Não"/>
+        </RadioGroup>
 
         <!-- Pergunta 4 -->
         <TextView
             android:id="@+id/section_4_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_4_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_3_question_6_input"
-            app:layout_constraintEnd_toEndOf="@+id/section_3_question_6_input"
-            app:layout_constraintTop_toBottomOf="@+id/section_3_question_6_input" />
+            app:layout_constraintStart_toStartOf="@+id/section_3_question_5_radio_group"
+            app:layout_constraintEnd_toEndOf="@+id/section_3_question_5_radio_group"
+            app:layout_constraintTop_toBottomOf="@+id/section_3_question_5_radio_group" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -539,8 +493,9 @@
             android:id="@+id/section_4_question_2_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_map"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_3_section_4_question_2_placeholder"
+            android:maxLength="9"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_2" />
@@ -558,7 +513,7 @@
         <EditText
             android:id="@+id/section_4_question_3_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_3" />
@@ -576,7 +531,7 @@
         <EditText
             android:id="@+id/section_4_question_4_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_4" />
@@ -594,7 +549,7 @@
         <EditText
             android:id="@+id/section_4_question_5_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_5"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_5"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_5" />
@@ -612,7 +567,7 @@
         <EditText
             android:id="@+id/section_4_question_6_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_6"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_6"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_6" />
@@ -630,7 +585,7 @@
         <EditText
             android:id="@+id/section_4_question_7_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_7"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_7"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_7" />
@@ -648,19 +603,48 @@
         <EditText
             android:id="@+id/section_4_question_8_input"
             style="@style/form_input_text"
-            android:inputType="date"
+            android:inputType="text"
+            android:maxLength="2"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_8"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_8"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_8" />
+
+        <!-- Texto do Input 8 -->
+        <TextView
+            android:id="@+id/section_4_question_9"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_4_question_9"
+            app:layout_constraintStart_toStartOf="@+id/section_4_question_8"
+            app:layout_constraintEnd_toEndOf="@+id/section_4_question_8"
+            app:layout_constraintTop_toBottomOf="@+id/section_4_question_8_input" />
+
+        <!-- Input 8 -->
+        <RadioGroup
+            android:id="@+id/section_4_question_9_radio_group"
+            style="@style/form_rg_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/section_4_question_9"
+            app:layout_constraintStart_toStartOf="@+id/section_4_question_9"
+            app:layout_constraintEnd_toEndOf="@+id/section_4_question_9">
+
+            <RadioButton
+                android:id="@+id/section_4_question_9_radio_1"
+                style="@style/form_radio"
+                android:text="Sim"/>
+
+            <RadioButton
+                android:id="@+id/section_4_question_9_radio_2"
+                style="@style/form_radio"
+                android:text="Não"/>
+        </RadioGroup>
 
         <!-- Pergunta 5 -->
         <TextView
             android:id="@+id/section_5_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_5_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_4_question_8_input"
-            app:layout_constraintEnd_toEndOf="@+id/section_4_question_8_input"
-            app:layout_constraintTop_toBottomOf="@+id/section_4_question_8_input" />
+            app:layout_constraintStart_toStartOf="@+id/section_4_question_9_radio_group"
+            app:layout_constraintEnd_toEndOf="@+id/section_4_question_9_radio_group"
+            app:layout_constraintTop_toBottomOf="@+id/section_4_question_9_radio_group" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -671,15 +655,446 @@
             app:layout_constraintEnd_toEndOf="@+id/section_5_question_1"
             app:layout_constraintTop_toBottomOf="@+id/section_5_question_1" />
 
+        <!-- Input 1 -->
+        <EditText
+            android:id="@+id/section_5_question_2_input"
+            style="@style/form_input_text"
+            android:drawableRight="@drawable/icon_map"
+            android:inputType="date"
+            android:hint="@string/form_3_section_5_question_2_placeholder"
+            android:maxLength="9"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_2"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_2" />
+
+        <!-- Texto do Input 2 -->
+        <TextView
+            android:id="@+id/section_5_question_3"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_3"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_2"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_2"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_2_input" />
+
+        <!-- Input 2 -->
+        <EditText
+            android:id="@+id/section_5_question_3_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_3"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_3"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_3" />
+
+        <!-- Texto do Input 3 -->
+        <TextView
+            android:id="@+id/section_5_question_4"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_4"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_3"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_3"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_3_input" />
+
+        <!-- Input 3 -->
+        <EditText
+            android:id="@+id/section_5_question_4_input"
+            style="@style/form_input_text"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_4"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_4"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_4" />
+
+        <!-- Texto do Input 4 -->
+        <TextView
+            android:id="@+id/section_5_question_5"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_5"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_4"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_4"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_4_input" />
+
+        <!-- Input 4 -->
+        <EditText
+            android:id="@+id/section_5_question_5_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_5"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_5"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_5" />
+
+        <!-- Texto do Input 5 -->
+        <TextView
+            android:id="@+id/section_5_question_6"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_6"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_5"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_5"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_5_input" />
+
+        <!-- Input 5 -->
+        <EditText
+            android:id="@+id/section_5_question_6_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_6"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_6"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_6" />
+
+        <!-- Texto do Input 6 -->
+        <TextView
+            android:id="@+id/section_5_question_7"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_7"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_6"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_6"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_6_input" />
+
+        <!-- Input 6 -->
+        <EditText
+            android:id="@+id/section_5_question_7_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_7"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_7"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_7" />
+
+        <!-- Texto do Input 7 -->
+        <TextView
+            android:id="@+id/section_5_question_8"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_8"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_7"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_7"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_7_input" />
+
+        <!-- Input 7 -->
+        <EditText
+            android:id="@+id/section_5_question_8_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            android:maxLength="2"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_8"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_8"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_8" />
+
+        <!-- Texto do Input 8 -->
+        <TextView
+            android:id="@+id/section_5_question_9"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_9"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_8"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_8"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_8_input" />
+
+        <!-- Input 8 -->
+        <EditText
+            android:id="@+id/section_5_question_9_input"
+            style="@style/form_input_text"
+            android:inputType="number"
+            android:hint="@string/form_3_section_5_question_9_placeholder"
+            android:maxLength="11"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_9"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_9"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_9" />
+
+        <!-- Texto do Input 9 -->
+        <TextView
+            android:id="@+id/section_5_question_10"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_5_question_10"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_9"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_9"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_9_input" />
+
+        <!-- Input 9 -->
+        <EditText
+            android:id="@+id/section_5_question_10_input"
+            style="@style/form_input_text"
+            android:clickable="true"
+            android:drawableRight="@drawable/icon_calendar"
+            android:focusable="false"
+            android:inputType="date"
+            android:hint="@string/form_3_section_5_question_10_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_10"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_10"
+            app:layout_constraintTop_toBottomOf="@id/section_5_question_10" />
+
+        <!-- Pergunta 6 -->
+        <TextView
+            android:id="@+id/section_6_question_1"
+            style="@style/form_question"
+            android:text="@string/form_3_section_6_question_1"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_10_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_10_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_10_input" />
+
+        <!-- Texto do Input 1 -->
+        <TextView
+            android:id="@+id/section_6_question_2"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_6_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_1"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_1"
+            app:layout_constraintTop_toBottomOf="@+id/section_6_question_1" />
+
+        <!-- Input 1 -->
+        <EditText
+            android:id="@+id/section_6_question_2_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_2"
+            app:layout_constraintTop_toBottomOf="@id/section_6_question_2" />
+
+        <!-- Texto do Input 2 -->
+        <TextView
+            android:id="@+id/section_6_question_3"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_6_question_3"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_2"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_2"
+            app:layout_constraintTop_toBottomOf="@+id/section_6_question_2_input" />
+
+        <!-- Input 2 -->
+        <EditText
+            android:id="@+id/section_6_question_3_input"
+            style="@style/form_input_text"
+            android:inputType="number"
+            android:hint="@string/form_3_section_6_question_3_placeholder"
+            android:maxLength="14"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_3"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_3"
+            app:layout_constraintTop_toBottomOf="@id/section_6_question_3" />
+
+        <!-- Texto do Input 3 -->
+        <TextView
+            android:id="@+id/section_6_question_4"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_6_question_4"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_3"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_3"
+            app:layout_constraintTop_toBottomOf="@+id/section_6_question_3_input" />
+
+        <!-- Input 3 -->
+        <EditText
+            android:id="@+id/section_6_question_4_input"
+            style="@style/form_input_text"
+            android:clickable="true"
+            android:drawableRight="@drawable/icon_calendar"
+            android:focusable="false"
+            android:inputType="date"
+            android:hint="@string/form_3_section_6_question_4_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_4"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_4"
+            app:layout_constraintTop_toBottomOf="@id/section_6_question_4" />
+
+        <!-- Texto do Input 4 -->
+        <TextView
+            android:id="@+id/section_6_question_5"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_6_question_5"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_4"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_4"
+            app:layout_constraintTop_toBottomOf="@+id/section_6_question_4_input" />
+
+        <!-- Input 4 -->
+        <EditText
+            android:id="@+id/section_6_question_5_input"
+            style="@style/form_input_text"
+            android:inputType="number"
+            android:hint="@string/form_3_section_6_question_5_placeholder"
+            android:maxLength="11"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_5"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_5"
+            app:layout_constraintTop_toBottomOf="@id/section_6_question_5" />
+
+        <!-- Texto do Input 5 -->
+        <TextView
+            android:id="@+id/section_6_question_6"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_6_question_6"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_5"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_5"
+            app:layout_constraintTop_toBottomOf="@+id/section_6_question_5_input" />
+
+        <!-- Input 5 -->
+        <EditText
+            android:id="@+id/section_6_question_6_input"
+            style="@style/form_input_text"
+            android:clickable="true"
+            android:drawableRight="@drawable/icon_calendar"
+            android:focusable="false"
+            android:inputType="date"
+            android:hint="@string/form_3_section_6_question_6_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_6"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_6"
+            app:layout_constraintTop_toBottomOf="@id/section_6_question_6" />
+
+        <!-- Pergunta 7 -->
+        <TextView
+            android:id="@+id/section_7_question_1"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_1"
+            app:layout_constraintStart_toStartOf="@+id/section_6_question_6_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_6_question_6_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_6_question_6_input" />
+
+        <!-- Texto do Input 1 -->
+        <TextView
+            android:id="@+id/section_7_question_2"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_1"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_1"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_1" />
+
+        <!-- Input 1 -->
+        <EditText
+            android:id="@+id/section_7_question_2_input"
+            style="@style/form_input_text"
+            android:drawableRight="@drawable/icon_map"
+            android:inputType="number"
+            android:hint="@string/form_3_section_7_question_2_placeholder"
+            android:maxLength="14"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_2"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_2" />
+
+        <!-- Texto do Input 2 -->
+        <TextView
+            android:id="@+id/section_7_question_3"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_3"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_2"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_2"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_2_input" />
+
+        <!-- Input 2 -->
+        <EditText
+            android:id="@+id/section_7_question_3_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_3"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_3"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_3" />
+
+        <!-- Texto do Input 3 -->
+        <TextView
+            android:id="@+id/section_7_question_4"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_4"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_3"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_3"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_3_input" />
+
+        <!-- Input 3 -->
+        <EditText
+            android:id="@+id/section_7_question_4_input"
+            style="@style/form_input_text"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_4"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_4"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_4" />
+
+        <!-- Texto do Input 4 -->
+        <TextView
+            android:id="@+id/section_7_question_5"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_5"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_4"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_4"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_4_input" />
+
+        <!-- Input 4 -->
+        <EditText
+            android:id="@+id/section_7_question_5_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_5"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_5"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_5" />
+
+        <!-- Texto do Input 5 -->
+        <TextView
+            android:id="@+id/section_7_question_6"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_6"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_5"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_5"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_5_input" />
+
+        <!-- Input 5 -->
+        <EditText
+            android:id="@+id/section_7_question_6_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_6"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_6"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_6" />
+
+        <!-- Texto do Input 6 -->
+        <TextView
+            android:id="@+id/section_7_question_7"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_7"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_6"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_6"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_6_input" />
+
+        <!-- Input 6 -->
+        <EditText
+            android:id="@+id/section_7_question_7_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_7"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_7"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_7" />
+
+        <!-- Texto do Input 7 -->
+        <TextView
+            android:id="@+id/section_7_question_8"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_7_question_8"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_7"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_7"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_7_input" />
+
+        <!-- Input 7 -->
+        <EditText
+            android:id="@+id/section_7_question_8_input"
+            style="@style/form_input_text"
+            android:inputType="text"
+            android:maxLength="2"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_8"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_8"
+            app:layout_constraintTop_toBottomOf="@id/section_7_question_8" />
+
+        <!-- Pergunta 8 -->
+        <TextView
+            android:id="@+id/section_8_question_1"
+            style="@style/form_question"
+            android:text="@string/form_3_section_8_question_1"
+            app:layout_constraintStart_toStartOf="@+id/section_7_question_8_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_7_question_8_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_7_question_8_input" />
+
+        <!-- Texto do Input 1 -->
+        <TextView
+            android:id="@+id/section_8_question_2"
+            style="@style/form_subquestion"
+            android:text="@string/form_3_section_8_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_8_question_1"
+            app:layout_constraintEnd_toEndOf="@+id/section_8_question_1"
+            app:layout_constraintTop_toBottomOf="@+id/section_8_question_1" />
+
         <!-- Seleção de áreas danificadas do veículo - Imagem do veículo -->
         <ImageView
             android:id="@+id/damage_vehicle"
             style="@style/form_damage_image"
             android:src="@drawable/carro"
             android:contentDescription="Carro"
-            app:layout_constraintStart_toStartOf="@+id/section_5_question_2"
-            app:layout_constraintEnd_toEndOf="@+id/section_5_question_2"
-            app:layout_constraintTop_toBottomOf="@+id/section_5_question_2"
+            app:layout_constraintStart_toStartOf="@+id/section_8_question_2"
+            app:layout_constraintEnd_toEndOf="@+id/section_8_question_2"
+            app:layout_constraintTop_toBottomOf="@+id/section_8_question_2"
             />
 
         <!-- Canto superior esquerdo -->

@@ -349,6 +349,7 @@
             android:id="@+id/section_3_question_8_input"
             style="@style/form_input_text"
             android:inputType="text"
+            android:maxLength="2"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_8"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_8"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_8" />
@@ -494,8 +495,8 @@
             android:id="@+id/section_5_question_1_radio_group"
             style="@style/form_rg_vertical"
             app:layout_constraintTop_toBottomOf="@+id/section_5_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_5"
-            app:layout_constraintEnd_toEndOf="@+id/section_5">
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
+            app:layout_constraintEnd_toEndOf="@+id/section_5_question_1">
 
             <RadioButton
                 android:id="@+id/section_5_question_1_radio_1"
@@ -534,7 +535,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/section_5_question_1_radio_2_info"
             style="@style/form_info_button"
-            android:layout_marginTop="73dp"
+            android:layout_marginTop="81dp"
             android:layout_marginLeft="190dp"
             app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
             app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
@@ -542,7 +543,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/section_5_question_1_radio_3_info"
             style="@style/form_info_button"
-            android:layout_marginTop="104dp"
+            android:layout_marginTop="122dp"
             android:layout_marginLeft="136dp"
             app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
             app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
@@ -550,7 +551,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/section_5_question_1_radio_4_info"
             style="@style/form_info_button"
-            android:layout_marginTop="132dp"
+            android:layout_marginTop="162dp"
             android:layout_marginLeft="129dp"
             app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
             app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
@@ -558,7 +559,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/section_5_question_1_radio_5_info"
             style="@style/form_info_button"
-            android:layout_marginTop="164dp"
+            android:layout_marginTop="203dp"
             android:layout_marginLeft="210dp"
             app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
             app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />

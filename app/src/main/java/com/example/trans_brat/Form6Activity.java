@@ -1,8 +1,11 @@
 package com.example.trans_brat;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -11,12 +14,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Form6Activity extends AppCompatActivity {
+    private static final int PICK_IMAGES_REQUEST_CODE = 1;
+    private List<String> selectedImagePaths;
+    private ImageAdapter imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,15 @@ public class Form6Activity extends AppCompatActivity {
         });
 
         //requiredQuestions();
+
+        /* Upload de imagens */
+        selectedImagePaths = new ArrayList<>();
+        RecyclerView imagesRecyclerView = findViewById(R.id.section_2_question_1_imagerecyclerview);
+        imagesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        imageAdapter = new ImageAdapter(this, selectedImagePaths);
+        imagesRecyclerView.setAdapter(imageAdapter);
+        findViewById(R.id.section_2_question_1_input).setOnClickListener(v -> openGallery());
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -88,5 +109,47 @@ public class Form6Activity extends AppCompatActivity {
                 textView.setText(spannableString);
             }
         }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Selecione até 10 imagens"), PICK_IMAGES_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGES_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                if (data.getClipData() != null) { // Se múltiplas imagens foram selecionadas
+                    int count = data.getClipData().getItemCount();
+                    for (int i = 0; i < count && i < 10; i++) { // Limitar a 10 imagens
+                        Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                        selectedImagePaths.add(getRealPathFromURI(imageUri));
+                    }
+                } else if (data.getData() != null) { // Se apenas uma imagem foi selecionada
+                    Uri imageUri = data.getData();
+                    selectedImagePaths.add(getRealPathFromURI(imageUri));
+                }
+                imageAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    // Converter URI em caminho real do arquivo
+    private String getRealPathFromURI(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            String path = cursor.getString(columnIndex);
+            cursor.close();
+            return path;
+        }
+        return null;
     }
 }

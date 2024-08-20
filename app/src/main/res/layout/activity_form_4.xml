@@ -130,11 +130,9 @@
             app:layout_constraintTop_toBottomOf="@+id/form_info" />
 
         <!-- Input 1 -->
-        <EditText
+        <Spinner
             android:id="@+id/section_1_question_1_input"
-            style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            style="@style/form_input_dropdown"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_1"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_1"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_1" />

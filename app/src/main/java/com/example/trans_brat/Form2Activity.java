@@ -1,7 +1,9 @@
 package com.example.trans_brat;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -58,7 +61,10 @@ public class Form2Activity extends AppCompatActivity {
         /* Formatando inputs de CEP */
         cepQuestions();
 
-        //requiredQuestions();
+        /* Criando popups ao clicar nos botões de informações */
+        infoButtons();
+
+        requiredQuestions();
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -94,7 +100,20 @@ public class Form2Activity extends AppCompatActivity {
     private void requiredQuestions() {
         /* Definindo perguntas obrigatórias */
         int[] questions_ids = {
-                R.id.section_1_question_1
+                R.id.section_1_question_2,
+                R.id.section_1_question_3,
+                R.id.section_2_question_2,
+                R.id.section_2_question_3,
+                R.id.section_3_question_2,
+                R.id.section_3_question_3,
+                R.id.section_3_question_4,
+                R.id.section_3_question_6,
+                R.id.section_3_question_7,
+                R.id.section_3_question_8,
+                R.id.section_4_question_2,
+                R.id.section_4_question_3,
+                R.id.section_4_question_4,
+                R.id.section_5_question_1
         };
 
         /* Para cada pergunta obrigatória */
@@ -167,7 +186,7 @@ public class Form2Activity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-    /* Função para perguntas obrigatórias */
+    /* Função para dropdowns */
     private void dropdownQuestions() {
         /* Definindo perguntas obrigatórias */
         int[] spinnerIds = {
@@ -234,5 +253,49 @@ public class Form2Activity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    /* Função para botões de informações */
+    private void infoButtons() {
+        /* Definindo perguntas obrigatórias */
+        int[] infoIds = {
+                R.id.section_5_question_1_radio_1_info,
+                R.id.section_5_question_1_radio_2_info,
+                R.id.section_5_question_1_radio_3_info,
+                R.id.section_5_question_1_radio_4_info,
+                R.id.section_5_question_1_radio_5_info
+        };
+        String[][] infoTexts = {
+                {"Abalroamento", "Acidente em os veículos colidem lateral ou transversalmente (pela parte frontal ou traseira do veículo)."},
+                {"Capotagem", "Acidente em que o veículo gira sobre si mesmo, em qualquer sentido, chegando a ficar com as rodas para cima, imobilizando-se em qualquer posição."},
+                {"Choque", "Acidente em que há impacto de um veículo contra qualquer fixo (muro, árvore, poste) ou móvel, mas sem movimento (veículo parado)"},
+                {"Colisão", "Acidente em que o veículo em movimento sofre o impacto de outro veículo, também em movimento."},
+                {"Tombamento", "Acidente em o veículo sai da sua posição normal, se imobilizando sobre uma de suas laterais, sua frente ou sua traseira."}
+        };
+
+        for (int i = 0; i < infoIds.length; i++) {
+            Button infoButton = findViewById(infoIds[i]);
+            int finalI = i;
+            infoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showPopup(Form2Activity.this, infoTexts[finalI][0], infoTexts[finalI][1]);
+                }
+            });
+        }
+    }
+
+    private void showPopup(Activity activity, String title, String content){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Form2Activity.this);
+        builder.setTitle(title);
+        builder.setMessage(content);
+        builder.setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

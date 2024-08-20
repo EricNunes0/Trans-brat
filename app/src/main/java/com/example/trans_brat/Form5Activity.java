@@ -3,11 +3,14 @@ package com.example.trans_brat;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +33,12 @@ public class Form5Activity extends AppCompatActivity {
         });
 
         //requiredQuestions();
+
+        /* Formatando inputs de CPF */
+        cpfQuestions();
+
+        /* Formatando inputs de telefone */
+        phoneQuestions();
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -86,6 +95,123 @@ public class Form5Activity extends AppCompatActivity {
                 spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 textView.setText(spannableString);
             }
+        }
+    }
+
+    /* Função para formatar CPF */
+    private void cpfQuestions() {
+        int[] cpfIds = {
+                R.id.section_1_question_3_input,
+                R.id.section_2_question_3_input,
+                R.id.section_3_question_3_input,
+                R.id.section_4_question_3_input
+        };
+
+        for (int i = 0; i < cpfIds.length; i++) {
+            EditText cpfEditText = findViewById(cpfIds[i]);
+            cpfEditText.addTextChangedListener(new TextWatcher() {
+                private boolean isUpdating = false;
+                private String oldText = "";
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = s.toString().replaceAll("[^\\d]", "");
+
+                    if (isUpdating) {
+                        oldText = str;
+                        isUpdating = false;
+                        return;
+                    }
+
+                    if (str.length() < oldText.length()) {
+                        oldText = str;
+                        isUpdating = true;
+                        cpfEditText.setText(oldText);
+                        cpfEditText.setSelection(oldText.length());
+                        return;
+                    }
+
+                    // Formatação
+                    if (str.length() > 3) {
+                        str = str.substring(0, 3) + "." + str.substring(3);
+                    }
+                    if (str.length() > 7) {
+                        str = str.substring(0, 7) + "." + str.substring(7);
+                    }
+                    if (str.length() > 11) {
+                        str = str.substring(0, 11) + "-" + str.substring(11);
+                    }
+
+                    isUpdating = true;
+                    cpfEditText.setText(str);
+                    cpfEditText.setSelection(str.length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+        }
+    }
+
+    /* Função para formatar telefone */
+    private void phoneQuestions() {
+        int[] phoneIds = {
+                R.id.section_1_question_4_input,
+                R.id.section_2_question_4_input,
+                R.id.section_3_question_4_input,
+                R.id.section_4_question_4_input
+        };
+
+        for (int i = 0; i < phoneIds.length; i++) {
+            EditText phoneEditText = findViewById(phoneIds[i]);
+            phoneEditText.addTextChangedListener(new TextWatcher() {
+                private boolean isUpdating = false;
+                private String oldText = "";
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = s.toString().replaceAll("[^\\d]", "");
+
+                    if (isUpdating) {
+                        oldText = str;
+                        isUpdating = false;
+                        return;
+                    }
+
+                    if (str.length() < oldText.length()) {
+                        oldText = str;
+                        isUpdating = true;
+                        phoneEditText.setText(oldText);
+                        phoneEditText.setSelection(oldText.length());
+                        return;
+                    }
+
+                    // Formatação
+                    if (str.length() > 2) {
+                        str = "(" + str.substring(0, 2) + ") " + str.substring(2);
+                    }
+                    if (str.length() > 10) {
+                        str = str.substring(0, 10) + "-" + str.substring(10);
+                    }
+
+                    isUpdating = true;
+                    phoneEditText.setText(str);
+                    phoneEditText.setSelection(str.length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
         }
     }
 }

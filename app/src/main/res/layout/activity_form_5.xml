@@ -143,7 +143,7 @@
             android:id="@+id/section_1_question_2_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_2" />
@@ -162,8 +162,9 @@
             android:id="@+id/section_1_question_3_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_5_section_1_question_3_placeholder"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_3" />
@@ -182,8 +183,9 @@
             android:id="@+id/section_1_question_4_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="phone"
             android:hint="@string/form_5_section_1_question_4_placeholder"
+            android:maxLength="15"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_4" />
@@ -211,7 +213,7 @@
             android:id="@+id/section_2_question_2_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_2" />
@@ -230,8 +232,9 @@
             android:id="@+id/section_2_question_3_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_5_section_2_question_3_placeholder"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_3" />
@@ -250,8 +253,9 @@
             android:id="@+id/section_2_question_4_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="phone"
             android:hint="@string/form_5_section_2_question_4_placeholder"
+            android:maxLength="15"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_4" />
@@ -279,7 +283,7 @@
             android:id="@+id/section_3_question_2_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_2" />
@@ -298,8 +302,9 @@
             android:id="@+id/section_3_question_3_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_5_section_3_question_3_placeholder"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_3" />
@@ -318,8 +323,9 @@
             android:id="@+id/section_3_question_4_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="phone"
             android:hint="@string/form_5_section_3_question_4_placeholder"
+            android:maxLength="15"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_4" />
@@ -347,7 +353,7 @@
             android:id="@+id/section_4_question_2_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_2" />
@@ -366,8 +372,9 @@
             android:id="@+id/section_4_question_3_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="number"
             android:hint="@string/form_5_section_4_question_3_placeholder"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_3" />
@@ -386,8 +393,9 @@
             android:id="@+id/section_4_question_4_input"
             style="@style/form_input_text"
             android:drawableRight="@drawable/icon_select"
-            android:inputType="date"
+            android:inputType="phone"
             android:hint="@string/form_5_section_4_question_4_placeholder"
+            android:maxLength="15"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_4" />
