@@ -121,20 +121,13 @@
             app:layout_constraintTop_toTopOf="@+id/form_info" />
 
         <!-- Pergunta 1 -->
-        <View
-            android:id="@+id/section_1"
-            android:layout_width="match_parent"
-            android:layout_height="1020dp"
-            app:layout_constraintTop_toBottomOf="@+id/form_info"
-            />
-
         <TextView
             android:id="@+id/section_1_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_1_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_1"
-            app:layout_constraintEnd_toEndOf="@+id/section_1"
-            app:layout_constraintTop_toTopOf="@+id/section_1" />
+            app:layout_constraintStart_toStartOf="@+id/form_info"
+            app:layout_constraintEnd_toEndOf="@+id/form_info"
+            app:layout_constraintTop_toBottomOf="@+id/form_info" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -149,7 +142,6 @@
         <EditText
             android:id="@+id/section_1_question_2_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             android:hint="@string/form_3_section_1_question_2_placeholder"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_2"
@@ -169,7 +161,6 @@
         <EditText
             android:id="@+id/section_1_question_3_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_3"
@@ -188,7 +179,6 @@
         <EditText
             android:id="@+id/section_1_question_4_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_4"
@@ -207,7 +197,6 @@
         <EditText
             android:id="@+id/section_1_question_5_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_5"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_5"
@@ -226,7 +215,6 @@
         <EditText
             android:id="@+id/section_1_question_6_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_6"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_6"
@@ -245,7 +233,6 @@
         <EditText
             android:id="@+id/section_1_question_7_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_7"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_7"
@@ -264,7 +251,6 @@
         <EditText
             android:id="@+id/section_1_question_8_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_8"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_8"
@@ -283,7 +269,6 @@
         <EditText
             android:id="@+id/section_1_question_9_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_9"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_9"
@@ -302,7 +287,6 @@
         <EditText
             android:id="@+id/section_1_question_10_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_10"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_10"
@@ -337,20 +321,13 @@
         </RadioGroup>
 
         <!-- Pergunta 2 -->
-        <View
-            android:id="@+id/section_2"
-            android:layout_width="match_parent"
-            android:layout_height="420dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_1"
-            />
-
         <TextView
             android:id="@+id/section_2_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_2_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_2"
-            app:layout_constraintEnd_toEndOf="@+id/section_2"
-            app:layout_constraintTop_toTopOf="@+id/section_2" />
+            app:layout_constraintStart_toStartOf="@+id/section_1_question_11_radio_group"
+            app:layout_constraintEnd_toEndOf="@+id/section_1_question_11_radio_group"
+            app:layout_constraintTop_toBottomOf="@+id/section_1_question_11_radio_group" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -365,7 +342,6 @@
         <EditText
             android:id="@+id/section_2_question_2_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_2"
@@ -438,20 +414,13 @@
         </RadioGroup>
 
         <!-- Pergunta 3 -->
-        <View
-            android:id="@+id/section_3"
-            android:layout_width="match_parent"
-            android:layout_height="540dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_2"
-            />
-
         <TextView
             android:id="@+id/section_3_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_3_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_3"
-            app:layout_constraintEnd_toEndOf="@+id/section_3"
-            app:layout_constraintTop_toTopOf="@+id/section_3" />
+            app:layout_constraintStart_toStartOf="@+id/section_2_question_5_radio_group"
+            app:layout_constraintEnd_toEndOf="@+id/section_2_question_5_radio_group"
+            app:layout_constraintTop_toBottomOf="@+id/section_2_question_5_radio_group" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -466,7 +435,6 @@
         <EditText
             android:id="@+id/section_3_question_2_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_2"
@@ -549,20 +517,13 @@
             app:layout_constraintTop_toBottomOf="@id/section_3_question_6" />
 
         <!-- Pergunta 4 -->
-        <View
-            android:id="@+id/section_4"
-            android:layout_width="match_parent"
-            android:layout_height="740dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_3"
-            />
-
         <TextView
             android:id="@+id/section_4_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_4_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_4"
-            app:layout_constraintEnd_toEndOf="@+id/section_4"
-            app:layout_constraintTop_toTopOf="@+id/section_4" />
+            app:layout_constraintStart_toStartOf="@+id/section_3_question_6_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_3_question_6_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_3_question_6_input" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -597,7 +558,6 @@
         <EditText
             android:id="@+id/section_4_question_3_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_3"
@@ -616,7 +576,6 @@
         <EditText
             android:id="@+id/section_4_question_4_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_4"
@@ -635,7 +594,6 @@
         <EditText
             android:id="@+id/section_4_question_5_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_5"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_5"
@@ -654,7 +612,6 @@
         <EditText
             android:id="@+id/section_4_question_6_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_6"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_6"
@@ -673,7 +630,6 @@
         <EditText
             android:id="@+id/section_4_question_7_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_7"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_7"
@@ -692,27 +648,19 @@
         <EditText
             android:id="@+id/section_4_question_8_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_map"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="@+id/section_4_question_8"
             app:layout_constraintStart_toStartOf="@+id/section_4_question_8"
             app:layout_constraintTop_toBottomOf="@id/section_4_question_8" />
 
         <!-- Pergunta 5 -->
-        <View
-            android:id="@+id/section_5"
-            android:layout_width="match_parent"
-            android:layout_height="380dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_4"
-            />
-
         <TextView
             android:id="@+id/section_5_question_1"
             style="@style/form_question"
             android:text="@string/form_3_section_5_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_5"
-            app:layout_constraintEnd_toEndOf="@+id/section_5"
-            app:layout_constraintTop_toTopOf="@+id/section_5" />
+            app:layout_constraintStart_toStartOf="@+id/section_4_question_8_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_4_question_8_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_4_question_8_input" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -783,7 +731,7 @@
             android:id="@+id/buttons_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_5"
+            app:layout_constraintTop_toBottomOf="@+id/damage_vehicle"
             />
 
         <androidx.appcompat.widget.AppCompatButton

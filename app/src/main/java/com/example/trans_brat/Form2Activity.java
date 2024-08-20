@@ -1,14 +1,24 @@
 package com.example.trans_brat;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +26,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Calendar;
+
 public class Form2Activity extends AppCompatActivity {
+    private EditText editTextDate;
+    private EditText editTextTime;
+    private AutoCompleteTextView autoCompleteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +43,20 @@ public class Form2Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        /* Adicionando calendário aos inputs de data */
+        editTextDate = findViewById(R.id.section_1_question_2_input);
+        editTextDate.setOnClickListener(v -> showDatePickerDialog());
+
+        /* Adicionando relógio aos inputs de horário */
+        editTextTime = findViewById(R.id.section_1_question_3_input);
+        editTextTime.setOnClickListener(v -> showTimePickerDialog());
+
+        /* Adicionando opções aos dropdowns */
+        dropdownQuestions();
+
+        /* Formatando inputs de CEP */
+        cepQuestions();
 
         //requiredQuestions();
 
@@ -86,6 +115,124 @@ public class Form2Activity extends AppCompatActivity {
                 spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 textView.setText(spannableString);
             }
+        }
+    }
+
+    /* Função para inputs de data */
+    private void showDatePickerDialog() {
+        // Obtendo a data atual
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Criando o DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Form2Activity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+                // O mês retornado é zero-based (Janeiro é 0)
+                selectedMonth = selectedMonth + 1;
+                String date = selectedDay + "/" + selectedMonth + "/" + selectedYear;
+                editTextDate.setText(date);
+            }
+        }, year, month, day
+        );
+
+        // Exibindo o DatePickerDialog
+        datePickerDialog.show();
+    }
+
+    /* Função para inputs de horário */
+    private void showTimePickerDialog() {
+        // Obtendo o horário atual
+        final Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        // Criando o TimePickerDialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                Form2Activity.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                        // Formatando o horário como HH:mm
+                        String time = String.format("%02d:%02d", selectedHour, selectedMinute);
+                        editTextTime.setText(time);
+                    }
+                },
+                hour, minute, true // O terceiro argumento define se é 24 horas ou não
+        );
+
+        // Exibindo o TimePickerDialog
+        timePickerDialog.show();
+    }
+
+    /* Função para perguntas obrigatórias */
+    private void dropdownQuestions() {
+        /* Definindo perguntas obrigatórias */
+        int[] spinnerIds = {
+                R.id.section_2_question_2_input,
+                R.id.section_2_question_3_input
+        };
+        String[][] spinnerOptions = {
+                {"Selecione uma opção", "Em uma via urbana", "Em uma rodovia", "Em uma estrada (não pavimentada)", "No estacionamento coletivo", "No estacionamento privado"},
+                {"Selecione uma opção", "No cruzamento com semáforo", "No cruzamento sem semáforo", "No acesso a outra via ou estrada", "Em uma saída ou entrada de veículos", "Em uma rotatória (rótula)", "No trevo", "Em uma ponte", "No viaduto", "No túnel", "Em uma via de mão única", "Em uma via de mão dupla", "Outros"}
+        };
+
+        for (int i = 0; i < spinnerIds.length; i++) {
+            Spinner spinner = findViewById(spinnerIds[i]);
+            String[] options = spinnerOptions[i];
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, options);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+        }
+    }
+
+    /* Função para formatar CEP */
+    private void cepQuestions() {
+        /* Definindo perguntas obrigatórias */
+        int[] cepIds = {
+                R.id.section_3_question_2_input
+        };
+
+        for (int i = 0; i < cepIds.length; i++) {
+            EditText cepEditText = findViewById(cepIds[i]);
+            cepEditText.addTextChangedListener(new TextWatcher() {
+                private boolean isUpdating = false;
+                private String oldText = "";
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = s.toString().replaceAll("[^\\d]", "");
+
+                    if (isUpdating) {
+                        oldText = str;
+                        isUpdating = false;
+                        return;
+                    }
+
+                    String formatted = "";
+
+                    // Formatar o CEP no formato 12345-678
+                    if (str.length() > 5) {
+                        formatted = str.substring(0, 5) + "-" + str.substring(5);
+                    } else if (str.length() > 0) {
+                        formatted = str;
+                    }
+
+                    isUpdating = true;
+                    cepEditText.setText(formatted);
+                    cepEditText.setSelection(formatted.length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
         }
     }
 }

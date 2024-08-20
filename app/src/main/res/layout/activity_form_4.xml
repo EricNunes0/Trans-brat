@@ -121,21 +121,13 @@
             app:layout_constraintTop_toTopOf="@+id/form_info" />
 
         <!-- Pergunta 1 -->
-        <View
-            android:id="@+id/section_1"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            app:layout_constraintTop_toBottomOf="@+id/form_info"
-            />
-
-        <!-- Texto do Input 1 -->
         <TextView
             android:id="@+id/section_1_question_1"
             style="@style/form_subquestion"
             android:text="@string/form_4_section_1_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_1"
-            app:layout_constraintEnd_toEndOf="@+id/section_1"
-            app:layout_constraintTop_toTopOf="@+id/section_1" />
+            app:layout_constraintStart_toStartOf="@+id/form_info"
+            app:layout_constraintEnd_toEndOf="@+id/form_info"
+            app:layout_constraintTop_toBottomOf="@+id/form_info" />
 
         <!-- Input 1 -->
         <EditText
@@ -152,7 +144,7 @@
             android:id="@+id/buttons_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_1"
+            app:layout_constraintTop_toBottomOf="@+id/section_1_question_1_input"
             />
 
         <androidx.appcompat.widget.AppCompatButton

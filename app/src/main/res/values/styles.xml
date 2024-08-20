@@ -45,11 +45,12 @@
     <style name="form_question">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">24dp</item>
         <item name="android:textStyle">bold</item>
         <item name="textAllCaps">false</item>
     </style>
@@ -61,7 +62,7 @@
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">24dp</item>
         <item name="android:textStyle">normal</item>
         <item name="textAllCaps">false</item>
     </style>
@@ -82,9 +83,18 @@
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:scaleType">center</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">24dp</item>
         <item name="android:textStyle">normal</item>
         <!--<item name="android:button">@drawable/radio_selector</item>-->
+    </style>
+
+    <!-- Botões de informações amarelos -->
+    <style name="form_info_button">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/button_info</item>
+        <item name="android:text">?</item>
+        <item name="android:textColor">@color/form_info_button</item>
     </style>
 
     <!-- Campos de entrada de texto -->
@@ -100,12 +110,22 @@
         <item name="android:textColorHint">@color/input_placeholder</item>
     </style>
 
+    <!-- Campos de entrada de menu suspenso (dropdown) -->
+    <style name="form_input_dropdown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:background">@drawable/edit_text_login</item>
+        <item name="android:padding">7dp</item>
+    </style>
+
     <!-- Botão de voltar -->
     <style name="form_back_button">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@color/form_back_button</item>
+        <item name="android:background">@drawable/button_back</item>
         <item name="android:drawableLeft">@drawable/icon_back</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:padding">5dp</item>
@@ -118,10 +138,10 @@
 
     <!-- Botão de cancelar -->
     <style name="form_cancel_button">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@color/form_cancel_button</item>
+        <item name="android:background">@drawable/button_cancel</item>
         <item name="android:drawableLeft">@drawable/icon_cancel</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:padding">5dp</item>
@@ -134,15 +154,15 @@
 
     <!-- Botão de avançar -->
     <style name="form_next_button">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@color/form_next_button</item>
+        <item name="android:background">@drawable/button_next</item>
         <item name="android:drawableRight">@drawable/icon_next</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:padding">5dp</item>
         <item name="android:text">Avançar</item>
-        <item name="android:textColor">@color/blue_text</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18dp</item>
         <item name="android:textStyle">normal</item>
         <item name="textAllCaps">false</item>

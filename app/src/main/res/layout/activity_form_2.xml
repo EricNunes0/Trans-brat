@@ -121,20 +121,13 @@
             app:layout_constraintTop_toTopOf="@+id/form_info" />
 
         <!-- Pergunta 1 -->
-        <View
-            android:id="@+id/section_1"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            app:layout_constraintTop_toBottomOf="@+id/form_info"
-            />
-
         <TextView
             android:id="@+id/section_1_question_1"
             style="@style/form_question"
             android:text="@string/form_2_section_1_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_1"
-            app:layout_constraintEnd_toEndOf="@+id/section_1"
-            app:layout_constraintTop_toTopOf="@+id/section_1" />
+            app:layout_constraintStart_toStartOf="@+id/form_info"
+            app:layout_constraintEnd_toEndOf="@+id/form_info"
+            app:layout_constraintTop_toBottomOf="@+id/form_info" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -149,8 +142,10 @@
         <EditText
             android:id="@+id/section_1_question_2_input"
             style="@style/form_input_text"
+            android:clickable="true"
             android:drawableRight="@drawable/icon_calendar"
             android:inputType="date"
+            android:focusable="false"
             android:hint="@string/form_2_section_1_question_2_placeholder"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_2"
@@ -169,28 +164,22 @@
         <EditText
             android:id="@+id/section_1_question_3_input"
             style="@style/form_input_text"
-            android:inputType="time"
+            android:clickable="true"
             android:hint="@string/form_2_section_1_question_3_placeholder"
+            android:inputType="time"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_1_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_3" />
-        <!-- Fim da pergunta 1 -->
 
         <!-- Pergunta 2 -->
-        <View
-            android:id="@+id/section_2"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_1"
-            />
-
         <TextView
             android:id="@+id/section_2_question_1"
             style="@style/form_question"
             android:text="@string/form_2_section_2_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_2"
-            app:layout_constraintEnd_toEndOf="@+id/section_2"
-            app:layout_constraintTop_toTopOf="@+id/section_2" />
+            app:layout_constraintStart_toStartOf="@+id/section_1_question_3_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_1_question_3_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_1_question_3_input" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -202,12 +191,9 @@
             app:layout_constraintTop_toBottomOf="@+id/section_2_question_1" />
 
         <!-- Input 1 -->
-        <EditText
+        <Spinner
             android:id="@+id/section_2_question_2_input"
-            style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_calendar"
-            android:inputType="text"
-            android:hint="@string/form_2_section_2_question_2_placeholder"
+            style="@style/form_input_dropdown"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_2" />
@@ -222,31 +208,21 @@
             app:layout_constraintTop_toBottomOf="@+id/section_2_question_2_input" />
 
         <!-- Input 2 -->
-        <EditText
+        <Spinner
             android:id="@+id/section_2_question_3_input"
-            style="@style/form_input_text"
-            android:inputType="time"
-            android:hint="@string/form_2_section_2_question_3_placeholder"
+            style="@style/form_input_dropdown"
             app:layout_constraintEnd_toEndOf="@+id/section_2_question_3"
             app:layout_constraintStart_toStartOf="@+id/section_2_question_3"
             app:layout_constraintTop_toBottomOf="@id/section_2_question_3" />
-        <!-- Fim da pergunta 2-->
 
         <!-- Pergunta 3 -->
-        <View
-            android:id="@+id/section_3"
-            android:layout_width="match_parent"
-            android:layout_height="800dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_2"
-            />
-
         <TextView
             android:id="@+id/section_3_question_1"
             style="@style/form_question"
             android:text="@string/form_2_section_3_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_3"
-            app:layout_constraintEnd_toEndOf="@+id/section_3"
-            app:layout_constraintTop_toTopOf="@+id/section_3" />
+            app:layout_constraintStart_toStartOf="@+id/section_2_question_3_input"
+            app:layout_constraintEnd_toEndOf="@+id/section_2_question_3_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_2_question_3_input" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -261,9 +237,10 @@
         <EditText
             android:id="@+id/section_3_question_2_input"
             style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_calendar"
-            android:inputType="text"
+            android:drawableRight="@drawable/icon_map"
+            android:inputType="number"
             android:hint="@string/form_2_section_3_question_2_placeholder"
+            android:maxLength="9"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_2"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_2"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_2" />
@@ -299,7 +276,7 @@
         <EditText
             android:id="@+id/section_3_question_4_input"
             style="@style/form_input_text"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="@+id/section_3_question_4"
             app:layout_constraintStart_toStartOf="@+id/section_3_question_4"
             app:layout_constraintTop_toBottomOf="@id/section_3_question_4" />
@@ -406,21 +383,13 @@
             />
 
         <!-- Pergunta 4 -->
-        <View
-            android:id="@+id/section_4"
-            android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/form_hr_1"
-            />
-
         <TextView
             android:id="@+id/section_4_question_1"
             style="@style/form_question"
             android:text="@string/form_2_section_4_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_4"
-            app:layout_constraintEnd_toEndOf="@+id/section_4"
-            app:layout_constraintTop_toTopOf="@+id/section_4" />
+            app:layout_constraintStart_toStartOf="@+id/form_hr_1"
+            app:layout_constraintEnd_toEndOf="@+id/form_hr_1"
+            app:layout_constraintTop_toTopOf="@+id/form_hr_1" />
 
         <!-- Texto do Input 1 -->
         <TextView
@@ -478,7 +447,7 @@
                 android:text="Deficiente"/>
         </RadioGroup>
 
-        !-- Texto do Input 3 -->
+        <!-- Texto do Input 3 -->
         <TextView
             android:id="@+id/section_4_question_4"
             style="@style/form_subquestion"
@@ -512,20 +481,13 @@
         </RadioGroup>1
 
         <!-- Pergunta 5 -->
-        <View
-            android:id="@+id/section_5"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_4"
-            />
-
         <TextView
             android:id="@+id/section_5_question_1"
             style="@style/form_question"
             android:text="@string/form_2_section_5_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_5"
-            app:layout_constraintEnd_toEndOf="@+id/section_5"
-            app:layout_constraintTop_toTopOf="@+id/section_5" />
+            app:layout_constraintStart_toStartOf="@+id/section_4_question_4_radio_group"
+            app:layout_constraintEnd_toEndOf="@+id/section_4_question_4_radio_group"
+            app:layout_constraintTop_toBottomOf="@+id/section_4_question_4_radio_group" />
 
         <!-- Opções de Input radio 1 -->
         <RadioGroup
@@ -546,27 +508,67 @@
                 android:text="Capotagem"/>
 
             <RadioButton
-                android:id="@+id/section_5_question_1_radio_2"
+                android:id="@+id/section_5_question_1_radio_3"
                 style="@style/form_radio"
                 android:text="Choque"/>
 
             <RadioButton
-                android:id="@+id/section_5_question_1_radio_2"
+                android:id="@+id/section_5_question_1_radio_4"
                 style="@style/form_radio"
                 android:text="Colisão"/>
 
             <RadioButton
-                android:id="@+id/section_5_question_1_radio_2"
+                android:id="@+id/section_5_question_1_radio_5"
                 style="@style/form_radio"
                 android:text="Tombamento"/>
         </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/section_5_question_1_radio_1_info"
+            style="@style/form_info_button"
+            android:layout_marginTop="43dp"
+            android:layout_marginLeft="220dp"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
+            app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/section_5_question_1_radio_2_info"
+            style="@style/form_info_button"
+            android:layout_marginTop="73dp"
+            android:layout_marginLeft="190dp"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
+            app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/section_5_question_1_radio_3_info"
+            style="@style/form_info_button"
+            android:layout_marginTop="104dp"
+            android:layout_marginLeft="136dp"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
+            app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/section_5_question_1_radio_4_info"
+            style="@style/form_info_button"
+            android:layout_marginTop="132dp"
+            android:layout_marginLeft="129dp"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
+            app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/section_5_question_1_radio_5_info"
+            style="@style/form_info_button"
+            android:layout_marginTop="164dp"
+            android:layout_marginLeft="210dp"
+            app:layout_constraintStart_toStartOf="@+id/section_5_question_1"
+            app:layout_constraintTop_toTopOf="@+id/section_5_question_1" />
 
         <!-- Botões inferiores -->
         <View
             android:id="@+id/buttons_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_5"
+            app:layout_constraintTop_toBottomOf="@+id/section_5_question_1_radio_group"
             />
 
         <androidx.appcompat.widget.AppCompatButton
