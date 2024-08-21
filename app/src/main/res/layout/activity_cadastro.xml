@@ -52,13 +52,13 @@
             app:layout_constraintTop_toBottomOf="@id/trlogo" />-->
 
         <EditText
-            android:id="@+id/edit_name"
-            style="@style/Edit"
+            android:id="@+id/input_name"
+            style="@style/login_input"
             android:layout_marginTop="40dp"
             android:drawableRight="@drawable/icon_person"
             android:fontFamily="@font/poppins"
             android:inputType="text"
-            android:hint="Nome Completo"
+            android:hint="Nome completo"
             android:textColor="@color/black"
             android:textColorHint="@color/input_placeholder"
             android:padding="15dp"
@@ -68,8 +68,8 @@
             />
 
         <EditText
-            android:id="@+id/edit_matricula"
-            style="@style/Edit"
+            android:id="@+id/input_matricula"
+            style="@style/login_input"
             android:drawableRight="@drawable/icon_mail"
             android:fontFamily="@font/poppins"
             android:hint="Matrícula"
@@ -79,22 +79,22 @@
             android:padding="15dp"
             app:layout_constraintEnd_toEndOf="@id/cadastro_container"
             app:layout_constraintStart_toStartOf="@id/cadastro_container"
-            app:layout_constraintTop_toBottomOf="@+id/edit_name"
+            app:layout_constraintTop_toBottomOf="@+id/input_name"
             />
 
         <EditText
-            android:id="@+id/edit_password"
-            style="@style/Edit"
-            android:drawableRight="@drawable/icon_eye"
+            android:id="@+id/input_password"
+            style="@style/login_input"
+            android:drawableRight="@drawable/icon_eye_open"
             android:fontFamily="@font/poppins"
             android:hint="Senha"
             android:textColor="@color/black"
             android:textColorHint="@color/input_placeholder"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:padding="15dp"
             app:layout_constraintEnd_toEndOf="@id/cadastro_container"
             app:layout_constraintStart_toStartOf="@id/cadastro_container"
-            app:layout_constraintTop_toBottomOf="@id/edit_matricula"
+            app:layout_constraintTop_toBottomOf="@id/input_matricula"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -106,43 +106,26 @@
             android:padding="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_password"
+            app:layout_constraintTop_toBottomOf="@id/input_password"
             />
 
         <TextView
             android:id="@+id/cadastro_text_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:fontFamily="@font/poppins"
-            android:text="@string/Button_cadastro"
+            style="@style/redirect_text"
+            android:text="Já tem uma conta?"
             android:textColor="@color/black"
-            android:textSize="12sp"
-            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@id/cadastro_container"
             app:layout_constraintEnd_toEndOf="@id/cadastro_container"
             app:layout_constraintEnd_toStartOf="@id/cadastro_redirect"
-            app:layout_constraintHorizontal_bias="0.547"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="665dp"
             tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cadastro_redirect"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/white_button_thin"
-            android:elevation="0dp"
-            android:fontFamily="@font/poppins_bold"
-            android:padding="8dp"
-            android:stateListAnimator="@null"
+            style="@style/redirect_button"
             android:text="Faça login"
-            android:textColor="@color/blue2"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/cadastro_container"
             app:layout_constraintEnd_toEndOf="@id/cadastro_container"
-            app:layout_constraintHorizontal_bias="0.547"
             app:layout_constraintStart_toEndOf="@id/cadastro_text_1"
             tools:ignore="MissingConstraints" />
 

@@ -4,8 +4,6 @@
     <string name="content_desc_trlogo_imagem">trlogo_imagem</string>
     <string name="entrar">Entrar</string>
     <string name="cadastrar">Cadastrar</string>
-    <string name="Button_login">Não tem uma conta?</string>
-    <string name="Button_cadastro">Já tem uma conta?</string>
     <string name="Title_login">Login</string>
     <string name="Title_cadastro">Cadastro</string>
     <string name="form_1_section_1_question_1">O acidente ocorreu no estado do Rio de Janeiro?</string>
