@@ -1084,14 +1084,14 @@
             />
 
         <!-- Canto superior esquerdo -->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/damage_button_top_left"
             style="@style/form_damage_button"
             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
         <!-- Canto superior central -->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/damage_button_top_center"
             style="@style/form_damage_button"
             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
@@ -1099,21 +1099,21 @@
             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
         <!-- Canto superior direito -->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/damage_button_top_right"
             style="@style/form_damage_button"
             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
         <!-- Canto inferior esquerdo -->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/damage_button_bottom_left"
             style="@style/form_damage_button"
             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
 
         <!-- Canto inferior central -->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/damage_button_bottom_center"
             style="@style/form_damage_button"
             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
@@ -1121,7 +1121,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
 
         <!-- Canto inferior direito -->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/damage_button_bottom_right"
             style="@style/form_damage_button"
             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"

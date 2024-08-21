@@ -285,6 +285,7 @@ public class Form2Activity extends AppCompatActivity {
         }
     }
 
+    /* Função para exibir popup */
     private void showPopup(Activity activity, String title, String content){
         AlertDialog.Builder builder = new AlertDialog.Builder(Form2Activity.this);
         builder.setTitle(title);

@@ -13,7 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Form3Activity extends AppCompatActivity {
 
@@ -51,6 +55,9 @@ public class Form3Activity extends AppCompatActivity {
 
         /* Formatando inputs de CPF */
         cpfQuestions();
+
+        /* Exibindo/escondendo partes do formulário */
+        editForm();
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -369,6 +376,352 @@ public class Form3Activity extends AppCompatActivity {
                 public void afterTextChanged(Editable s) {
                 }
             });
+        }
+    }
+
+    private void editForm() {
+        /* Sim / Não */
+        /* RadioGroup 1 */
+        RadioGroup radioSection1Question11RadioGroup = findViewById(R.id.section_1_question_11_radio_group);
+        RadioButton radioSection1Question11Radio1 = findViewById(R.id.section_1_question_11_radio_1); // Sim
+        RadioButton radioSection1Question11Radio2 = findViewById(R.id.section_1_question_11_radio_2); // Não
+
+        /* RadioGroup 2 */
+        RadioGroup radioSection3Question5RadioGroup = findViewById(R.id.section_3_question_5_radio_group);
+        RadioButton radioSection3Question5Radio1 = findViewById(R.id.section_3_question_5_radio_1); // Sim
+        RadioButton radioSection3Question5Radio2 = findViewById(R.id.section_3_question_5_radio_2); // Não
+
+        /* RadioGroup 3 */
+        RadioGroup radioSection4Question9RadioGroup = findViewById(R.id.section_4_question_9_radio_group);
+        RadioButton radioSection4Question9Radio1 = findViewById(R.id.section_4_question_9_radio_1); // Sim
+        RadioButton radioSection4Question9Radio2 = findViewById(R.id.section_4_question_9_radio_2); // Não
+
+        /* Ids das perguntas */
+        int[][] questionsIds = {
+                // [0] 2 - Dados da empresa
+                {
+                        R.id.section_2_question_1,
+                        R.id.section_2_question_2,
+                        R.id.section_2_question_2_input,
+                        R.id.section_2_question_3,
+                        R.id.section_2_question_3_input
+                },
+                // [1] 3 - Dados do proprietário
+                {
+                        R.id.section_3_question_1,
+                        R.id.section_3_question_2,
+                        R.id.section_3_question_2_input,
+                        R.id.section_3_question_3,
+                        R.id.section_3_question_3_input,
+                        R.id.section_3_question_4,
+                        R.id.section_3_question_4_input,
+                        R.id.section_3_question_5,
+                        R.id.section_3_question_5_radio_group
+                },
+                // [2] 4 - Dados do proprietário
+                {
+                        R.id.section_4_question_1,
+                        R.id.section_4_question_2,
+                        R.id.section_4_question_2_input,
+                        R.id.section_4_question_3,
+                        R.id.section_4_question_3_input,
+                        R.id.section_4_question_4,
+                        R.id.section_4_question_4_input,
+                        R.id.section_4_question_5,
+                        R.id.section_4_question_5_input,
+                        R.id.section_4_question_6,
+                        R.id.section_4_question_6_input,
+                        R.id.section_4_question_7,
+                        R.id.section_4_question_7_input,
+                        R.id.section_4_question_8,
+                        R.id.section_4_question_8_input,
+                        R.id.section_4_question_9,
+                        R.id.section_4_question_9_radio_group
+                },
+                // [3] 5 - Endereço do proprietário
+                {
+                        R.id.section_5_question_1,
+                        R.id.section_5_question_2,
+                        R.id.section_5_question_2_input,
+                        R.id.section_5_question_3,
+                        R.id.section_5_question_3_input,
+                        R.id.section_5_question_4,
+                        R.id.section_5_question_4_input,
+                        R.id.section_5_question_5,
+                        R.id.section_5_question_5_input,
+                        R.id.section_5_question_6,
+                        R.id.section_5_question_6_input,
+                        R.id.section_5_question_7,
+                        R.id.section_5_question_7_input,
+                        R.id.section_5_question_8,
+                        R.id.section_5_question_8_input,
+                        R.id.section_5_question_9,
+                        R.id.section_5_question_9_input,
+                        R.id.section_5_question_10,
+                        R.id.section_5_question_10_input
+                },
+                // [4] 6 - Dados do condutor
+                {
+                        R.id.section_6_question_1,
+                        R.id.section_6_question_2,
+                        R.id.section_6_question_2_input,
+                        R.id.section_6_question_3,
+                        R.id.section_6_question_3_input,
+                        R.id.section_6_question_4,
+                        R.id.section_6_question_4_input,
+                        R.id.section_6_question_5,
+                        R.id.section_6_question_5_input,
+                        R.id.section_6_question_6,
+                        R.id.section_6_question_6_input
+                },
+                // [5] 7 - Endereço do condutor
+                {
+                        R.id.section_7_question_1,
+                        R.id.section_7_question_2,
+                        R.id.section_7_question_2_input,
+                        R.id.section_7_question_3,
+                        R.id.section_7_question_3_input,
+                        R.id.section_7_question_4,
+                        R.id.section_7_question_4_input,
+                        R.id.section_7_question_5,
+                        R.id.section_7_question_5_input,
+                        R.id.section_7_question_6,
+                        R.id.section_7_question_6_input,
+                        R.id.section_7_question_7,
+                        R.id.section_7_question_7_input,
+                        R.id.section_7_question_8,
+                        R.id.section_7_question_8_input
+                }
+        };
+
+        /* Tipos das perguntas */
+        String[][] questionsTypes = {
+                // [0] 2 - Dados da empresa
+                {
+                        "TextView",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText"
+                },
+                // [1] 3 - Dados do proprietário
+                {
+                        "TextView",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "RadioGroup"
+                },
+                // [2] 4 - Endereço
+                {
+                        "TextView",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "RadioGroup"
+                },
+                // [3] 5 - Endereço do proprietário
+                {
+                        "TextView",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText"
+                },
+                // [4] 6 - Dados do condutor
+                {
+                        "TextView",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText"
+                },
+                // [5] 7 - Endereço do condutor
+                {
+                        "TextView",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText",
+                        "TextView",
+                        "EditText"
+                }
+        };
+
+        radioSection1Question11Radio1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Exibindo 2 - Dados da empresa
+                showQuestions(questionsIds[0], questionsTypes[0]);
+                // Exibindo 4 - Endereço
+                showQuestions(questionsIds[2], questionsTypes[2]);
+                // Exibindo 6 - Dados do condutor
+                showQuestions(questionsIds[4], questionsTypes[4]);
+                // Exibindo 7 - Endereço do condutor
+                showQuestions(questionsIds[5], questionsTypes[5]);
+
+                // Escondendo 3 - Dados do proprietário
+                hideQuestions(questionsIds[1], questionsTypes[1]);
+                // Escondendo 5 - Dados do proprietário
+                hideQuestions(questionsIds[3], questionsTypes[3]);
+            }
+        });
+
+        radioSection1Question11Radio2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Exibindo 3 - Dados do proprietário
+                showQuestions(questionsIds[1], questionsTypes[1]);
+                // Exibindo 5 - Dados do proprietário
+                showQuestions(questionsIds[3], questionsTypes[3]);
+
+                // Escondendo 2 - Dados da empresa
+                hideQuestions(questionsIds[0], questionsTypes[0]);
+                // Escondendo 4 - Endereço
+                hideQuestions(questionsIds[2], questionsTypes[2]);
+                // Escondendo 6 - Dados do condutor
+                hideQuestions(questionsIds[4], questionsTypes[4]);
+                // Escondendo 7 - Endereço do condutor
+                hideQuestions(questionsIds[5], questionsTypes[5]);
+            }
+        });
+
+        radioSection3Question5Radio1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Exibindo 3 - Dados do proprietário
+                showQuestions(questionsIds[1], questionsTypes[1]);
+                // Exibindo 5 - Dados do proprietário
+                showQuestions(questionsIds[3], questionsTypes[3]);
+
+                // Escondendo 2 - Dados da empresa
+                hideQuestions(questionsIds[0], questionsTypes[0]);
+                // Escondendo 4 - Endereço
+                hideQuestions(questionsIds[2], questionsTypes[2]);
+                // Escondendo 6 - Dados do condutor
+                hideQuestions(questionsIds[4], questionsTypes[4]);
+                // Escondendo 7 - Endereço do condutor
+                hideQuestions(questionsIds[5], questionsTypes[5]);
+            }
+        });
+
+        radioSection3Question5Radio2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Exibindo 3 - Dados do proprietário
+                showQuestions(questionsIds[1], questionsTypes[1]);
+                // Exibindo 6 - Dados do condutor
+                showQuestions(questionsIds[4], questionsTypes[4]);
+                // Exibindo 7 - Endereço do condutor
+                showQuestions(questionsIds[5], questionsTypes[5]);
+
+                // Escondendo 2 - Dados da empresa
+                hideQuestions(questionsIds[0], questionsTypes[0]);
+                // Escondendo 4 - Endereço
+                hideQuestions(questionsIds[2], questionsTypes[2]);
+                // Escondendo 5 - Dados do proprietário
+                hideQuestions(questionsIds[3], questionsTypes[3]);
+            }
+        });
+
+
+        /* Desativando radioGroup 2 ao selecionar "Sim" no RadioGroup 1 */
+        radioSection1Question11RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.section_1_question_11_radio_1) {
+                    // Desativando o RadioGroup 3
+                    radioSection4Question9RadioGroup.setEnabled(false);
+                    setRadioGroupClickable(radioSection4Question9RadioGroup, false);
+                } else {
+                    // Reativando o RadioGroup 3
+                    radioSection4Question9RadioGroup.setEnabled(true);
+                    setRadioGroupClickable(radioSection4Question9RadioGroup, true);
+                }
+            }
+        });
+    }
+
+    /* Função para esconder perguntas */
+    private void hideQuestions(int[] ids, String[] types) {
+        for(int i = 0; i <= ids.length - 1; i++) {
+            if(Objects.equals(types[i], "TextView")) {
+                TextView itemToHide = findViewById(ids[i]);
+                itemToHide.setVisibility(View.GONE);
+            } else if(Objects.equals(types[i], "EditText")) {
+                EditText itemToHide = findViewById(ids[i]);
+                itemToHide.setVisibility(View.GONE);
+            } else if(Objects.equals(types[i], "RadioGroup")) {
+                RadioGroup itemToHide = findViewById(ids[i]);
+                itemToHide.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    /* Função para exibir perguntas */
+    private void showQuestions(int[] ids, String[] types) {
+        for(int i = 0; i <= ids.length - 1; i++) {
+            if(Objects.equals(types[i], "TextView")) {
+                TextView itemToHide = findViewById(ids[i]);
+                itemToHide.setVisibility(View.VISIBLE);
+            } else if(Objects.equals(types[i], "EditText")) {
+                EditText itemToHide = findViewById(ids[i]);
+                itemToHide.setVisibility(View.VISIBLE);
+            } else if(Objects.equals(types[i], "RadioGroup")) {
+                RadioGroup itemToHide = findViewById(ids[i]);
+                itemToHide.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    /* Função para definir que um RadioGroup seja clicável ou não */
+    private void setRadioGroupClickable(RadioGroup radioGroup, boolean clickable) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            radioGroup.getChildAt(i).setEnabled(clickable);
         }
     }
 }

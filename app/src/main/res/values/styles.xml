@@ -259,6 +259,7 @@
         <item name="android:layout_height">98.5dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:background">@drawable/damage_area</item>
+        <item name="android:button">@drawable/checkbox_unchecked</item>
     </style>
         
 </resources>
