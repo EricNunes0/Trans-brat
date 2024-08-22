@@ -2,9 +2,7 @@ package com.example.trans_brat;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -134,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /* Função para remover borda vermelha em um input */
     public void removeInputErrorBorder(EditText editText) {
-        editText.setBackgroundResource(R.drawable.edit_text_login);
+        editText.setBackgroundResource(R.drawable.edit_text);
         Drawable drawableRight = editText.getCompoundDrawables()[2];
         if (drawableRight != null) {
             drawableRight.setTint(getResources().getColor(R.color.black));

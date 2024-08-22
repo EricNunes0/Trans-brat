@@ -1,5 +1,6 @@
 package com.example.trans_brat;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -18,9 +19,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -29,13 +33,37 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Form2Activity extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextTime;
     private AutoCompleteTextView autoCompleteTextView;
 
+    /* Definindo inputs obrigatórios */
+    // 0 - EditText
+    // 1 - Spinner
+    // 2 - RadioGroup
+    private int[][] required_questions = {
+            {R.id.section_1_question_2_input, 0},
+            {R.id.section_1_question_3_input, 0},
+            {R.id.section_2_question_2_input, 1},
+            {R.id.section_2_question_3_input, 1},
+            {R.id.section_3_question_2_input, 0},
+            {R.id.section_3_question_3_input, 0},
+            {R.id.section_3_question_4_input, 0},
+            {R.id.section_3_question_6_input, 0},
+            {R.id.section_3_question_7_input, 0},
+            {R.id.section_3_question_8_input, 0},
+            {R.id.section_4_question_2_radio_group, 2},
+            {R.id.section_4_question_3_radio_group, 2},
+            {R.id.section_4_question_4_radio_group, 2},
+            {R.id.section_5_question_1_radio_group, 2}
+    };
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +74,9 @@ public class Form2Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        /* Definindo perguntas obrigatórias */
+        requiredQuestions();
 
         /* Adicionando calendário aos inputs de data */
         editTextDate = findViewById(R.id.section_1_question_2_input);
@@ -63,8 +94,6 @@ public class Form2Activity extends AppCompatActivity {
 
         /* Criando popups ao clicar nos botões de informações */
         infoButtons();
-
-        requiredQuestions();
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -90,8 +119,10 @@ public class Form2Activity extends AppCompatActivity {
         /* (Avançar) Avançando para o formulário 3 */
         buttonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Form2Activity.this, Form3Activity.class);
-                startActivity(intent);
+                if(checkRequiredQuestions()) {
+                    Intent intent = new Intent(Form2Activity.this, Form3Activity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -134,6 +165,44 @@ public class Form2Activity extends AppCompatActivity {
                 spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 textView.setText(spannableString);
             }
+        }
+    }
+
+    /* Evento para verificar se algum RadioButton está selecionado */
+    private boolean checkRequiredQuestions() {
+        int answered = 0;
+        for (int i = 0; i <= required_questions.length - 1; i++) {
+            if(required_questions[i][1] == 0) { // EditText
+                EditText editText = findViewById(required_questions[i][0]);
+                if (!editText.getText().toString().isEmpty()) {
+                    answered++;
+                    editText.setBackgroundResource(R.drawable.edit_text);
+                } else {
+                    editText.setBackgroundResource(R.drawable.edit_text_error);
+                }
+            } else if(required_questions[i][1] == 1) { // Spinner
+                Spinner spinner = findViewById(required_questions[i][0]);
+                if (!spinner.getSelectedItem().toString().equals("Selecione uma opção")) {
+                    answered++;
+                    spinner.setBackgroundResource(R.drawable.edit_text);
+                } else {
+                    spinner.setBackgroundResource(R.drawable.edit_text_error);
+                }
+            } else if(required_questions[i][1] == 2) { // RadioGroup
+                RadioGroup radioGroup = findViewById(required_questions[i][0]);
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                boolean groupSelected = selectedId != -1;
+                if (groupSelected) {
+                    answered++;
+                }
+            }
+        }
+
+        if(answered == required_questions.length) {
+            return true;
+        } else {
+            Toast.makeText(Form2Activity.this, answered + " perguntas respondidas de " + required_questions.length, Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
@@ -279,14 +348,14 @@ public class Form2Activity extends AppCompatActivity {
             infoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showPopup(Form2Activity.this, infoTexts[finalI][0], infoTexts[finalI][1]);
+                    showPopup(infoTexts[finalI][0], infoTexts[finalI][1]);
                 }
             });
         }
     }
 
     /* Função para exibir popup */
-    private void showPopup(Activity activity, String title, String content){
+    private void showPopup(String title, String content){
         AlertDialog.Builder builder = new AlertDialog.Builder(Form2Activity.this);
         builder.setTitle(title);
         builder.setMessage(content);

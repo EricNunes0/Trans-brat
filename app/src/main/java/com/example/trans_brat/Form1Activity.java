@@ -1,8 +1,5 @@
 package com.example.trans_brat;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,8 +9,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -27,12 +22,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Form1Activity extends AppCompatActivity {
     /* Definindo RadioGroup's obrigatórios */
-    private int[] questions_ids_inputs = {
+    private final int[] questions_ids_inputs = {
             R.id.section_1_question_1_radio_group,
             R.id.section_2_question_1_radio_group,
             R.id.section_3_question_1_radio_group,
@@ -68,20 +62,33 @@ public class Form1Activity extends AppCompatActivity {
         Button buttonNext = findViewById(R.id.next_button);
 
         /* (Cancelar) Voltando para o menu principal */
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Form1Activity.this, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        buttonCancel.setOnClickListener(v -> cancel());
 
         /* Avançando para o formulário 2 */
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Form1Activity.this, Form2Activity.class);
-                startActivity(intent);
-            }
+        buttonNext.setOnClickListener(v -> {
+            /* Obtendo todas as respostas antes de avançar */
+            RadioGroup RadioGroup1 = findViewById(R.id.section_1_question_1_radio_group);
+            RadioGroup RadioGroup2 = findViewById(R.id.section_2_question_1_radio_group);
+            RadioGroup RadioGroup3 = findViewById(R.id.section_3_question_1_radio_group);
+            RadioGroup RadioGroup4 = findViewById(R.id.section_4_question_1_radio_group);
+            RadioGroup RadioGroup5 = findViewById(R.id.section_5_question_1_radio_group);
+            int selectedId1 = RadioGroup1.getCheckedRadioButtonId();
+            int selectedId2 = RadioGroup2.getCheckedRadioButtonId();
+            int selectedId3 = RadioGroup3.getCheckedRadioButtonId();
+            int selectedId4 = RadioGroup4.getCheckedRadioButtonId();
+            int selectedId5 = RadioGroup5.getCheckedRadioButtonId();
+            RadioButton selectedRadioButton1 = findViewById(selectedId1);
+            RadioButton selectedRadioButton2 = findViewById(selectedId2);
+            RadioButton selectedRadioButton3 = findViewById(selectedId3);
+            RadioButton selectedRadioButton4 = findViewById(selectedId4);
+            RadioButton selectedRadioButton5 = findViewById(selectedId5);
+            String selectedText1 = selectedRadioButton1.getText().toString();
+            String selectedText2 = selectedRadioButton2.getText().toString();
+            String selectedText3 = selectedRadioButton3.getText().toString();
+            String selectedText4 = selectedRadioButton4.getText().toString();
+            String selectedText5 = selectedRadioButton5.getText().toString();
+            Intent intent = new Intent(Form1Activity.this, Form2Activity.class);
+            startActivity(intent);
         });
     }
 
@@ -110,15 +117,11 @@ public class Form1Activity extends AppCompatActivity {
             /* Adicionando asteriscos nas perguntas obrigatórias */
             String textWithAsterisk = text + " *";
             textView.setText(textWithAsterisk);
+            SpannableString spannableString = new SpannableString(textWithAsterisk);
 
-            // Verificando se o texto não está vazio
-            if (textWithAsterisk.length() > 0) {
-                SpannableString spannableString = new SpannableString(textWithAsterisk);
-
-                // Aplicando a cor vermelha ao último caractere (asteriscos)
-                spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                textView.setText(spannableString);
-            }
+            // Aplicando a cor vermelha ao último caractere (asteriscos)
+            spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.setText(spannableString);
         }
     }
 
@@ -126,14 +129,10 @@ public class Form1Activity extends AppCompatActivity {
     private void requiredQuestionsEvent() {
         for (int i = 0; i <= questions_ids_inputs.length - 1; i++) {
             /* Obtendo inputs pelos ids */
-            int finalI = i;
-            RadioGroup radioGroup = findViewById(questions_ids_inputs[finalI]);
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    // Executar uma função quando a seleção mudar
-                    requiredQuestionsCheck();
-                }
+            RadioGroup radioGroup = findViewById(questions_ids_inputs[i]);
+            radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+                // Executar uma função quando a seleção mudar
+                requiredQuestionsCheck();
             });
         }
     }
@@ -142,8 +141,7 @@ public class Form1Activity extends AppCompatActivity {
     private void requiredQuestionsCheck() {
         int answered = 0;
         for (int i = 0; i <= questions_ids_inputs.length - 1; i++) {
-            int finalI = i;
-            RadioGroup radioGroup = findViewById(questions_ids_inputs[finalI]);
+            RadioGroup radioGroup = findViewById(questions_ids_inputs[i]);
             int selectedId = radioGroup.getCheckedRadioButtonId();
             boolean groupSelected = selectedId != -1;
             if (groupSelected) {
@@ -153,7 +151,6 @@ public class Form1Activity extends AppCompatActivity {
 
         if(answered == questions_ids_inputs.length) {
             enableNextButton();
-            Toast.makeText(this, "Você respondeu todas as perguntas :D", Toast.LENGTH_SHORT).show();
         } else {
             disableNextButton();
         }
@@ -193,20 +190,16 @@ public class Form1Activity extends AppCompatActivity {
         for (int i = 0; i <= radios_ids.length - 1; i++) {
             int finalI = i;
             RadioButton radioButton = findViewById(radios_ids[finalI]);
-            radioButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for(int j = 0; j <= radios_block_ids.length - 1; j++) {
-                        RadioButton radioBlockButton = findViewById(radios_block_ids[j]);
-                        if(radioBlockButton.isChecked()) {
-                            disableNextButton();
-                            if(radio_block_ids_list.contains(radios_ids[finalI])) {
-                                showPopup(radios_warnings[j]);
-                            }
-                            return;
+            radioButton.setOnClickListener(v -> {
+                for(int j = 0; j <= radios_block_ids.length - 1; j++) {
+                    RadioButton radioBlockButton = findViewById(radios_block_ids[j]);
+                    if(radioBlockButton.isChecked()) {
+                        disableNextButton();
+                        if(radio_block_ids_list.contains(radios_ids[finalI])) {
+                            showPopup(radios_warnings[j]);
                         }
+                        return;
                     }
-                    enableNextButton();
                 }
             });
         }
@@ -217,18 +210,18 @@ public class Form1Activity extends AppCompatActivity {
     private void disableNextButton() {
         Button button = findViewById(R.id.next_button);
         button.setEnabled(false);
-        button.setVisibility(View.GONE);
+        button.setBackgroundResource(R.drawable.button_next_disabled);
     }
 
     /* Função para ativar botão de avançar */
     private void enableNextButton() {
         Button button = findViewById(R.id.next_button);
         button.setEnabled(true);
-        button.setVisibility(View.VISIBLE);
+        button.setBackgroundResource(R.drawable.button_next);
     }
 
     /* Função para exibir popup */
-    private void showPopup(String content){
+    private void showPopup(String content) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Form1Activity.this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogLayout = inflater.inflate(R.layout.alert_dialog_warning, null);
@@ -236,12 +229,27 @@ public class Form1Activity extends AppCompatActivity {
         builder.setTitle("Atenção!");
         builder.setMessage(content);
         builder.setIcon(R.drawable.icon_warning);
-        builder.setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
+        builder.setPositiveButton("Entendi", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /* Função ao cancelar formulário */
+    private void cancel() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Form1Activity.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogLayout = inflater.inflate(R.layout.alert_dialog_warning, null);
+        builder.setView(dialogLayout);
+        builder.setTitle("Atenção!");
+        builder.setMessage("Ao continuar, seu e-brat será cancelado e seu processo será perdido.");
+        builder.setIcon(R.drawable.icon_warning);
+        builder.setPositiveButton("Continuar", (dialog, which) -> {
+            dialog.dismiss();
+            Intent intent = new Intent(Form1Activity.this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
+        builder.setNegativeButton("Voltar", (dialog, which) -> dialog.dismiss());
         AlertDialog dialog = builder.create();
         dialog.show();
     }

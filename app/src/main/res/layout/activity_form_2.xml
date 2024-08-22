@@ -465,7 +465,7 @@
                 android:id="@+id/section_4_question_4_radio_3"
                 style="@style/form_radio"
                 android:text="Sem sinalização"/>
-        </RadioGroup>1
+        </RadioGroup>
 
         <!-- Pergunta 5 -->
         <TextView

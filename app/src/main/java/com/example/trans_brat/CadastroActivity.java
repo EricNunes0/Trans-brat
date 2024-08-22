@@ -141,7 +141,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     /* Função para remover borda vermelha em um input */
     public void removeInputErrorBorder(EditText editText) {
-        editText.setBackgroundResource(R.drawable.edit_text_login);
+        editText.setBackgroundResource(R.drawable.edit_text);
         Drawable drawableRight = editText.getCompoundDrawables()[2];
         if (drawableRight != null) {
             drawableRight.setTint(getResources().getColor(R.color.black));

@@ -28,6 +28,201 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class Form3Activity extends AppCompatActivity {
+    /* Ids das perguntas que podem ser exibidas/escondidas */
+    private int[][] toggleableQuestionsIds = {
+            // [0] 2 - Dados da empresa
+            {
+                    R.id.section_2_question_1,
+                    R.id.section_2_question_2,
+                    R.id.section_2_question_2_input,
+                    R.id.section_2_question_3,
+                    R.id.section_2_question_3_input
+            },
+            // [1] 3 - Dados do proprietário
+            {
+                    R.id.section_3_question_1,
+                    R.id.section_3_question_2,
+                    R.id.section_3_question_2_input,
+                    R.id.section_3_question_3,
+                    R.id.section_3_question_3_input,
+                    R.id.section_3_question_4,
+                    R.id.section_3_question_4_input,
+                    R.id.section_3_question_5,
+                    R.id.section_3_question_5_radio_group
+            },
+            // [2] 4 - Dados do proprietário
+            {
+                    R.id.section_4_question_1,
+                    R.id.section_4_question_2,
+                    R.id.section_4_question_2_input,
+                    R.id.section_4_question_3,
+                    R.id.section_4_question_3_input,
+                    R.id.section_4_question_4,
+                    R.id.section_4_question_4_input,
+                    R.id.section_4_question_5,
+                    R.id.section_4_question_5_input,
+                    R.id.section_4_question_6,
+                    R.id.section_4_question_6_input,
+                    R.id.section_4_question_7,
+                    R.id.section_4_question_7_input,
+                    R.id.section_4_question_8,
+                    R.id.section_4_question_8_input,
+                    R.id.section_4_question_9,
+                    R.id.section_4_question_9_radio_group
+            },
+            // [3] 5 - Endereço do proprietário
+            {
+                    R.id.section_5_question_1,
+                    R.id.section_5_question_2,
+                    R.id.section_5_question_2_input,
+                    R.id.section_5_question_3,
+                    R.id.section_5_question_3_input,
+                    R.id.section_5_question_4,
+                    R.id.section_5_question_4_input,
+                    R.id.section_5_question_5,
+                    R.id.section_5_question_5_input,
+                    R.id.section_5_question_6,
+                    R.id.section_5_question_6_input,
+                    R.id.section_5_question_7,
+                    R.id.section_5_question_7_input,
+                    R.id.section_5_question_8,
+                    R.id.section_5_question_8_input,
+                    R.id.section_5_question_9,
+                    R.id.section_5_question_9_input,
+                    R.id.section_5_question_10,
+                    R.id.section_5_question_10_input
+            },
+            // [4] 6 - Dados do condutor
+            {
+                    R.id.section_6_question_1,
+                    R.id.section_6_question_2,
+                    R.id.section_6_question_2_input,
+                    R.id.section_6_question_3,
+                    R.id.section_6_question_3_input,
+                    R.id.section_6_question_4,
+                    R.id.section_6_question_4_input,
+                    R.id.section_6_question_5,
+                    R.id.section_6_question_5_input,
+                    R.id.section_6_question_6,
+                    R.id.section_6_question_6_input
+            },
+            // [5] 7 - Endereço do condutor
+            {
+                    R.id.section_7_question_1,
+                    R.id.section_7_question_2,
+                    R.id.section_7_question_2_input,
+                    R.id.section_7_question_3,
+                    R.id.section_7_question_3_input,
+                    R.id.section_7_question_4,
+                    R.id.section_7_question_4_input,
+                    R.id.section_7_question_5,
+                    R.id.section_7_question_5_input,
+                    R.id.section_7_question_6,
+                    R.id.section_7_question_6_input,
+                    R.id.section_7_question_7,
+                    R.id.section_7_question_7_input,
+                    R.id.section_7_question_8,
+                    R.id.section_7_question_8_input
+            }
+    };
+
+    /* Tipos das perguntas */
+    private String[][] toggleableQuestionsTypes = {
+            // [0] 2 - Dados da empresa
+            {
+                    "TextView",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText"
+            },
+            // [1] 3 - Dados do proprietário
+            {
+                    "TextView",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "RadioGroup"
+            },
+            // [2] 4 - Endereço
+            {
+                    "TextView",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "RadioGroup"
+            },
+            // [3] 5 - Endereço do proprietário
+            {
+                    "TextView",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText"
+            },
+            // [4] 6 - Dados do condutor
+            {
+                    "TextView",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText"
+            },
+            // [5] 7 - Endereço do condutor
+            {
+                    "TextView",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText",
+                    "TextView",
+                    "EditText"
+            }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +251,13 @@ public class Form3Activity extends AppCompatActivity {
         /* Formatando inputs de CPF */
         cpfQuestions();
 
-        /* Exibindo/escondendo partes do formulário */
-        editForm();
+        /* Marcando os dois RadioGroups como "não" */
+        markRadioButton(R.id.section_1_question_11_radio_group, R.id.section_1_question_11_radio_2);
+        markRadioButton(R.id.section_3_question_5_radio_group, R.id.section_3_question_5_radio_2);
+        toggleQuestion3();
+
+        /* Evento para exibir/esconder partes do formulário ao marcar uma opção em um RadioGroup */
+        editFormByRadioGroupEvent();
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -379,7 +579,7 @@ public class Form3Activity extends AppCompatActivity {
         }
     }
 
-    private void editForm() {
+    private void editFormByRadioGroupEvent() {
         /* Sim / Não */
         /* RadioGroup 1 */
         RadioGroup radioSection1Question11RadioGroup = findViewById(R.id.section_1_question_11_radio_group);
@@ -396,275 +596,31 @@ public class Form3Activity extends AppCompatActivity {
         RadioButton radioSection4Question9Radio1 = findViewById(R.id.section_4_question_9_radio_1); // Sim
         RadioButton radioSection4Question9Radio2 = findViewById(R.id.section_4_question_9_radio_2); // Não
 
-        /* Ids das perguntas */
-        int[][] questionsIds = {
-                // [0] 2 - Dados da empresa
-                {
-                        R.id.section_2_question_1,
-                        R.id.section_2_question_2,
-                        R.id.section_2_question_2_input,
-                        R.id.section_2_question_3,
-                        R.id.section_2_question_3_input
-                },
-                // [1] 3 - Dados do proprietário
-                {
-                        R.id.section_3_question_1,
-                        R.id.section_3_question_2,
-                        R.id.section_3_question_2_input,
-                        R.id.section_3_question_3,
-                        R.id.section_3_question_3_input,
-                        R.id.section_3_question_4,
-                        R.id.section_3_question_4_input,
-                        R.id.section_3_question_5,
-                        R.id.section_3_question_5_radio_group
-                },
-                // [2] 4 - Dados do proprietário
-                {
-                        R.id.section_4_question_1,
-                        R.id.section_4_question_2,
-                        R.id.section_4_question_2_input,
-                        R.id.section_4_question_3,
-                        R.id.section_4_question_3_input,
-                        R.id.section_4_question_4,
-                        R.id.section_4_question_4_input,
-                        R.id.section_4_question_5,
-                        R.id.section_4_question_5_input,
-                        R.id.section_4_question_6,
-                        R.id.section_4_question_6_input,
-                        R.id.section_4_question_7,
-                        R.id.section_4_question_7_input,
-                        R.id.section_4_question_8,
-                        R.id.section_4_question_8_input,
-                        R.id.section_4_question_9,
-                        R.id.section_4_question_9_radio_group
-                },
-                // [3] 5 - Endereço do proprietário
-                {
-                        R.id.section_5_question_1,
-                        R.id.section_5_question_2,
-                        R.id.section_5_question_2_input,
-                        R.id.section_5_question_3,
-                        R.id.section_5_question_3_input,
-                        R.id.section_5_question_4,
-                        R.id.section_5_question_4_input,
-                        R.id.section_5_question_5,
-                        R.id.section_5_question_5_input,
-                        R.id.section_5_question_6,
-                        R.id.section_5_question_6_input,
-                        R.id.section_5_question_7,
-                        R.id.section_5_question_7_input,
-                        R.id.section_5_question_8,
-                        R.id.section_5_question_8_input,
-                        R.id.section_5_question_9,
-                        R.id.section_5_question_9_input,
-                        R.id.section_5_question_10,
-                        R.id.section_5_question_10_input
-                },
-                // [4] 6 - Dados do condutor
-                {
-                        R.id.section_6_question_1,
-                        R.id.section_6_question_2,
-                        R.id.section_6_question_2_input,
-                        R.id.section_6_question_3,
-                        R.id.section_6_question_3_input,
-                        R.id.section_6_question_4,
-                        R.id.section_6_question_4_input,
-                        R.id.section_6_question_5,
-                        R.id.section_6_question_5_input,
-                        R.id.section_6_question_6,
-                        R.id.section_6_question_6_input
-                },
-                // [5] 7 - Endereço do condutor
-                {
-                        R.id.section_7_question_1,
-                        R.id.section_7_question_2,
-                        R.id.section_7_question_2_input,
-                        R.id.section_7_question_3,
-                        R.id.section_7_question_3_input,
-                        R.id.section_7_question_4,
-                        R.id.section_7_question_4_input,
-                        R.id.section_7_question_5,
-                        R.id.section_7_question_5_input,
-                        R.id.section_7_question_6,
-                        R.id.section_7_question_6_input,
-                        R.id.section_7_question_7,
-                        R.id.section_7_question_7_input,
-                        R.id.section_7_question_8,
-                        R.id.section_7_question_8_input
-                }
-        };
-
-        /* Tipos das perguntas */
-        String[][] questionsTypes = {
-                // [0] 2 - Dados da empresa
-                {
-                        "TextView",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText"
-                },
-                // [1] 3 - Dados do proprietário
-                {
-                        "TextView",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "RadioGroup"
-                },
-                // [2] 4 - Endereço
-                {
-                        "TextView",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "RadioGroup"
-                },
-                // [3] 5 - Endereço do proprietário
-                {
-                        "TextView",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText"
-                },
-                // [4] 6 - Dados do condutor
-                {
-                        "TextView",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText"
-                },
-                // [5] 7 - Endereço do condutor
-                {
-                        "TextView",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText",
-                        "TextView",
-                        "EditText"
-                }
-        };
-
         radioSection1Question11Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Exibindo 2 - Dados da empresa
-                showQuestions(questionsIds[0], questionsTypes[0]);
-                // Exibindo 4 - Endereço
-                showQuestions(questionsIds[2], questionsTypes[2]);
-                // Exibindo 6 - Dados do condutor
-                showQuestions(questionsIds[4], questionsTypes[4]);
-                // Exibindo 7 - Endereço do condutor
-                showQuestions(questionsIds[5], questionsTypes[5]);
-
-                // Escondendo 3 - Dados do proprietário
-                hideQuestions(questionsIds[1], questionsTypes[1]);
-                // Escondendo 5 - Dados do proprietário
-                hideQuestions(questionsIds[3], questionsTypes[3]);
+                toggleQuestion1();
             }
         });
 
         radioSection1Question11Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Exibindo 3 - Dados do proprietário
-                showQuestions(questionsIds[1], questionsTypes[1]);
-                // Exibindo 5 - Dados do proprietário
-                showQuestions(questionsIds[3], questionsTypes[3]);
-
-                // Escondendo 2 - Dados da empresa
-                hideQuestions(questionsIds[0], questionsTypes[0]);
-                // Escondendo 4 - Endereço
-                hideQuestions(questionsIds[2], questionsTypes[2]);
-                // Escondendo 6 - Dados do condutor
-                hideQuestions(questionsIds[4], questionsTypes[4]);
-                // Escondendo 7 - Endereço do condutor
-                hideQuestions(questionsIds[5], questionsTypes[5]);
+                toggleQuestion2();
             }
         });
 
         radioSection3Question5Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Exibindo 3 - Dados do proprietário
-                showQuestions(questionsIds[1], questionsTypes[1]);
-                // Exibindo 5 - Dados do proprietário
-                showQuestions(questionsIds[3], questionsTypes[3]);
-
-                // Escondendo 2 - Dados da empresa
-                hideQuestions(questionsIds[0], questionsTypes[0]);
-                // Escondendo 4 - Endereço
-                hideQuestions(questionsIds[2], questionsTypes[2]);
-                // Escondendo 6 - Dados do condutor
-                hideQuestions(questionsIds[4], questionsTypes[4]);
-                // Escondendo 7 - Endereço do condutor
-                hideQuestions(questionsIds[5], questionsTypes[5]);
+                toggleQuestion2();
             }
         });
 
         radioSection3Question5Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Exibindo 3 - Dados do proprietário
-                showQuestions(questionsIds[1], questionsTypes[1]);
-                // Exibindo 6 - Dados do condutor
-                showQuestions(questionsIds[4], questionsTypes[4]);
-                // Exibindo 7 - Endereço do condutor
-                showQuestions(questionsIds[5], questionsTypes[5]);
-
-                // Escondendo 2 - Dados da empresa
-                hideQuestions(questionsIds[0], questionsTypes[0]);
-                // Escondendo 4 - Endereço
-                hideQuestions(questionsIds[2], questionsTypes[2]);
-                // Escondendo 5 - Dados do proprietário
-                hideQuestions(questionsIds[3], questionsTypes[3]);
+                toggleQuestion3();
             }
         });
 
@@ -684,6 +640,57 @@ public class Form3Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
+    private void toggleQuestion1() {
+        // Exibindo 2 - Dados da empresa
+        showQuestions(toggleableQuestionsIds[0], toggleableQuestionsTypes[0]);
+        // Exibindo 4 - Endereço
+        showQuestions(toggleableQuestionsIds[2], toggleableQuestionsTypes[2]);
+        // Exibindo 6 - Dados do condutor
+        showQuestions(toggleableQuestionsIds[4], toggleableQuestionsTypes[4]);
+        // Exibindo 7 - Endereço do condutor
+        showQuestions(toggleableQuestionsIds[5], toggleableQuestionsTypes[5]);
+
+        // Escondendo 3 - Dados do proprietário
+        hideQuestions(toggleableQuestionsIds[1], toggleableQuestionsTypes[1]);
+        // Escondendo 5 - Dados do proprietário
+        hideQuestions(toggleableQuestionsIds[3], toggleableQuestionsTypes[3]);
+    }
+
+    /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
+    private void toggleQuestion2() {
+        // Exibindo 3 - Dados do proprietário
+        showQuestions(toggleableQuestionsIds[1], toggleableQuestionsTypes[1]);
+        // Exibindo 5 - Dados do proprietário
+        showQuestions(toggleableQuestionsIds[3], toggleableQuestionsTypes[3]);
+
+        // Escondendo 2 - Dados da empresa
+        hideQuestions(toggleableQuestionsIds[0], toggleableQuestionsTypes[0]);
+        // Escondendo 4 - Endereço
+        hideQuestions(toggleableQuestionsIds[2], toggleableQuestionsTypes[2]);
+        // Escondendo 6 - Dados do condutor
+        hideQuestions(toggleableQuestionsIds[4], toggleableQuestionsTypes[4]);
+        // Escondendo 7 - Endereço do condutor
+        hideQuestions(toggleableQuestionsIds[5], toggleableQuestionsTypes[5]);
+    }
+
+    /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
+    private void toggleQuestion3() {
+        // Exibindo 3 - Dados do proprietário
+        showQuestions(toggleableQuestionsIds[1], toggleableQuestionsTypes[1]);
+        // Exibindo 6 - Dados do condutor
+        showQuestions(toggleableQuestionsIds[4], toggleableQuestionsTypes[4]);
+        // Exibindo 7 - Endereço do condutor
+        showQuestions(toggleableQuestionsIds[5], toggleableQuestionsTypes[5]);
+
+        // Escondendo 2 - Dados da empresa
+        hideQuestions(toggleableQuestionsIds[0], toggleableQuestionsTypes[0]);
+        // Escondendo 4 - Endereço
+        hideQuestions(toggleableQuestionsIds[2], toggleableQuestionsTypes[2]);
+        // Escondendo 5 - Dados do proprietário
+        hideQuestions(toggleableQuestionsIds[3], toggleableQuestionsTypes[3]);
     }
 
     /* Função para esconder perguntas */
@@ -723,5 +730,11 @@ public class Form3Activity extends AppCompatActivity {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(clickable);
         }
+    }
+
+    /* Função para marcar um RadioButton de um RadioGroup */
+    private void markRadioButton(int radioGroupId, int radioButtonId) {
+        RadioGroup radioGroup = findViewById(radioGroupId);
+        radioGroup.check(radioButtonId);
     }
 }
