@@ -19,6 +19,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Form4Activity extends AppCompatActivity {
+    /* Definindo inputs obrigatórios */
+    // [0][] - EditText
+    // [1][] - Spinner
+    // [2][] - RadioGroup
+    // [3][] - Checkbox
+    // [][X] - Seção de perguntas
+    private int[][] required_questions = {
+            // 1
+            {R.id.section_1_question_1_input, 0, 1}
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +41,7 @@ public class Form4Activity extends AppCompatActivity {
             return insets;
         });
 
-        //requiredQuestions();
+        requiredQuestions();
 
         /* Adicionando opções aos dropdowns */
         dropdownQuestions();
@@ -70,7 +80,7 @@ public class Form4Activity extends AppCompatActivity {
     private void requiredQuestions() {
         /* Definindo perguntas obrigatórias */
         int[] questions_ids = {
-                R.id.section_3_question_1
+                R.id.section_1_question_1
         };
 
         /* Para cada pergunta obrigatória */

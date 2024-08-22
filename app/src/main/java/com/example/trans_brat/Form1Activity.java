@@ -172,6 +172,8 @@ public class Form1Activity extends AppCompatActivity {
         };
 
         int[] radios_block_ids = {
+                R.id.section_1_question_1_radio_2,
+                R.id.section_2_question_1_radio_2,
                 R.id.section_3_question_1_radio_1,
                 R.id.section_4_question_1_radio_1,
                 R.id.section_5_question_1_radio_1
@@ -182,6 +184,8 @@ public class Form1Activity extends AppCompatActivity {
         }
 
         String[] radios_warnings = {
+                "Acidentes ocorridos fora do estado do Rio de Janeiro ou em rodovias federais não podem ser registrados pela Polícia Militar do Estado do Rio de Janeiro.",
+                "Estrangeiros envolvidos em acidentes de trânsito sem vítimas devem fazer o registro da ocorrência no Batalhão de Polícia Militar mais próximo.",
                 "Acidentes ocorridos fora do estado do Rio de Janeiro ou em rodovias federais não podem ser registrados pela Polícia Militar do Estado do Rio de Janeiro.",
                 "Acidentes de trânsito com vítimas, feridos ou mortos, não podem ser registrados eletronicamente. Neste caso, a Polícia Militar deve ser acionada para fazer o registro no local do acidente.",
                 "Acidentes de trânsito sem vítimas com mais de 5 veículos envolvidos devem ser registrados no Batalhão de Polícia Militar mais próximo."

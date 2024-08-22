@@ -40,25 +40,26 @@
     <!-- Formulário 2 - Pergunta 5 -->
     <string name="form_2_section_5_question_1">Qual foi o tipo de acidente?</string>
     <!-- Formulário 3 - Pergunta 1 -->
-    <string name="form_3_section_1_question_1">1 Dados do veículo</string>
-    <string name="form_3_section_1_question_2">Placa</string>
-    <string name="form_3_section_1_question_2_placeholder">___-____</string>
-    <string name="form_3_section_1_question_3">Marca/Modelo</string>
-    <string name="form_3_section_1_question_4">Tipo do veículo</string>
-    <string name="form_3_section_1_question_5">Cor predominante</string>
-    <string name="form_3_section_1_question_6">UF</string>
-    <string name="form_3_section_1_question_7">Ano de fabricação</string>
-    <string name="form_3_section_1_question_8">Ano do modelo</string>
-    <string name="form_3_section_1_question_9">Nº do Chassi</string>
-    <string name="form_3_section_1_question_10">RENAVAM</string>
-    <string name="form_3_section_1_question_11">O veículo é da empresa?</string>
+    <string name="form_3_section_1_question_1">Dados do veículo</string>
+    <string name="form_3_section_1_question_2">Número de ordem</string>
+    <string name="form_3_section_1_question_3">Placa</string>
+    <string name="form_3_section_1_question_3_placeholder">___-____</string>
+    <string name="form_3_section_1_question_4">Marca/Modelo</string>
+    <string name="form_3_section_1_question_5">Tipo do veículo</string>
+    <string name="form_3_section_1_question_6">Cor predominante</string>
+    <string name="form_3_section_1_question_7">UF</string>
+    <string name="form_3_section_1_question_8">Ano de fabricação</string>
+    <string name="form_3_section_1_question_9">Ano do modelo</string>
+    <string name="form_3_section_1_question_10">Nº do Chassi</string>
+    <string name="form_3_section_1_question_11">RENAVAM</string>
+    <string name="form_3_section_1_question_12">O veículo é da empresa?</string>
     <!-- Formulário 3 - Pergunta 2 -->
-    <string name="form_3_section_2_question_1">2 Dados da empresa</string>
+    <string name="form_3_section_2_question_1">Dados da empresa</string>
     <string name="form_3_section_2_question_2">Razão social</string>
     <string name="form_3_section_2_question_3">CNPJ</string>
     <string name="form_3_section_2_question_3_placeholder">__.___.___/____-__</string>
     <!-- Formulário 3 - Pergunta 3 -->
-    <string name="form_3_section_3_question_1">3 Dados do proprietário</string>
+    <string name="form_3_section_3_question_1">Dados do proprietário</string>
     <string name="form_3_section_3_question_2">Nome</string>
     <string name="form_3_section_3_question_3">CPF</string>
     <string name="form_3_section_3_question_3_placeholder">___.___.___-__</string>
@@ -66,7 +67,7 @@
     <string name="form_3_section_3_question_4_placeholder">Escolha uma data</string>
     <string name="form_3_section_3_question_5">O proprietário é o condutor?</string>
     <!-- Formulário 3 - Pergunta 4 -->
-    <string name="form_3_section_4_question_1">4 Endereço</string>
+    <string name="form_3_section_4_question_1">Endereço</string>
     <string name="form_3_section_4_question_2">CEP</string>
     <string name="form_3_section_4_question_2_placeholder">_____-___</string>
     <string name="form_3_section_4_question_3">Lograd.</string>
@@ -77,7 +78,7 @@
     <string name="form_3_section_4_question_8">UF</string>
     <string name="form_3_section_4_question_9">O proprietário é o condutor?</string>
     <!-- Formulário 3 - Pergunta 5 -->
-    <string name="form_3_section_5_question_1">5 Endereço do proprietário</string>
+    <string name="form_3_section_5_question_1">Endereço do proprietário</string>
     <string name="form_3_section_5_question_2">CEP</string>
     <string name="form_3_section_5_question_2_placeholder">_____-___</string>
     <string name="form_3_section_5_question_3">Lograd.</string>
@@ -91,7 +92,7 @@
     <string name="form_3_section_5_question_10">Validade</string>
     <string name="form_3_section_5_question_10_placeholder">Escolha uma data</string>
     <!-- Formulário 3 - Pergunta 6 -->
-    <string name="form_3_section_6_question_1">6 Dados do condutor</string>
+    <string name="form_3_section_6_question_1">Dados do condutor</string>
     <string name="form_3_section_6_question_2">Nome</string>
     <string name="form_3_section_6_question_3">CPF</string>
     <string name="form_3_section_6_question_3_placeholder">___.___.___-__</string>
@@ -102,7 +103,7 @@
     <string name="form_3_section_6_question_6">Validade</string>
     <string name="form_3_section_6_question_6_placeholder">Escolha uma data</string>
     <!-- Formulário 3 - Pergunta 7 -->
-    <string name="form_3_section_7_question_1">7 Endereço do condutor</string>
+    <string name="form_3_section_7_question_1">Endereço do condutor</string>
     <string name="form_3_section_7_question_2">CEP</string>
     <string name="form_3_section_7_question_2_placeholder">_____-___</string>
     <string name="form_3_section_7_question_3">Lograd.</string>
@@ -112,7 +113,7 @@
     <string name="form_3_section_7_question_7">Cidade</string>
     <string name="form_3_section_7_question_8">UF</string>
     <!-- Formulário 3 - Pergunta 8 -->
-    <string name="form_3_section_8_question_1">8 Danos</string>
+    <string name="form_3_section_8_question_1">Danos</string>
     <string name="form_3_section_8_question_2">A imagem abaixo é meramente ilustrativa. Seja qual for o tipo de veículo (caminhão, moto, ônibus, etc.), clique nos locais correspondentes aos danos:</string>
     <!-- Formulário 4 - Pergunta 1 -->
     <string name="form_4_section_1_question_1">Quantidade de veículos envolvidos no acidente</string>

@@ -11,10 +11,12 @@ import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,68 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class Form3Activity extends AppCompatActivity {
+    /* Definindo inputs obrigatórios */
+    // [0][] - EditText
+    // [1][] - Spinner
+    // [2][] - RadioGroup
+    // [3][] - Checkbox
+    // [][X] - Seção de perguntas
+    private int[][] required_questions = {
+            // 1
+            {R.id.section_1_question_2_input, 0, 1},
+            {R.id.section_1_question_3_input, 0, 1},
+            {R.id.section_1_question_4_input, 0, 1},
+            {R.id.section_1_question_5_input, 0, 1},
+            {R.id.section_1_question_6_input, 0, 1},
+            {R.id.section_1_question_7_input, 0, 1},
+            {R.id.section_1_question_8_input, 0, 1},
+            {R.id.section_1_question_9_input, 0, 1},
+            {R.id.section_1_question_10_input, 0, 1},
+            {R.id.section_1_question_11_input, 0, 1},
+            {R.id.section_1_question_12_radio_group, 2, 1},
+            // 2
+            {R.id.section_2_question_2_input, 0, 2},
+            {R.id.section_2_question_3_input, 0, 2},
+            // 3
+            {R.id.section_3_question_2_input, 0, 3},
+            {R.id.section_3_question_3_input, 0, 3},
+            {R.id.section_3_question_4_input, 0, 3},
+            {R.id.section_3_question_5_radio_group, 2, 3},
+            // 4
+            {R.id.section_4_question_2_input, 0, 4},
+            {R.id.section_4_question_3_input, 0, 4},
+            {R.id.section_4_question_4_input, 0, 4},
+            {R.id.section_4_question_6_input, 0, 4},
+            {R.id.section_4_question_7_input, 0, 4},
+            {R.id.section_4_question_8_input, 0, 4},
+            {R.id.section_4_question_9_radio_group, 2, 4},
+            // 5
+            {R.id.section_5_question_2_input, 0, 5},
+            {R.id.section_5_question_3_input, 0, 5},
+            {R.id.section_5_question_4_input, 0, 5},
+            {R.id.section_5_question_5_input, 0, 5},
+            {R.id.section_5_question_6_input, 0, 5},
+            {R.id.section_5_question_7_input, 0, 5},
+            {R.id.section_5_question_8_input, 0, 5},
+            {R.id.section_5_question_9_input, 0, 5},
+            {R.id.section_5_question_10_input, 0, 5},
+            // 6
+            {R.id.section_6_question_2_input, 0, 6},
+            {R.id.section_6_question_3_input, 0, 6},
+            {R.id.section_6_question_4_input, 0, 6},
+            {R.id.section_6_question_5_input, 0, 6},
+            {R.id.section_6_question_6_input, 0, 6},
+            // 7
+            {R.id.section_7_question_2_input, 0, 7},
+            {R.id.section_7_question_3_input, 0, 7},
+            {R.id.section_7_question_4_input, 0, 7},
+            {R.id.section_7_question_6_input, 0, 7},
+            {R.id.section_7_question_7_input, 0, 7},
+            {R.id.section_7_question_8_input, 0, 7},
+            // 8
+            {0, 3, 8}
+    };
+
     /* Ids das perguntas que podem ser exibidas/escondidas */
     private int[][] toggleableQuestionsIds = {
             // [0] 2 - Dados da empresa
@@ -224,6 +288,8 @@ public class Form3Activity extends AppCompatActivity {
             }
     };
 
+    private int[] hiddenQuestions = {2, 4};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -252,9 +318,10 @@ public class Form3Activity extends AppCompatActivity {
         cpfQuestions();
 
         /* Marcando os dois RadioGroups como "não" */
-        markRadioButton(R.id.section_1_question_11_radio_group, R.id.section_1_question_11_radio_2);
+        markRadioButton(R.id.section_1_question_12_radio_group, R.id.section_1_question_12_radio_2);
         markRadioButton(R.id.section_3_question_5_radio_group, R.id.section_3_question_5_radio_2);
-        toggleQuestion3();
+        /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
+        toggleQuestions(new int[] {3, 6, 7}, new int[] {2, 4, 5});
 
         /* Evento para exibir/esconder partes do formulário ao marcar uma opção em um RadioGroup */
         editFormByRadioGroupEvent();
@@ -283,10 +350,22 @@ public class Form3Activity extends AppCompatActivity {
         /* (Avançar) Avançando para o formulário 4 */
         buttonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Form3Activity.this, Form4Activity.class);
-                startActivity(intent);
+                if(checkRequiredQuestions()) {
+                    Intent intent = new Intent(Form3Activity.this, Form4Activity.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    /* Função para verificar se um número existe em um array */
+    private boolean arrayContains(int[] array, int number) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == number) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /* Função para perguntas obrigatórias */
@@ -302,7 +381,47 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_1_question_8,
                 R.id.section_1_question_9,
                 R.id.section_1_question_10,
-                R.id.section_1_question_11
+                R.id.section_1_question_11,
+                R.id.section_1_question_12,
+                // 2
+                R.id.section_2_question_2,
+                R.id.section_2_question_3,
+                // 3
+                R.id.section_3_question_2,
+                R.id.section_3_question_3,
+                R.id.section_3_question_4,
+                R.id.section_3_question_5,
+                // 4
+                R.id.section_4_question_2,
+                R.id.section_4_question_3,
+                R.id.section_4_question_4,
+                R.id.section_4_question_6,
+                R.id.section_4_question_7,
+                R.id.section_4_question_8,
+                // 5
+                R.id.section_5_question_2,
+                R.id.section_5_question_3,
+                R.id.section_5_question_4,
+                R.id.section_5_question_6,
+                R.id.section_5_question_7,
+                R.id.section_5_question_8,
+                R.id.section_5_question_9,
+                R.id.section_5_question_10,
+                // 6
+                R.id.section_6_question_2,
+                R.id.section_6_question_3,
+                R.id.section_6_question_4,
+                R.id.section_6_question_5,
+                R.id.section_6_question_6,
+                // 7
+                R.id.section_7_question_2,
+                R.id.section_7_question_3,
+                R.id.section_7_question_4,
+                R.id.section_7_question_6,
+                R.id.section_7_question_7,
+                R.id.section_7_question_8,
+                // 8
+                R.id.section_8_question_1
         };
 
         /* Para cada pergunta obrigatória */
@@ -316,7 +435,7 @@ public class Form3Activity extends AppCompatActivity {
             textView.setText(textWithAsterisk);
 
             // Verificando se o texto não está vazio
-            if (textWithAsterisk.length() > 0) {
+            if (!textWithAsterisk.isEmpty()) {
                 SpannableString spannableString = new SpannableString(textWithAsterisk);
 
                 // Aplicando a cor vermelha ao último caractere (asteriscos)
@@ -367,7 +486,7 @@ public class Form3Activity extends AppCompatActivity {
     /* Função para formatar placa de veículo */
     private void placaQuestions() {
         int[] placaIds = {
-                R.id.section_1_question_2_input
+                R.id.section_1_question_3_input
         };
 
         for (int i = 0; i < placaIds.length; i++) {
@@ -579,12 +698,13 @@ public class Form3Activity extends AppCompatActivity {
         }
     }
 
+    /* Evento ao clicar em um RadioButton */
     private void editFormByRadioGroupEvent() {
         /* Sim / Não */
         /* RadioGroup 1 */
-        RadioGroup radioSection1Question11RadioGroup = findViewById(R.id.section_1_question_11_radio_group);
-        RadioButton radioSection1Question11Radio1 = findViewById(R.id.section_1_question_11_radio_1); // Sim
-        RadioButton radioSection1Question11Radio2 = findViewById(R.id.section_1_question_11_radio_2); // Não
+        RadioGroup radioSection1Question12RadioGroup = findViewById(R.id.section_1_question_12_radio_group);
+        RadioButton radioSection1Question12Radio1 = findViewById(R.id.section_1_question_12_radio_1); // Sim
+        RadioButton radioSection1Question12Radio2 = findViewById(R.id.section_1_question_12_radio_2); // Não
 
         /* RadioGroup 2 */
         RadioGroup radioSection3Question5RadioGroup = findViewById(R.id.section_3_question_5_radio_group);
@@ -596,40 +716,46 @@ public class Form3Activity extends AppCompatActivity {
         RadioButton radioSection4Question9Radio1 = findViewById(R.id.section_4_question_9_radio_1); // Sim
         RadioButton radioSection4Question9Radio2 = findViewById(R.id.section_4_question_9_radio_2); // Não
 
-        radioSection1Question11Radio1.setOnClickListener(new View.OnClickListener() {
+        radioSection1Question12Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleQuestion1();
+                /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
+                toggleQuestions(new int[] {2, 4, 6, 7}, new int[] {3, 5});
+                markRadioButton(R.id.section_3_question_5_radio_group, R.id.section_3_question_5_radio_1);
+                markRadioButton(R.id.section_4_question_9_radio_group, R.id.section_4_question_9_radio_2);
             }
         });
 
-        radioSection1Question11Radio2.setOnClickListener(new View.OnClickListener() {
+        radioSection1Question12Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleQuestion2();
+                /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
+                toggleQuestions(new int[] {3, 5}, new int[] {2, 4, 6, 7});
             }
         });
 
         radioSection3Question5Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleQuestion2();
+                /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
+                toggleQuestions(new int[] {3, 5}, new int[] {2, 4, 6, 7});
             }
         });
 
         radioSection3Question5Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleQuestion3();
+                /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
+                toggleQuestions(new int[] {3, 6, 7}, new int[] {2, 4, 5});
             }
         });
 
 
         /* Desativando radioGroup 2 ao selecionar "Sim" no RadioGroup 1 */
-        radioSection1Question11RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioSection1Question12RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.section_1_question_11_radio_1) {
+                if (checkedId == R.id.section_1_question_12_radio_1) {
                     // Desativando o RadioGroup 3
                     radioSection4Question9RadioGroup.setEnabled(false);
                     setRadioGroupClickable(radioSection4Question9RadioGroup, false);
@@ -642,55 +768,64 @@ public class Form3Activity extends AppCompatActivity {
         });
     }
 
-    /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
-    private void toggleQuestion1() {
-        // Exibindo 2 - Dados da empresa
-        showQuestions(toggleableQuestionsIds[0], toggleableQuestionsTypes[0]);
-        // Exibindo 4 - Endereço
-        showQuestions(toggleableQuestionsIds[2], toggleableQuestionsTypes[2]);
-        // Exibindo 6 - Dados do condutor
-        showQuestions(toggleableQuestionsIds[4], toggleableQuestionsTypes[4]);
-        // Exibindo 7 - Endereço do condutor
-        showQuestions(toggleableQuestionsIds[5], toggleableQuestionsTypes[5]);
+   /* Função para verificar se algum Checkbox está selecionado */
+   private boolean checkboxIsSelected(int checkboxNumber) {
+       if(checkboxNumber == 0) {
+           int[] checkboxes = {
+                   R.id.damage_button_top_left,
+                   R.id.damage_button_top_center,
+                   R.id.damage_button_top_right,
+                   R.id.damage_button_bottom_left,
+                   R.id.damage_button_bottom_center,
+                   R.id.damage_button_bottom_right
+           };
+           for(int c : checkboxes) {
+               CheckBox checkBox = findViewById(c);
+               if(checkBox.isChecked()) {
+                   return true;
+               }
+           }
+       }
+       return false;
+   }
 
-        // Escondendo 3 - Dados do proprietário
-        hideQuestions(toggleableQuestionsIds[1], toggleableQuestionsTypes[1]);
-        // Escondendo 5 - Dados do proprietário
-        hideQuestions(toggleableQuestionsIds[3], toggleableQuestionsTypes[3]);
+    /* Função para obter total de perguntas que estão escondidas */
+    private int getHiddenQuestionsCount() {
+        int totalHiddenQuestions = 0;
+        for(int h : hiddenQuestions) {
+            totalHiddenQuestions += getSectionQuestionsCount(h);
+        }
+        return totalHiddenQuestions;
     }
 
-    /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-    private void toggleQuestion2() {
-        // Exibindo 3 - Dados do proprietário
-        showQuestions(toggleableQuestionsIds[1], toggleableQuestionsTypes[1]);
-        // Exibindo 5 - Dados do proprietário
-        showQuestions(toggleableQuestionsIds[3], toggleableQuestionsTypes[3]);
-
-        // Escondendo 2 - Dados da empresa
-        hideQuestions(toggleableQuestionsIds[0], toggleableQuestionsTypes[0]);
-        // Escondendo 4 - Endereço
-        hideQuestions(toggleableQuestionsIds[2], toggleableQuestionsTypes[2]);
-        // Escondendo 6 - Dados do condutor
-        hideQuestions(toggleableQuestionsIds[4], toggleableQuestionsTypes[4]);
-        // Escondendo 7 - Endereço do condutor
-        hideQuestions(toggleableQuestionsIds[5], toggleableQuestionsTypes[5]);
+    /* Função para obter total de perguntas que não estão escondidas */
+    private int getNotHiddenQuestionsCount() {
+        return required_questions.length - getHiddenQuestionsCount();
     }
 
-    /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
-    private void toggleQuestion3() {
-        // Exibindo 3 - Dados do proprietário
-        showQuestions(toggleableQuestionsIds[1], toggleableQuestionsTypes[1]);
-        // Exibindo 6 - Dados do condutor
-        showQuestions(toggleableQuestionsIds[4], toggleableQuestionsTypes[4]);
-        // Exibindo 7 - Endereço do condutor
-        showQuestions(toggleableQuestionsIds[5], toggleableQuestionsTypes[5]);
+    /* Função para obter total de perguntas em uma seção */
+    private int getSectionQuestionsCount(int sectionNumber) {
+        int totalQuestions = 0;
+        for (int i = 0; i <= required_questions.length - 1; i++) {
+            if(required_questions[i][2] == sectionNumber) {
+                totalQuestions++;
+            }
+        }
+        return totalQuestions;
+    }
 
-        // Escondendo 2 - Dados da empresa
-        hideQuestions(toggleableQuestionsIds[0], toggleableQuestionsTypes[0]);
-        // Escondendo 4 - Endereço
-        hideQuestions(toggleableQuestionsIds[2], toggleableQuestionsTypes[2]);
-        // Escondendo 5 - Dados do proprietário
-        hideQuestions(toggleableQuestionsIds[3], toggleableQuestionsTypes[3]);
+    /* Função para exibir/esconder múltiplas perguntas */
+    private void toggleQuestions(int[] show, int[] hide) {
+        /* Exibindo */
+        for(int s : show) {
+            showQuestions(toggleableQuestionsIds[s - 2], toggleableQuestionsTypes[s - 2]);
+        }
+        /* Escondendo */
+        for(int h : hide) {
+            hideQuestions(toggleableQuestionsIds[h - 2], toggleableQuestionsTypes[h - 2]);
+        }
+        /* Alterando a variável de seções de perguntas obrigatórias */
+        setHiddenQuestionsVar(hide);
     }
 
     /* Função para esconder perguntas */
@@ -725,6 +860,11 @@ public class Form3Activity extends AppCompatActivity {
         }
     }
 
+    /* Função para alterar a variável de esconder seções de perguntas */
+    private void setHiddenQuestionsVar(int[] ids) {
+        hiddenQuestions = ids;
+    }
+
     /* Função para definir que um RadioGroup seja clicável ou não */
     private void setRadioGroupClickable(RadioGroup radioGroup, boolean clickable) {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
@@ -736,5 +876,50 @@ public class Form3Activity extends AppCompatActivity {
     private void markRadioButton(int radioGroupId, int radioButtonId) {
         RadioGroup radioGroup = findViewById(radioGroupId);
         radioGroup.check(radioButtonId);
+    }
+
+    /* Evento para verificar se as perguntas obrigatórias foram respondidas */
+    private boolean checkRequiredQuestions() {
+        int answered = 0;
+        for (int i = 0; i <= required_questions.length - 1; i++) {
+            /* Verificando se a seção de perguntas a pergunta está escondida */
+            if(!arrayContains(hiddenQuestions, required_questions[i][2])) {
+                if (required_questions[i][1] == 0) { // EditText
+                    EditText editText = findViewById(required_questions[i][0]);
+                    if (!editText.getText().toString().isEmpty()) {
+                        answered++;
+                        editText.setBackgroundResource(R.drawable.edit_text);
+                    } else {
+                        editText.setBackgroundResource(R.drawable.edit_text_error);
+                    }
+                } else if (required_questions[i][1] == 1) { // Spinner
+                    Spinner spinner = findViewById(required_questions[i][0]);
+                    if (!spinner.getSelectedItem().toString().equals("Selecione uma opção")) {
+                        answered++;
+                        spinner.setBackgroundResource(R.drawable.edit_text);
+                    } else {
+                        spinner.setBackgroundResource(R.drawable.edit_text_error);
+                    }
+                } else if (required_questions[i][1] == 2) { // RadioGroup
+                    RadioGroup radioGroup = findViewById(required_questions[i][0]);
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    boolean groupSelected = selectedId != -1;
+                    if (groupSelected) {
+                        answered++;
+                    }
+                } else if (required_questions[i][1] == 3) { // Checkbox
+                    if (checkboxIsSelected(required_questions[i][0])) {
+                        answered++;
+                    }
+                }
+            }
+        }
+
+        if(answered == getNotHiddenQuestionsCount()) {
+            return true;
+        } else {
+            Toast.makeText(Form3Activity.this, answered + " perguntas respondidas de " + getNotHiddenQuestionsCount(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

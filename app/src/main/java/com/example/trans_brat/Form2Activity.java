@@ -1,7 +1,6 @@
 package com.example.trans_brat;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -15,11 +14,9 @@ import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,20 +30,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class Form2Activity extends AppCompatActivity {
     private EditText editTextDate;
     private EditText editTextTime;
-    private AutoCompleteTextView autoCompleteTextView;
 
     /* Definindo inputs obrigatórios */
     // 0 - EditText
     // 1 - Spinner
     // 2 - RadioGroup
-    private int[][] required_questions = {
+    private final int[][] required_questions = {
             {R.id.section_1_question_2_input, 0},
             {R.id.section_1_question_3_input, 0},
             {R.id.section_2_question_2_input, 1},
@@ -101,11 +95,7 @@ public class Form2Activity extends AppCompatActivity {
         Button buttonNext = findViewById(R.id.next_button);
 
         /* (Voltar) Voltando para o formulário 1 */
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        buttonBack.setOnClickListener(v -> finish());
 
         /* (Cancelar) Voltando para o menu principal */
         buttonCancel.setOnClickListener(new View.OnClickListener() {
@@ -158,17 +148,15 @@ public class Form2Activity extends AppCompatActivity {
             textView.setText(textWithAsterisk);
 
             // Verificando se o texto não está vazio
-            if (textWithAsterisk.length() > 0) {
-                SpannableString spannableString = new SpannableString(textWithAsterisk);
+            SpannableString spannableString = new SpannableString(textWithAsterisk);
 
-                // Aplicando a cor vermelha ao último caractere (asteriscos)
-                spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                textView.setText(spannableString);
-            }
+            // Aplicando a cor vermelha ao último caractere (asteriscos)
+            spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.setText(spannableString);
         }
     }
 
-    /* Evento para verificar se algum RadioButton está selecionado */
+    /* Evento para verificar se as perguntas obrigatórias foram respondidas */
     private boolean checkRequiredQuestions() {
         int answered = 0;
         for (int i = 0; i <= required_questions.length - 1; i++) {
@@ -244,7 +232,7 @@ public class Form2Activity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
                         // Formatando o horário como HH:mm
-                        String time = String.format("%02d:%02d", selectedHour, selectedMinute);
+                        @SuppressLint("DefaultLocale") String time = String.format("%02d:%02d", selectedHour, selectedMinute);
                         editTextTime.setText(time);
                     }
                 },
@@ -283,11 +271,10 @@ public class Form2Activity extends AppCompatActivity {
                 R.id.section_3_question_2_input
         };
 
-        for (int i = 0; i < cepIds.length; i++) {
-            EditText cepEditText = findViewById(cepIds[i]);
+        for (int cepId : cepIds) {
+            EditText cepEditText = findViewById(cepId);
             cepEditText.addTextChangedListener(new TextWatcher() {
                 private boolean isUpdating = false;
-                private String oldText = "";
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -295,10 +282,9 @@ public class Form2Activity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    String str = s.toString().replaceAll("[^\\d]", "");
+                    String str = s.toString().replaceAll("\\D", "");
 
                     if (isUpdating) {
-                        oldText = str;
                         isUpdating = false;
                         return;
                     }
@@ -308,7 +294,7 @@ public class Form2Activity extends AppCompatActivity {
                     // Formatar o CEP no formato 12345-678
                     if (str.length() > 5) {
                         formatted = str.substring(0, 5) + "-" + str.substring(5);
-                    } else if (str.length() > 0) {
+                    } else if (!str.isEmpty()) {
                         formatted = str;
                     }
 

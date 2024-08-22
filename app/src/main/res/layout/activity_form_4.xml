@@ -123,12 +123,40 @@
             app:layout_constraintStart_toStartOf="@+id/section_1_question_1"
             app:layout_constraintTop_toBottomOf="@id/section_1_question_1" />
 
+        <!-- Veículo Nº 2 -->
+        <LinearLayout
+            android:id="@+id/section_2_group"
+            style="@style/form_group"
+            app:layout_constraintEnd_toEndOf="@+id/section_1_question_1_input"
+            app:layout_constraintStart_toStartOf="@+id/section_1_question_1_input"
+            app:layout_constraintTop_toBottomOf="@id/section_1_question_1_input" >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/section_2_expansion_1"
+                style="@style/form_input_expansion"
+                android:text="Veículo Nº 2"
+                app:layout_constraintEnd_toEndOf="@+id/section_2_group"
+                app:layout_constraintStart_toStartOf="@+id/section_2_group"
+                app:layout_constraintTop_toBottomOf="@id/section_2_group"
+                />
+
+            <TextView
+                android:id="@+id/section_2_question_1"
+                style="@style/form_question"
+                android:background="#F60"
+                android:text="Aqui está o conteúdo expandido!"
+                app:layout_constraintEnd_toEndOf="@+id/section_2_expansion_1"
+                app:layout_constraintStart_toStartOf="@+id/section_2_expansion_1"
+                app:layout_constraintTop_toBottomOf="@id/section_2_expansion_1" />
+
+        </LinearLayout>
+
         <!-- Botões inferiores -->
         <View
             android:id="@+id/buttons_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_1_question_1_input"
+            app:layout_constraintTop_toBottomOf="@+id/section_2_group"
             />
 
         <androidx.appcompat.widget.AppCompatButton
