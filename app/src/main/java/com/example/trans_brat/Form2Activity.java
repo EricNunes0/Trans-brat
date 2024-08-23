@@ -70,6 +70,8 @@ public class Form2Activity extends AppCompatActivity {
             return insets;
         });
 
+        /* Obtendo respostas do formulário 1 */
+
         /* Definindo perguntas obrigatórias */
         requiredQuestions();
 
@@ -111,6 +113,9 @@ public class Form2Activity extends AppCompatActivity {
             }
         });
     }
+
+    /* Função para obter respostas do formulário anterior */
+    private void getPreviousFormAnswers() {}
 
     /* Função para perguntas obrigatórias */
     private void requiredQuestions() {

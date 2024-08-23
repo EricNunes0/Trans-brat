@@ -87,7 +87,13 @@ public class Form1Activity extends AppCompatActivity {
             String selectedText3 = selectedRadioButton3.getText().toString();
             String selectedText4 = selectedRadioButton4.getText().toString();
             String selectedText5 = selectedRadioButton5.getText().toString();
+
             Intent intent = new Intent(Form1Activity.this, Form2Activity.class);
+            intent.putExtra("F1_S1_Q1", selectedText1);
+            intent.putExtra("F1_S2_Q1", selectedText2);
+            intent.putExtra("F1_S3_Q1", selectedText3);
+            intent.putExtra("F1_S4_Q1", selectedText3);
+            intent.putExtra("F1_S5_Q1", selectedText3);
             startActivity(intent);
         });
     }

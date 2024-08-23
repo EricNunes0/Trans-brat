@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -135,10 +136,10 @@ public class Form4Activity extends AppCompatActivity {
         markRadioButton(R.id.section_4_main_group_1_question_12_radio_group, R.id.section_4_main_group_1_question_12_radio_2);
         markRadioButton(R.id.section_4_main_group_3_question_5_radio_group, R.id.section_4_main_group_3_question_5_radio_2);
         /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
-        toggleQuestions(0, new int[] {3, 6, 7}, new int[] {2, 4, 5});
-        toggleQuestions(1, new int[] {3, 6, 7}, new int[] {2, 4, 5});
-        toggleQuestions(2, new int[] {3, 6, 7}, new int[] {2, 4, 5});
-        toggleQuestions(3, new int[] {3, 6, 7}, new int[] {2, 4, 5});
+        toggleQuestions(0, new int[] {1, 4, 5}, new int[] {0, 2, 3});
+        toggleQuestions(1, new int[] {1, 4, 5}, new int[] {0, 2, 3});
+        toggleQuestions(2, new int[] {1, 4, 5}, new int[] {0, 2, 3});
+        toggleQuestions(3, new int[] {1, 4, 5}, new int[] {0, 2, 3});
 
         /* Evento para exibir/esconder partes do formulário ao marcar uma opção em um RadioGroup */
         editFormByRadioGroupEvent();
@@ -515,7 +516,7 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
-                toggleQuestions(0, new int[] {2, 4, 6, 7}, new int[] {3, 5});
+                toggleQuestions(0, new int[] {0, 2, 4, 5}, new int[] {1, 3});
                 markRadioButton(R.id.section_1_main_group_3_question_5_radio_group, R.id.section_1_main_group_3_question_5_radio_1);
                 markRadioButton(R.id.section_1_main_group_4_question_9_radio_group, R.id.section_1_main_group_4_question_9_radio_2);
             }
@@ -524,7 +525,7 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
-                toggleQuestions(1, new int[] {2, 4, 6, 7}, new int[] {3, 5});
+                toggleQuestions(1, new int[] {0, 2, 4, 5}, new int[] {1, 3});
                 markRadioButton(R.id.section_2_main_group_3_question_5_radio_group, R.id.section_2_main_group_3_question_5_radio_1);
                 markRadioButton(R.id.section_2_main_group_4_question_9_radio_group, R.id.section_2_main_group_4_question_9_radio_2);
             }
@@ -533,7 +534,7 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
-                toggleQuestions(2, new int[] {2, 4, 6, 7}, new int[] {3, 5});
+                toggleQuestions(2, new int[] {0, 2, 4, 5}, new int[] {1, 3});
                 markRadioButton(R.id.section_3_main_group_3_question_5_radio_group, R.id.section_3_main_group_3_question_5_radio_1);
                 markRadioButton(R.id.section_3_main_group_4_question_9_radio_group, R.id.section_3_main_group_4_question_9_radio_2);
             }
@@ -542,7 +543,7 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 2, 4, 6 e 7 | Esconder 3 e 5 */
-                toggleQuestions(3, new int[] {2, 4, 6, 7}, new int[] {3, 5});
+                toggleQuestions(3, new int[] {0, 2, 4, 5}, new int[] {1, 3});
                 markRadioButton(R.id.section_4_main_group_3_question_5_radio_group, R.id.section_4_main_group_3_question_5_radio_1);
                 markRadioButton(R.id.section_4_main_group_4_question_9_radio_group, R.id.section_4_main_group_4_question_9_radio_2);
             }
@@ -552,28 +553,28 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(0, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(0, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
         radioSection2MainGroup1Question12Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(1, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(1, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
         radioSection3MainGroup1Question12Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(2, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(2, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
         radioSection4MainGroup1Question12Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(3, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(3, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
 
@@ -581,28 +582,28 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(0, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(0, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
         radioSection2MainGroup3Question5Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(1, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(1, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
         radioSection3MainGroup3Question5Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(2, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(2, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
         radioSection4MainGroup3Question5Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3 e 5 | Esconder 2, 4, 6 e 7 */
-                toggleQuestions(3, new int[] {3, 5}, new int[] {2, 4, 6, 7});
+                toggleQuestions(3, new int[] {1, 3}, new int[] {0, 2, 4, 5});
             }
         });
 
@@ -610,28 +611,28 @@ public class Form4Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
-                toggleQuestions(0, new int[] {3, 6, 7}, new int[] {2, 4, 5});
+                toggleQuestions(0, new int[] {1, 4, 5}, new int[] {0, 2, 3});
             }
         });
         radioSection2MainGroup3Question5Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
-                toggleQuestions(1, new int[] {3, 6, 7}, new int[] {2, 4, 5});
+                toggleQuestions(1, new int[] {1, 4, 5}, new int[] {0, 2, 3});
             }
         });
         radioSection3MainGroup3Question5Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
-                toggleQuestions(2, new int[] {3, 6, 7}, new int[] {2, 4, 5});
+                toggleQuestions(2, new int[] {1, 4, 5}, new int[] {0, 2, 3});
             }
         });
         radioSection4MainGroup3Question5Radio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Exibir 3, 6 e 7 | Esconder 2, 4 e 5 */
-                toggleQuestions(3, new int[] {3, 6, 7}, new int[] {2, 4, 5});
+                toggleQuestions(3, new int[] {1, 4, 5}, new int[] {0, 2, 3});
             }
         });
 
@@ -864,11 +865,11 @@ public class Form4Activity extends AppCompatActivity {
     private void toggleQuestions(int section, int[] show, int[] hide) {
         /* Exibindo */
         for(int s : show) {
-            showQuestions(section, s - 2);
+            showQuestions(section, s);
         }
         /* Escondendo */
         for(int h : hide) {
-            hideQuestions(section, h - 2);
+            hideQuestions(section, h);
         }
         /* Alterando a variável de seções de perguntas obrigatórias */
         setHiddenQuestionsVar(section, hide);
@@ -876,13 +877,14 @@ public class Form4Activity extends AppCompatActivity {
 
     /* Função para esconder perguntas */
     private void hideQuestions(int section, int sectionIndex) {
-        LinearLayout linearLayout = findViewById(toggleableQuestionsSectionsIds[sectionIndex] * (section + 1));
+        //Toast.makeText(Form4Activity.this, (section + 1) + " * " + (sectionIndex + 1) + " = " + ((section + 1) * (sectionIndex + 1)), Toast.LENGTH_SHORT).show();
+        LinearLayout linearLayout = findViewById(toggleableQuestionsSectionsIds[(section * (toggleableQuestionsSectionsIds.length / 4)) + sectionIndex]);
         linearLayout.setVisibility(View.GONE);
     }
 
     /* Função para exibir perguntas */
     private void showQuestions(int section, int sectionIndex) {
-        LinearLayout linearLayout = findViewById(toggleableQuestionsSectionsIds[sectionIndex] * (section + 1));
+        LinearLayout linearLayout = findViewById(toggleableQuestionsSectionsIds[(section * (toggleableQuestionsSectionsIds.length / 4)) + sectionIndex]);
         linearLayout.setVisibility(View.VISIBLE);
     }
 
