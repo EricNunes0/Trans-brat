@@ -9,11 +9,13 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -21,13 +23,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 public class Form3Activity extends AppCompatActivity {
     /* Definindo inputs obrigatórios */
@@ -36,7 +38,7 @@ public class Form3Activity extends AppCompatActivity {
     // [2][] - RadioGroup
     // [3][] - Checkbox
     // [][X] - Seção de perguntas
-    private int[][] required_questions = {
+    private final int[][] required_questions = {
             // 1
             {R.id.section_1_question_2_input, 0, 1},
             {R.id.section_1_question_3_input, 0, 1},
@@ -93,199 +95,13 @@ public class Form3Activity extends AppCompatActivity {
     };
 
     /* Ids das perguntas que podem ser exibidas/escondidas */
-    private int[][] toggleableQuestionsIds = {
-            // [0] 2 - Dados da empresa
-            {
-                    R.id.section_2_question_1,
-                    R.id.section_2_question_2,
-                    R.id.section_2_question_2_input,
-                    R.id.section_2_question_3,
-                    R.id.section_2_question_3_input
-            },
-            // [1] 3 - Dados do proprietário
-            {
-                    R.id.section_3_question_1,
-                    R.id.section_3_question_2,
-                    R.id.section_3_question_2_input,
-                    R.id.section_3_question_3,
-                    R.id.section_3_question_3_input,
-                    R.id.section_3_question_4,
-                    R.id.section_3_question_4_input,
-                    R.id.section_3_question_5,
-                    R.id.section_3_question_5_radio_group
-            },
-            // [2] 4 - Dados do proprietário
-            {
-                    R.id.section_4_question_1,
-                    R.id.section_4_question_2,
-                    R.id.section_4_question_2_input,
-                    R.id.section_4_question_3,
-                    R.id.section_4_question_3_input,
-                    R.id.section_4_question_4,
-                    R.id.section_4_question_4_input,
-                    R.id.section_4_question_5,
-                    R.id.section_4_question_5_input,
-                    R.id.section_4_question_6,
-                    R.id.section_4_question_6_input,
-                    R.id.section_4_question_7,
-                    R.id.section_4_question_7_input,
-                    R.id.section_4_question_8,
-                    R.id.section_4_question_8_input,
-                    R.id.section_4_question_9,
-                    R.id.section_4_question_9_radio_group
-            },
-            // [3] 5 - Endereço do proprietário
-            {
-                    R.id.section_5_question_1,
-                    R.id.section_5_question_2,
-                    R.id.section_5_question_2_input,
-                    R.id.section_5_question_3,
-                    R.id.section_5_question_3_input,
-                    R.id.section_5_question_4,
-                    R.id.section_5_question_4_input,
-                    R.id.section_5_question_5,
-                    R.id.section_5_question_5_input,
-                    R.id.section_5_question_6,
-                    R.id.section_5_question_6_input,
-                    R.id.section_5_question_7,
-                    R.id.section_5_question_7_input,
-                    R.id.section_5_question_8,
-                    R.id.section_5_question_8_input,
-                    R.id.section_5_question_9,
-                    R.id.section_5_question_9_input,
-                    R.id.section_5_question_10,
-                    R.id.section_5_question_10_input
-            },
-            // [4] 6 - Dados do condutor
-            {
-                    R.id.section_6_question_1,
-                    R.id.section_6_question_2,
-                    R.id.section_6_question_2_input,
-                    R.id.section_6_question_3,
-                    R.id.section_6_question_3_input,
-                    R.id.section_6_question_4,
-                    R.id.section_6_question_4_input,
-                    R.id.section_6_question_5,
-                    R.id.section_6_question_5_input,
-                    R.id.section_6_question_6,
-                    R.id.section_6_question_6_input
-            },
-            // [5] 7 - Endereço do condutor
-            {
-                    R.id.section_7_question_1,
-                    R.id.section_7_question_2,
-                    R.id.section_7_question_2_input,
-                    R.id.section_7_question_3,
-                    R.id.section_7_question_3_input,
-                    R.id.section_7_question_4,
-                    R.id.section_7_question_4_input,
-                    R.id.section_7_question_5,
-                    R.id.section_7_question_5_input,
-                    R.id.section_7_question_6,
-                    R.id.section_7_question_6_input,
-                    R.id.section_7_question_7,
-                    R.id.section_7_question_7_input,
-                    R.id.section_7_question_8,
-                    R.id.section_7_question_8_input
-            }
-    };
-
-    /* Tipos das perguntas */
-    private String[][] toggleableQuestionsTypes = {
-            // [0] 2 - Dados da empresa
-            {
-                    "TextView",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText"
-            },
-            // [1] 3 - Dados do proprietário
-            {
-                    "TextView",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "RadioGroup"
-            },
-            // [2] 4 - Endereço
-            {
-                    "TextView",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "RadioGroup"
-            },
-            // [3] 5 - Endereço do proprietário
-            {
-                    "TextView",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText"
-            },
-            // [4] 6 - Dados do condutor
-            {
-                    "TextView",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText"
-            },
-            // [5] 7 - Endereço do condutor
-            {
-                    "TextView",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText",
-                    "TextView",
-                    "EditText"
-            }
+    private final int[] toggleableQuestionsSectionsIds = {
+            R.id.section_2_group,
+            R.id.section_3_group,
+            R.id.section_4_group,
+            R.id.section_5_group,
+            R.id.section_6_group,
+            R.id.section_7_group
     };
 
     private int[] hiddenQuestions = {2, 4};
@@ -302,6 +118,7 @@ public class Form3Activity extends AppCompatActivity {
         });
 
         requiredQuestions();
+
         /* Adicionando calendário aos inputs de data */
         setDatePickers();
 
@@ -339,13 +156,7 @@ public class Form3Activity extends AppCompatActivity {
         });
 
         /* (Cancelar) Voltando para o menu principal */
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Form3Activity.this, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        buttonCancel.setOnClickListener(v -> cancel());
 
         /* (Avançar) Avançando para o formulário 4 */
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -360,8 +171,8 @@ public class Form3Activity extends AppCompatActivity {
 
     /* Função para verificar se um número existe em um array */
     private boolean arrayContains(int[] array, int number) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == number) {
+        for (int j : array) {
+            if (j == number) {
                 return true;
             }
         }
@@ -435,13 +246,11 @@ public class Form3Activity extends AppCompatActivity {
             textView.setText(textWithAsterisk);
 
             // Verificando se o texto não está vazio
-            if (!textWithAsterisk.isEmpty()) {
-                SpannableString spannableString = new SpannableString(textWithAsterisk);
+            SpannableString spannableString = new SpannableString(textWithAsterisk);
 
-                // Aplicando a cor vermelha ao último caractere (asteriscos)
-                spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                textView.setText(spannableString);
-            }
+            // Aplicando a cor vermelha ao último caractere (asteriscos)
+            spannableString.setSpan(new ForegroundColorSpan(Color.RED), textWithAsterisk.length() - 1, textWithAsterisk.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.setText(spannableString);
         }
     }
 
@@ -454,8 +263,8 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_6_question_6_input
         };
 
-        for (int i = 0; i < dateIds.length; i++) {
-            EditText editTextDate = findViewById(dateIds[i]);
+        for (int dateId : dateIds) {
+            EditText editTextDate = findViewById(dateId);
             editTextDate.setOnClickListener(v -> showDatePickerDialog(editTextDate));
         }
     }
@@ -489,11 +298,10 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_1_question_3_input
         };
 
-        for (int i = 0; i < placaIds.length; i++) {
-            EditText cepEditText = findViewById(placaIds[i]);
+        for (int placaId : placaIds) {
+            EditText cepEditText = findViewById(placaId);
             cepEditText.addTextChangedListener(new TextWatcher() {
                 private boolean isUpdating = false;
-                private String oldText = "";
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -504,7 +312,6 @@ public class Form3Activity extends AppCompatActivity {
                     String str = s.toString().replaceAll("[^\\d]", "");
 
                     if (isUpdating) {
-                        oldText = str;
                         isUpdating = false;
                         return;
                     }
@@ -514,7 +321,7 @@ public class Form3Activity extends AppCompatActivity {
                     // Formatar a placa no formato 123-4567
                     if (str.length() > 3) {
                         formatted = str.substring(0, 3) + "-" + str.substring(3);
-                    } else if (str.length() > 0) {
+                    } else if (!str.isEmpty()) {
                         formatted = str;
                     }
 
@@ -539,11 +346,10 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_7_question_2_input
         };
 
-        for (int i = 0; i < cepIds.length; i++) {
-            EditText cepEditText = findViewById(cepIds[i]);
+        for (int cepId : cepIds) {
+            EditText cepEditText = findViewById(cepId);
             cepEditText.addTextChangedListener(new TextWatcher() {
                 private boolean isUpdating = false;
-                private String oldText = "";
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -554,7 +360,6 @@ public class Form3Activity extends AppCompatActivity {
                     String str = s.toString().replaceAll("[^\\d]", "");
 
                     if (isUpdating) {
-                        oldText = str;
                         isUpdating = false;
                         return;
                     }
@@ -564,7 +369,7 @@ public class Form3Activity extends AppCompatActivity {
                     // Formatar o CEP no formato 12345-678
                     if (str.length() > 5) {
                         formatted = str.substring(0, 5) + "-" + str.substring(5);
-                    } else if (str.length() > 0) {
+                    } else if (!str.isEmpty()) {
                         formatted = str;
                     }
 
@@ -586,8 +391,8 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_2_question_3_input
         };
 
-        for (int i = 0; i < cnpjIds.length; i++) {
-            EditText cnpjEditText = findViewById(cnpjIds[i]);
+        for (int cnpjId : cnpjIds) {
+            EditText cnpjEditText = findViewById(cnpjId);
             cnpjEditText.addTextChangedListener(new TextWatcher() {
                 private boolean isUpdating = false;
                 private String oldText = "";
@@ -647,8 +452,8 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_6_question_3_input
         };
 
-        for (int i = 0; i < cpfIds.length; i++) {
-            EditText cpfEditText = findViewById(cpfIds[i]);
+        for (int cpfId : cpfIds) {
+            EditText cpfEditText = findViewById(cpfId);
             cpfEditText.addTextChangedListener(new TextWatcher() {
                 private boolean isUpdating = false;
                 private String oldText = "";
@@ -707,14 +512,11 @@ public class Form3Activity extends AppCompatActivity {
         RadioButton radioSection1Question12Radio2 = findViewById(R.id.section_1_question_12_radio_2); // Não
 
         /* RadioGroup 2 */
-        RadioGroup radioSection3Question5RadioGroup = findViewById(R.id.section_3_question_5_radio_group);
         RadioButton radioSection3Question5Radio1 = findViewById(R.id.section_3_question_5_radio_1); // Sim
         RadioButton radioSection3Question5Radio2 = findViewById(R.id.section_3_question_5_radio_2); // Não
 
         /* RadioGroup 3 */
         RadioGroup radioSection4Question9RadioGroup = findViewById(R.id.section_4_question_9_radio_group);
-        RadioButton radioSection4Question9Radio1 = findViewById(R.id.section_4_question_9_radio_1); // Sim
-        RadioButton radioSection4Question9Radio2 = findViewById(R.id.section_4_question_9_radio_2); // Não
 
         radioSection1Question12Radio1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -818,46 +620,26 @@ public class Form3Activity extends AppCompatActivity {
     private void toggleQuestions(int[] show, int[] hide) {
         /* Exibindo */
         for(int s : show) {
-            showQuestions(toggleableQuestionsIds[s - 2], toggleableQuestionsTypes[s - 2]);
+            showQuestions(s - 2);
         }
         /* Escondendo */
         for(int h : hide) {
-            hideQuestions(toggleableQuestionsIds[h - 2], toggleableQuestionsTypes[h - 2]);
+            hideQuestions(h - 2);
         }
         /* Alterando a variável de seções de perguntas obrigatórias */
         setHiddenQuestionsVar(hide);
     }
 
     /* Função para esconder perguntas */
-    private void hideQuestions(int[] ids, String[] types) {
-        for(int i = 0; i <= ids.length - 1; i++) {
-            if(Objects.equals(types[i], "TextView")) {
-                TextView itemToHide = findViewById(ids[i]);
-                itemToHide.setVisibility(View.GONE);
-            } else if(Objects.equals(types[i], "EditText")) {
-                EditText itemToHide = findViewById(ids[i]);
-                itemToHide.setVisibility(View.GONE);
-            } else if(Objects.equals(types[i], "RadioGroup")) {
-                RadioGroup itemToHide = findViewById(ids[i]);
-                itemToHide.setVisibility(View.GONE);
-            }
-        }
+    private void hideQuestions(int sectionIndex) {
+        LinearLayout linearLayout = findViewById(toggleableQuestionsSectionsIds[sectionIndex]);
+        linearLayout.setVisibility(View.GONE);
     }
 
     /* Função para exibir perguntas */
-    private void showQuestions(int[] ids, String[] types) {
-        for(int i = 0; i <= ids.length - 1; i++) {
-            if(Objects.equals(types[i], "TextView")) {
-                TextView itemToHide = findViewById(ids[i]);
-                itemToHide.setVisibility(View.VISIBLE);
-            } else if(Objects.equals(types[i], "EditText")) {
-                EditText itemToHide = findViewById(ids[i]);
-                itemToHide.setVisibility(View.VISIBLE);
-            } else if(Objects.equals(types[i], "RadioGroup")) {
-                RadioGroup itemToHide = findViewById(ids[i]);
-                itemToHide.setVisibility(View.VISIBLE);
-            }
-        }
+    private void showQuestions(int sectionIndex) {
+        LinearLayout linearLayout = findViewById(toggleableQuestionsSectionsIds[sectionIndex]);
+        linearLayout.setVisibility(View.VISIBLE);
     }
 
     /* Função para alterar a variável de esconder seções de perguntas */
@@ -921,5 +703,25 @@ public class Form3Activity extends AppCompatActivity {
             Toast.makeText(Form3Activity.this, answered + " perguntas respondidas de " + getNotHiddenQuestionsCount(), Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
+
+    /* Função ao cancelar formulário */
+    private void cancel() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Form3Activity.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogLayout = inflater.inflate(R.layout.alert_dialog_warning, null);
+        builder.setView(dialogLayout);
+        builder.setTitle("Atenção!");
+        builder.setMessage("Ao continuar, seu e-brat será cancelado e seu processo será perdido.");
+        builder.setIcon(R.drawable.icon_warning);
+        builder.setPositiveButton("Continuar", (dialog, which) -> {
+            dialog.dismiss();
+            Intent intent = new Intent(Form3Activity.this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+        builder.setNegativeButton("Voltar", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

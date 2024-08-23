@@ -14,5 +14,6 @@
     <color name="form_back_button">#D0D0D0</color> <!-- Formulário: Botão de voltar -->
     <color name="form_cancel_button">#F04040</color> <!-- Formulário: Botão de cancelar -->
     <color name="form_next_button">#306090</color> <!-- Formulário: Botão de avançar -->
+    <color name="form_submit_button">#309060</color> <!-- Formulário: Botão de enviar formulário -->
     <color name="form_damage_area">#AAAAAA</color> <!-- Formulário: Área danificada do veículo -->
 </resources>

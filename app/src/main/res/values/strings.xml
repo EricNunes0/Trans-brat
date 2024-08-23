@@ -145,4 +145,5 @@
     <string name="form_5_section_4_question_3_placeholder">___.___.___-__</string>
     <string name="form_5_section_4_question_4">Celular</string>
     <string name="form_5_section_4_question_4_placeholder">(  ) _____-____</string>
+    <string name="remove_image">Remover imagem</string>
 </resources>

@@ -12,6 +12,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -98,13 +99,7 @@ public class Form2Activity extends AppCompatActivity {
         buttonBack.setOnClickListener(v -> finish());
 
         /* (Cancelar) Voltando para o menu principal */
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Form2Activity.this, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        buttonCancel.setOnClickListener(v -> cancel());
 
         /* (Avançar) Avançando para o formulário 3 */
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -351,6 +346,26 @@ public class Form2Activity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /* Função ao cancelar formulário */
+    private void cancel() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Form2Activity.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogLayout = inflater.inflate(R.layout.alert_dialog_warning, null);
+        builder.setView(dialogLayout);
+        builder.setTitle("Atenção!");
+        builder.setMessage("Ao continuar, seu e-brat será cancelado e seu processo será perdido.");
+        builder.setIcon(R.drawable.icon_warning);
+        builder.setPositiveButton("Continuar", (dialog, which) -> {
+            dialog.dismiss();
+            Intent intent = new Intent(Form2Activity.this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+        builder.setNegativeButton("Voltar", (dialog, which) -> dialog.dismiss());
         AlertDialog dialog = builder.create();
         dialog.show();
     }

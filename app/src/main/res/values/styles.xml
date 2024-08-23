@@ -274,6 +274,22 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- Botão de enviar formulário -->
+    <style name="form_submit_button">
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/button_submit</item>
+        <item name="android:drawableRight">@drawable/icon_submit</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:text">Enviar</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <!-- Imagem da área danificada do veículo -->
     <style name="form_damage_image">
         <item name="android:layout_width">300dp</item>
