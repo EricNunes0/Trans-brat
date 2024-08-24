@@ -12,12 +12,14 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,28 +36,62 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Calendar;
 
 public class Form2Activity extends AppCompatActivity {
+    private final String logId = "Form2Activity_LOG";
+    /* Respostas do formulário anterior */
+    private final String[] previousAnswersIds = {
+            "F1_S1_Q1",
+            "F1_S2_Q1",
+            "F1_S3_Q1",
+            "F1_S4_Q1",
+            "F1_S5_Q1"
+    };
+    /* Respostas para enviar para o formulário seguinte */
+    private final String[] toSendAnswersIds = {
+            "F2_S1_Q2",
+            "F2_S1_Q3",
+            "F2_S2_Q2",
+            "F2_S2_Q3",
+            "F2_S3_Q2",
+            "F2_S3_Q3",
+            "F2_S3_Q4",
+            "F2_S3_Q5",
+            "F2_S3_Q6",
+            "F2_S3_Q7",
+            "F2_S3_Q8",
+            "F2_S3_Q9",
+            "F2_S4_Q2",
+            "F2_S4_Q3",
+            "F2_S4_Q4",
+            "F2_S5_Q1"
+    };
+
     private EditText editTextDate;
     private EditText editTextTime;
 
     /* Definindo inputs obrigatórios */
-    // 0 - EditText
-    // 1 - Spinner
-    // 2 - RadioGroup
-    private final int[][] required_questions = {
-            {R.id.section_1_question_2_input, 0},
-            {R.id.section_1_question_3_input, 0},
-            {R.id.section_2_question_2_input, 1},
-            {R.id.section_2_question_3_input, 1},
-            {R.id.section_3_question_2_input, 0},
-            {R.id.section_3_question_3_input, 0},
-            {R.id.section_3_question_4_input, 0},
-            {R.id.section_3_question_6_input, 0},
-            {R.id.section_3_question_7_input, 0},
-            {R.id.section_3_question_8_input, 0},
-            {R.id.section_4_question_2_radio_group, 2},
-            {R.id.section_4_question_3_radio_group, 2},
-            {R.id.section_4_question_4_radio_group, 2},
-            {R.id.section_5_question_1_radio_group, 2}
+    // [0] 0 - Opcional 0 | Obrigatório: 1
+    // [0] 1 - Obrigatório
+
+    // [2] 0 - EditText
+    // [2] 1 - Spinner
+    // [2] 2 - RadioGroup
+    private final int[][] all_questions = {
+            {1, R.id.section_1_question_2_input, 0},
+            {1, R.id.section_1_question_3_input, 0},
+            {1, R.id.section_2_question_2_input, 1},
+            {1, R.id.section_2_question_3_input, 1},
+            {1, R.id.section_3_question_2_input, 0},
+            {1, R.id.section_3_question_3_input, 0},
+            {1, R.id.section_3_question_4_input, 0},
+            {0, R.id.section_3_question_5_input, 0},
+            {1, R.id.section_3_question_6_input, 0},
+            {1, R.id.section_3_question_7_input, 0},
+            {1, R.id.section_3_question_8_input, 0},
+            {0, R.id.section_3_question_9_input, 0},
+            {1, R.id.section_4_question_2_radio_group, 2},
+            {1, R.id.section_4_question_3_radio_group, 2},
+            {1, R.id.section_4_question_4_radio_group, 2},
+            {1, R.id.section_5_question_1_radio_group, 2}
     };
 
     @SuppressLint("MissingInflatedId")
@@ -70,7 +106,8 @@ public class Form2Activity extends AppCompatActivity {
             return insets;
         });
 
-        /* Obtendo respostas do formulário 1 */
+        /* Obtendo respostas dos formulários anteriores */
+        //getPreviousFormAnswers();
 
         /* Definindo perguntas obrigatórias */
         requiredQuestions();
@@ -108,14 +145,67 @@ public class Form2Activity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkRequiredQuestions()) {
                     Intent intent = new Intent(Form2Activity.this, Form3Activity.class);
-                    startActivity(intent);
+                    sendAnswersToNextForm(intent);
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Log.e(logId, "Erro: " + e);
+                    }
                 }
             }
         });
     }
 
     /* Função para obter respostas do formulário anterior */
-    private void getPreviousFormAnswers() {}
+    private void getPreviousFormAnswers() {
+        for(String answerId : previousAnswersIds) {
+            String answer = getIntent().getStringExtra(answerId);
+            assert answer != null;
+            Log.d(logId, answerId + " - " + answer);
+        }
+    }
+
+    /* Função para obter resposta de diferentes inputs */
+    private String getInputAnswer(int questionId, int questionType) {
+        if(questionType == 0) {
+            EditText editText = findViewById(questionId);
+            return editText.getText().toString();
+        } if(questionType == 1) {
+            Spinner spinner = findViewById(questionId);
+            return spinner.getSelectedItem().toString();
+        } if(questionType == 2) {
+            RadioGroup radioGroup = findViewById(questionId);
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+            if (selectedId != -1) {
+                RadioButton selectedRadioButton = findViewById(selectedId);
+                return selectedRadioButton.getText().toString();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    /* Função para obter respostas do formulário anterior */
+    private void sendAnswersToNextForm(Intent intent) {
+        /* Enviando respostas dos formulários anteriores */
+        for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
+            String toSendAnswerId = previousAnswersIds[i];
+            String answer = getIntent().getStringExtra(toSendAnswerId);
+            intent.putExtra(toSendAnswerId, answer);
+            Log.i(logId, toSendAnswerId + " - " + answer);
+        }
+        /* Enviando respostas deste formulário */
+        for(int i = 0; i <= toSendAnswersIds.length - 1; i++) {
+            String toSendAnswerId = toSendAnswersIds[i];
+            int requiredQuestionId = all_questions[i][1];
+            int requiredQuestionType = all_questions[i][2];
+            String answer = getInputAnswer(requiredQuestionId, requiredQuestionType);
+            intent.putExtra(toSendAnswerId, answer);
+            Log.i(logId, toSendAnswerId + " - " + answer);
+        }
+    }
 
     /* Função para perguntas obrigatórias */
     private void requiredQuestions() {
@@ -159,39 +249,52 @@ public class Form2Activity extends AppCompatActivity {
     /* Evento para verificar se as perguntas obrigatórias foram respondidas */
     private boolean checkRequiredQuestions() {
         int answered = 0;
-        for (int i = 0; i <= required_questions.length - 1; i++) {
-            if(required_questions[i][1] == 0) { // EditText
-                EditText editText = findViewById(required_questions[i][0]);
-                if (!editText.getText().toString().isEmpty()) {
-                    answered++;
-                    editText.setBackgroundResource(R.drawable.edit_text);
-                } else {
-                    editText.setBackgroundResource(R.drawable.edit_text_error);
-                }
-            } else if(required_questions[i][1] == 1) { // Spinner
-                Spinner spinner = findViewById(required_questions[i][0]);
-                if (!spinner.getSelectedItem().toString().equals("Selecione uma opção")) {
-                    answered++;
-                    spinner.setBackgroundResource(R.drawable.edit_text);
-                } else {
-                    spinner.setBackgroundResource(R.drawable.edit_text_error);
-                }
-            } else if(required_questions[i][1] == 2) { // RadioGroup
-                RadioGroup radioGroup = findViewById(required_questions[i][0]);
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-                boolean groupSelected = selectedId != -1;
-                if (groupSelected) {
-                    answered++;
+        for (int i = 0; i <= all_questions.length - 1; i++) {
+            if(all_questions[i][0] == 1) { // Se a pergunta for obrigatória
+                if (all_questions[i][2] == 0) { // EditText
+                    EditText editText = findViewById(all_questions[i][1]);
+                    if (!editText.getText().toString().isEmpty()) {
+                        answered++;
+                        editText.setBackgroundResource(R.drawable.edit_text);
+                    } else {
+                        editText.setBackgroundResource(R.drawable.edit_text_error);
+                    }
+                } else if (all_questions[i][2] == 1) { // Spinner
+                    Spinner spinner = findViewById(all_questions[i][1]);
+                    if (!spinner.getSelectedItem().toString().equals("Selecione uma opção")) {
+                        answered++;
+                        spinner.setBackgroundResource(R.drawable.edit_text);
+                    } else {
+                        spinner.setBackgroundResource(R.drawable.edit_text_error);
+                    }
+                } else if (all_questions[i][2] == 2) { // RadioGroup
+                    RadioGroup radioGroup = findViewById(all_questions[i][1]);
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    boolean groupSelected = selectedId != -1;
+                    if (groupSelected) {
+                        answered++;
+                    }
                 }
             }
         }
 
-        if(answered == required_questions.length) {
+        if(answered == getRequiredQuestionsLength()) {
             return true;
         } else {
-            Toast.makeText(Form2Activity.this, answered + " perguntas respondidas de " + required_questions.length, Toast.LENGTH_SHORT).show();
+            Log.w(logId, answered + " perguntas obrigatórias respondidas de " + getRequiredQuestionsLength());
             return false;
         }
+    }
+
+    /* Função para obter quantidade de perguntas obrigatórias */
+    public int getRequiredQuestionsLength() {
+        int requiredQuestions = 0;
+        for (int i = 0; i <= all_questions.length - 1; i++) {
+            if(all_questions[i][0] == 1) { // Se a pergunta for obrigatória
+                requiredQuestions++;
+            }
+        }
+        return requiredQuestions;
     }
 
     /* Função para inputs de data */

@@ -1070,7 +1070,7 @@
                         android:drawableRight="@drawable/icon_map"
                         android:inputType="number"
                         android:hint="@string/form_3_section_7_question_2_placeholder"
-                        android:maxLength="14"
+                        android:maxLength="9"
                         app:layout_constraintEnd_toEndOf="@+id/section_1_main_group_7_question_2"
                         app:layout_constraintStart_toStartOf="@+id/section_1_main_group_7_question_2"
                         app:layout_constraintTop_toBottomOf="@id/section_1_main_group_7_question_2" />
@@ -1231,14 +1231,14 @@
 
                         <!-- Canto superior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_left"
+                            android:id="@+id/section_1_damage_button_top_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto superior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_center"
+                            android:id="@+id/section_1_damage_button_top_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -1246,21 +1246,21 @@
 
                         <!-- Canto superior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_right"
+                            android:id="@+id/section_1_damage_button_top_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_left"
+                            android:id="@+id/section_1_damage_button_bottom_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_center"
+                            android:id="@+id/section_1_damage_button_bottom_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -1268,7 +1268,7 @@
 
                         <!-- Canto inferior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_right"
+                            android:id="@+id/section_1_damage_button_bottom_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
@@ -2227,7 +2227,7 @@
                         android:drawableRight="@drawable/icon_map"
                         android:inputType="number"
                         android:hint="@string/form_3_section_7_question_2_placeholder"
-                        android:maxLength="14"
+                        android:maxLength="9"
                         app:layout_constraintEnd_toEndOf="@+id/section_2_main_group_7_question_2"
                         app:layout_constraintStart_toStartOf="@+id/section_2_main_group_7_question_2"
                         app:layout_constraintTop_toBottomOf="@id/section_2_main_group_7_question_2" />
@@ -2388,14 +2388,14 @@
 
                         <!-- Canto superior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_left"
+                            android:id="@+id/section_2_damage_button_top_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto superior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_center"
+                            android:id="@+id/section_2_damage_button_top_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -2403,21 +2403,21 @@
 
                         <!-- Canto superior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_right"
+                            android:id="@+id/section_2_damage_button_top_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_left"
+                            android:id="@+id/section_2_damage_button_bottom_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_center"
+                            android:id="@+id/section_2_damage_button_bottom_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -2425,7 +2425,7 @@
 
                         <!-- Canto inferior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_right"
+                            android:id="@+id/section_2_damage_button_bottom_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
@@ -3384,7 +3384,7 @@
                         android:drawableRight="@drawable/icon_map"
                         android:inputType="number"
                         android:hint="@string/form_3_section_7_question_2_placeholder"
-                        android:maxLength="14"
+                        android:maxLength="9"
                         app:layout_constraintEnd_toEndOf="@+id/section_3_main_group_7_question_2"
                         app:layout_constraintStart_toStartOf="@+id/section_3_main_group_7_question_2"
                         app:layout_constraintTop_toBottomOf="@id/section_3_main_group_7_question_2" />
@@ -3545,14 +3545,14 @@
 
                         <!-- Canto superior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_left"
+                            android:id="@+id/section_3_damage_button_top_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto superior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_center"
+                            android:id="@+id/section_3_damage_button_top_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -3560,21 +3560,21 @@
 
                         <!-- Canto superior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_right"
+                            android:id="@+id/section_3_damage_button_top_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_left"
+                            android:id="@+id/section_3_damage_button_bottom_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_center"
+                            android:id="@+id/section_3_damage_button_bottom_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -3582,7 +3582,7 @@
 
                         <!-- Canto inferior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_right"
+                            android:id="@+id/section_3_damage_button_bottom_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
@@ -4541,7 +4541,7 @@
                         android:drawableRight="@drawable/icon_map"
                         android:inputType="number"
                         android:hint="@string/form_3_section_7_question_2_placeholder"
-                        android:maxLength="14"
+                        android:maxLength="9"
                         app:layout_constraintEnd_toEndOf="@+id/section_4_main_group_7_question_2"
                         app:layout_constraintStart_toStartOf="@+id/section_4_main_group_7_question_2"
                         app:layout_constraintTop_toBottomOf="@id/section_4_main_group_7_question_2" />
@@ -4702,14 +4702,14 @@
 
                         <!-- Canto superior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_left"
+                            android:id="@+id/section_4_damage_button_top_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto superior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_center"
+                            android:id="@+id/section_4_damage_button_top_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -4717,21 +4717,21 @@
 
                         <!-- Canto superior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_top_right"
+                            android:id="@+id/section_4_damage_button_top_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintTop_toTopOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior esquerdo -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_left"
+                            android:id="@+id/section_4_damage_button_bottom_left"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />
 
                         <!-- Canto inferior central -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_center"
+                            android:id="@+id/section_4_damage_button_bottom_center"
                             style="@style/form_damage_button"
                             app:layout_constraintStart_toStartOf="@+id/damage_vehicle"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
@@ -4739,7 +4739,7 @@
 
                         <!-- Canto inferior direito -->
                         <CheckBox
-                            android:id="@+id/damage_button_bottom_right"
+                            android:id="@+id/section_4_damage_button_bottom_right"
                             style="@style/form_damage_button"
                             app:layout_constraintEnd_toEndOf="@+id/damage_vehicle"
                             app:layout_constraintBottom_toBottomOf="@+id/damage_vehicle" />

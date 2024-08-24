@@ -1026,7 +1026,7 @@
                 android:drawableRight="@drawable/icon_map"
                 android:inputType="number"
                 android:hint="@string/form_3_section_7_question_2_placeholder"
-                android:maxLength="14"
+                android:maxLength="9"
                 app:layout_constraintEnd_toEndOf="@+id/section_7_question_2"
                 app:layout_constraintStart_toStartOf="@+id/section_7_question_2"
                 app:layout_constraintTop_toBottomOf="@id/section_7_question_2" />

@@ -9,6 +9,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -29,69 +30,151 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class Form3Activity extends AppCompatActivity {
+    private final String logId = "Form3Activity_LOG";
+    /* Respostas do formulário anterior */
+    private final String[] previousAnswersIds = {
+            "F1_S1_Q1",
+            "F1_S2_Q1",
+            "F1_S3_Q1",
+            "F1_S4_Q1",
+            "F1_S5_Q1",
+            "F2_S1_Q2",
+            "F2_S1_Q3",
+            "F2_S2_Q2",
+            "F2_S2_Q3",
+            "F2_S3_Q2",
+            "F2_S3_Q3",
+            "F2_S3_Q4",
+            "F2_S3_Q5",
+            "F2_S3_Q6",
+            "F2_S3_Q7",
+            "F2_S3_Q8",
+            "F2_S3_Q9",
+            "F2_S4_Q2",
+            "F2_S4_Q3",
+            "F2_S4_Q4",
+            "F2_S5_Q1"
+    };
+    /* Respostas para enviar para o formulário seguinte */
+    private final String[] toSendAnswersIds = {
+            "F3_S1_Q2",
+            "F3_S1_Q3",
+            "F3_S1_Q4",
+            "F3_S1_Q5",
+            "F3_S1_Q6",
+            "F3_S1_Q7",
+            "F3_S1_Q8",
+            "F3_S1_Q9",
+            "F3_S1_Q10",
+            "F3_S1_Q11",
+            "F3_S1_Q12",
+            "F3_S2_Q2",
+            "F3_S2_Q3",
+            "F3_S3_Q2",
+            "F3_S3_Q3",
+            "F3_S3_Q4",
+            "F3_S3_Q5",
+            "F3_S4_Q2",
+            "F3_S4_Q3",
+            "F3_S4_Q4",
+            "F3_S4_Q5",
+            "F3_S4_Q6",
+            "F3_S4_Q7",
+            "F3_S4_Q8",
+            "F3_S4_Q9",
+            "F3_S5_Q2",
+            "F3_S5_Q3",
+            "F3_S5_Q4",
+            "F3_S5_Q5",
+            "F3_S5_Q6",
+            "F3_S5_Q7",
+            "F3_S5_Q8",
+            "F3_S5_Q9",
+            "F3_S5_Q10",
+            "F3_S6_Q2",
+            "F3_S6_Q3",
+            "F3_S6_Q4",
+            "F3_S6_Q5",
+            "F3_S6_Q6",
+            "F3_S7_Q2",
+            "F3_S7_Q3",
+            "F3_S7_Q4",
+            "F3_S7_Q5",
+            "F3_S7_Q6",
+            "F3_S7_Q7",
+            "F3_S7_Q8",
+            "F3_S8_Q1",
+            "F3_S8_Q2",
+            "F3_S8_Q3",
+            "F3_S8_Q4",
+            "F3_S8_Q5",
+            "F3_S8_Q6"
+    };
+
     /* Definindo inputs obrigatórios */
-    // [0][] - EditText
-    // [1][] - Spinner
-    // [2][] - RadioGroup
-    // [3][] - Checkbox
-    // [][X] - Seção de perguntas
-    private final int[][] required_questions = {
-            // 1
-            {R.id.section_1_question_2_input, 0, 1},
-            {R.id.section_1_question_3_input, 0, 1},
-            {R.id.section_1_question_4_input, 0, 1},
-            {R.id.section_1_question_5_input, 0, 1},
-            {R.id.section_1_question_6_input, 0, 1},
-            {R.id.section_1_question_7_input, 0, 1},
-            {R.id.section_1_question_8_input, 0, 1},
-            {R.id.section_1_question_9_input, 0, 1},
-            {R.id.section_1_question_10_input, 0, 1},
-            {R.id.section_1_question_11_input, 0, 1},
-            {R.id.section_1_question_12_radio_group, 2, 1},
-            // 2
-            {R.id.section_2_question_2_input, 0, 2},
-            {R.id.section_2_question_3_input, 0, 2},
-            // 3
-            {R.id.section_3_question_2_input, 0, 3},
-            {R.id.section_3_question_3_input, 0, 3},
-            {R.id.section_3_question_4_input, 0, 3},
-            {R.id.section_3_question_5_radio_group, 2, 3},
-            // 4
-            {R.id.section_4_question_2_input, 0, 4},
-            {R.id.section_4_question_3_input, 0, 4},
-            {R.id.section_4_question_4_input, 0, 4},
-            {R.id.section_4_question_6_input, 0, 4},
-            {R.id.section_4_question_7_input, 0, 4},
-            {R.id.section_4_question_8_input, 0, 4},
-            {R.id.section_4_question_9_radio_group, 2, 4},
-            // 5
-            {R.id.section_5_question_2_input, 0, 5},
-            {R.id.section_5_question_3_input, 0, 5},
-            {R.id.section_5_question_4_input, 0, 5},
-            {R.id.section_5_question_5_input, 0, 5},
-            {R.id.section_5_question_6_input, 0, 5},
-            {R.id.section_5_question_7_input, 0, 5},
-            {R.id.section_5_question_8_input, 0, 5},
-            {R.id.section_5_question_9_input, 0, 5},
-            {R.id.section_5_question_10_input, 0, 5},
-            // 6
-            {R.id.section_6_question_2_input, 0, 6},
-            {R.id.section_6_question_3_input, 0, 6},
-            {R.id.section_6_question_4_input, 0, 6},
-            {R.id.section_6_question_5_input, 0, 6},
-            {R.id.section_6_question_6_input, 0, 6},
-            // 7
-            {R.id.section_7_question_2_input, 0, 7},
-            {R.id.section_7_question_3_input, 0, 7},
-            {R.id.section_7_question_4_input, 0, 7},
-            {R.id.section_7_question_6_input, 0, 7},
-            {R.id.section_7_question_7_input, 0, 7},
-            {R.id.section_7_question_8_input, 0, 7},
-            // 8
-            {0, 3, 8}
+    // [0] 0 - Opcional 0 | Obrigatório: 1
+    // [0] 1 - Obrigatório
+
+    // [1] Id
+
+    // [2] 0 - EditText
+    // [2] 1 - Spinner
+    // [2] 2 - RadioGroup
+    // [2] 3 - Checkbox
+
+    // [3] X - Seção
+    private final int[][] all_questions = {
+            {1, R.id.section_1_question_2_input, 0, 1},
+            {1, R.id.section_1_question_3_input, 0, 1},
+            {1, R.id.section_1_question_4_input, 0, 1},
+            {1, R.id.section_1_question_5_input, 0, 1},
+            {1, R.id.section_1_question_6_input, 0, 1},
+            {1, R.id.section_1_question_7_input, 0, 1},
+            {1, R.id.section_1_question_8_input, 0, 1},
+            {1, R.id.section_1_question_9_input, 0, 1},
+            {1, R.id.section_1_question_10_input, 0, 1},
+            {1, R.id.section_1_question_11_input, 0, 1},
+            {1, R.id.section_1_question_12_radio_group, 2, 1},
+            {1, R.id.section_2_question_2_input, 0, 2},
+            {1, R.id.section_2_question_3_input, 0, 2},
+            {1, R.id.section_3_question_2_input, 0, 3},
+            {1, R.id.section_3_question_3_input, 0, 3},
+            {1, R.id.section_3_question_4_input, 0, 3},
+            {1, R.id.section_3_question_5_radio_group, 2, 3},
+            {1, R.id.section_4_question_2_input, 0, 4},
+            {1, R.id.section_4_question_3_input, 0, 4},
+            {1, R.id.section_4_question_4_input, 0, 4},
+            {0, R.id.section_4_question_5_input, 0, 4},
+            {1, R.id.section_4_question_6_input, 0, 4},
+            {1, R.id.section_4_question_7_input, 0, 4},
+            {1, R.id.section_4_question_8_input, 0, 4},
+            {1, R.id.section_4_question_9_radio_group, 2, 4},
+            {1, R.id.section_5_question_2_input, 0, 5},
+            {1, R.id.section_5_question_3_input, 0, 5},
+            {1, R.id.section_5_question_4_input, 0, 5},
+            {0, R.id.section_5_question_5_input, 0, 5},
+            {1, R.id.section_5_question_6_input, 0, 5},
+            {1, R.id.section_5_question_7_input, 0, 5},
+            {1, R.id.section_5_question_8_input, 0, 5},
+            {1, R.id.section_5_question_9_input, 0, 5},
+            {1, R.id.section_5_question_10_input, 0, 5},
+            {1, R.id.section_6_question_2_input, 0, 6},
+            {1, R.id.section_6_question_3_input, 0, 6},
+            {1, R.id.section_6_question_4_input, 0, 6},
+            {1, R.id.section_6_question_5_input, 0, 6},
+            {1, R.id.section_6_question_6_input, 0, 6},
+            {1, R.id.section_7_question_2_input, 0, 7},
+            {1, R.id.section_7_question_3_input, 0, 7},
+            {1, R.id.section_7_question_4_input, 0, 7},
+            {0, R.id.section_7_question_5_input, 0, 7},
+            {1, R.id.section_7_question_6_input, 0, 7},
+            {1, R.id.section_7_question_7_input, 0, 7},
+            {1, R.id.section_7_question_8_input, 0, 7},
+            {1, 0, 3, 8}
     };
 
     /* Ids das perguntas que podem ser exibidas/escondidas */
@@ -116,6 +199,9 @@ public class Form3Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        /* Obtendo respostas dos formulários anteriores */
+        //getPreviousFormAnswers();
 
         requiredQuestions();
 
@@ -163,10 +249,164 @@ public class Form3Activity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkRequiredQuestions()) {
                     Intent intent = new Intent(Form3Activity.this, Form4Activity.class);
-                    startActivity(intent);
+                    sendAnswersToNextForm(intent);
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Log.e(logId, "Erro: " + e);
+                    }
                 }
             }
         });
+    }
+
+    /* Função para obter respostas dos formulários anteriores */
+    private void getPreviousFormAnswers() {
+        for(String answerId : previousAnswersIds) {
+            String answer = getIntent().getStringExtra(answerId);
+            assert answer != null;
+            Log.d(logId, answerId + " - " + answer);
+        }
+    }
+
+    /* Função para obter resposta de diferentes inputs */
+    private String getInputAnswer(int questionId, int questionType) {
+        if(questionType == 0) {
+            EditText editText = findViewById(questionId);
+            return editText.getText().toString();
+        } else if(questionType == 1) {
+            Spinner spinner = findViewById(questionId);
+            return spinner.getSelectedItem().toString();
+        } else if(questionType == 2) {
+            RadioGroup radioGroup = findViewById(questionId);
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+            if (selectedId != -1) {
+                RadioButton selectedRadioButton = findViewById(selectedId);
+                return selectedRadioButton.getText().toString();
+            } else {
+                return null;
+            }
+        } else if(questionType == 3) {
+            if(questionId == 0) {
+                CheckBox checkBox1 = findViewById(R.id.damage_button_top_left);
+                CheckBox checkBox2 = findViewById(R.id.damage_button_top_center);
+                CheckBox checkBox3 = findViewById(R.id.damage_button_top_right);
+                CheckBox checkBox4 = findViewById(R.id.damage_button_bottom_left);
+                CheckBox checkBox5 = findViewById(R.id.damage_button_bottom_center);
+                CheckBox checkBox6 = findViewById(R.id.damage_button_bottom_right);
+
+                StringBuilder selectedOptions = new StringBuilder("Selecionado:");
+                if (checkBox1.isChecked()) {
+                    selectedOptions.append("\n").append(checkBox1.getText().toString());
+                }
+                if (checkBox2.isChecked()) {
+                    selectedOptions.append("\n").append(checkBox2.getText().toString());
+                }
+                if (checkBox3.isChecked()) {
+                    selectedOptions.append("\n").append(checkBox3.getText().toString());
+                }
+                if (checkBox4.isChecked()) {
+                    selectedOptions.append("\n").append(checkBox4.getText().toString());
+                }
+                if (checkBox5.isChecked()) {
+                    selectedOptions.append("\n").append(checkBox5.getText().toString());
+                }
+                if (checkBox6.isChecked()) {
+                    selectedOptions.append("\n").append(checkBox6.getText().toString());
+                }
+
+                if (selectedOptions.toString().equals("Selecionado:")) {
+                    selectedOptions = new StringBuilder("Nenhuma opção selecionada");
+                }
+                return selectedOptions.toString();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    /* Função para obter resposta de checkboxes */
+    private void getCheckboxAnswers(Intent intent, int allQuestionsIndex) {
+        if(all_questions[allQuestionsIndex][1] == 0) {
+            CheckBox checkBox1 = findViewById(R.id.damage_button_top_left);
+            CheckBox checkBox2 = findViewById(R.id.damage_button_top_center);
+            CheckBox checkBox3 = findViewById(R.id.damage_button_top_right);
+            CheckBox checkBox4 = findViewById(R.id.damage_button_bottom_left);
+            CheckBox checkBox5 = findViewById(R.id.damage_button_bottom_center);
+            CheckBox checkBox6 = findViewById(R.id.damage_button_bottom_right);
+
+            String checkBox1Text = null;
+            String checkBox2Text = null;
+            String checkBox3Text = null;
+            String checkBox4Text = null;
+            String checkBox5Text = null;
+            String checkBox6Text = null;
+
+            if (checkBox1.isChecked()) {
+                checkBox1Text = checkBox1.getText().toString();
+            }
+            if (checkBox2.isChecked()) {
+                checkBox2Text = checkBox2.getText().toString();
+            }
+            if (checkBox3.isChecked()) {
+                checkBox3Text = checkBox3.getText().toString();
+            }
+            if (checkBox4.isChecked()) {
+                checkBox4Text = checkBox4.getText().toString();
+            }
+            if (checkBox5.isChecked()) {
+                checkBox5Text = checkBox5.getText().toString();
+            }
+            if (checkBox6.isChecked()) {
+                checkBox6Text = checkBox6.getText().toString();
+            }
+
+            String questionId1 = toSendAnswersIds[allQuestionsIndex];
+            String questionId2 = toSendAnswersIds[allQuestionsIndex+1];
+            String questionId3 = toSendAnswersIds[allQuestionsIndex+2];
+            String questionId4 = toSendAnswersIds[allQuestionsIndex+3];
+            String questionId5 = toSendAnswersIds[allQuestionsIndex+4];
+            String questionId6 = toSendAnswersIds[allQuestionsIndex+5];
+            intent.putExtra(questionId1, checkBox1Text);
+            intent.putExtra(questionId2, checkBox2Text);
+            intent.putExtra(questionId3, checkBox3Text);
+            intent.putExtra(questionId4, checkBox4Text);
+            intent.putExtra(questionId5, checkBox5Text);
+            intent.putExtra(questionId6, checkBox6Text);
+            Log.i(logId, questionId1 + " - " + checkBox1Text);
+            Log.i(logId, questionId2 + " - " + checkBox2Text);
+            Log.i(logId, questionId3 + " - " + checkBox3Text);
+            Log.i(logId, questionId4 + " - " + checkBox4Text);
+            Log.i(logId, questionId5 + " - " + checkBox5Text);
+            Log.i(logId, questionId6 + " - " + checkBox6Text);
+        }
+    }
+
+    /* Função para enviar respostas para o formulário seguinte */
+    private void sendAnswersToNextForm(Intent intent) {
+        /* Enviando respostas dos formulários anteriores */
+        for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
+            String toSendAnswerId = previousAnswersIds[i];
+            String answer = getIntent().getStringExtra(toSendAnswerId);
+            intent.putExtra(toSendAnswerId, answer);
+            Log.i(logId, toSendAnswerId + " - " + answer);
+        }
+        /* Enviando respostas deste formulário */
+        for(int i = 0; i <= toSendAnswersIds.length - 1; i++) {
+            if (all_questions[i][2] == 3) {
+                getCheckboxAnswers(intent, i);
+                i += 5;
+            } else {
+                String toSendAnswerId = toSendAnswersIds[i];
+                int requiredQuestionId = all_questions[i][1];
+                int requiredQuestionType = all_questions[i][2];
+                String answer = getInputAnswer(requiredQuestionId, requiredQuestionType);
+                intent.putExtra(toSendAnswerId, answer);
+                Log.i(logId, toSendAnswerId + " - " + answer);
+            }
+        }
     }
 
     /* Função para verificar se um número existe em um array */
@@ -194,22 +434,18 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_1_question_10,
                 R.id.section_1_question_11,
                 R.id.section_1_question_12,
-                // 2
                 R.id.section_2_question_2,
                 R.id.section_2_question_3,
-                // 3
                 R.id.section_3_question_2,
                 R.id.section_3_question_3,
                 R.id.section_3_question_4,
                 R.id.section_3_question_5,
-                // 4
                 R.id.section_4_question_2,
                 R.id.section_4_question_3,
                 R.id.section_4_question_4,
                 R.id.section_4_question_6,
                 R.id.section_4_question_7,
                 R.id.section_4_question_8,
-                // 5
                 R.id.section_5_question_2,
                 R.id.section_5_question_3,
                 R.id.section_5_question_4,
@@ -218,20 +454,17 @@ public class Form3Activity extends AppCompatActivity {
                 R.id.section_5_question_8,
                 R.id.section_5_question_9,
                 R.id.section_5_question_10,
-                // 6
                 R.id.section_6_question_2,
                 R.id.section_6_question_3,
                 R.id.section_6_question_4,
                 R.id.section_6_question_5,
                 R.id.section_6_question_6,
-                // 7
                 R.id.section_7_question_2,
                 R.id.section_7_question_3,
                 R.id.section_7_question_4,
                 R.id.section_7_question_6,
                 R.id.section_7_question_7,
                 R.id.section_7_question_8,
-                // 8
                 R.id.section_8_question_1
         };
 
@@ -594,25 +827,66 @@ public class Form3Activity extends AppCompatActivity {
     /* Função para obter total de perguntas que estão escondidas */
     private int getHiddenQuestionsCount() {
         int totalHiddenQuestions = 0;
-        for(int h : hiddenQuestions) {
-            totalHiddenQuestions += getSectionQuestionsCount(h);
+        for(int i = 0; i <= all_questions.length - 1; i++) {
+            if(arrayContains(hiddenQuestions, all_questions[i][3])) {
+                totalHiddenQuestions++;
+            }
         }
         return totalHiddenQuestions;
     }
 
     /* Função para obter total de perguntas que não estão escondidas */
     private int getNotHiddenQuestionsCount() {
-        return required_questions.length - getHiddenQuestionsCount();
+        int totalNotHiddenQuestions = 0;
+        for(int i = 0; i <= all_questions.length - 1; i++) {
+            if(!arrayContains(hiddenQuestions, all_questions[i][3])) {
+                totalNotHiddenQuestions++;
+            }
+        }
+        return totalNotHiddenQuestions;
+    }
+
+    /* Função para obter o total de perguntas não obrigatórias que estão escondidas */
+    private int getNotRequiredAndHiddenQuestionsCount() {
+        int totalNotRequiredAndHiddenQuestions = 0;
+        for(int i = 0; i <= all_questions.length - 1; i++) {
+            if(arrayContains(hiddenQuestions, all_questions[i][3])) {
+                if(all_questions[i][0] == 0) {
+                    totalNotRequiredAndHiddenQuestions++;
+                }
+            }
+        }
+        return totalNotRequiredAndHiddenQuestions;
+    }
+
+    /* Função para obter o total de perguntas não obrigatórias que não estão escondidas */
+    private int getNotRequiredAndNotHiddenQuestionsCount() {
+        int totalNotRequiredAndHiddenQuestions = 0;
+        for(int i = 0; i <= all_questions.length - 1; i++) {
+            if(!arrayContains(hiddenQuestions, all_questions[i][3])) {
+                if(all_questions[i][0] == 0) {
+                    totalNotRequiredAndHiddenQuestions++;
+                }
+            }
+        }
+        return totalNotRequiredAndHiddenQuestions;
+    }
+
+    /* Função para obter o total de perguntas obrigatórias que não estão escondidas */
+    private int getRequiredAndNotHiddenQuestionsCount() {
+        return getNotHiddenQuestionsCount() - getNotRequiredAndNotHiddenQuestionsCount();
     }
 
     /* Função para obter total de perguntas em uma seção */
     private int getSectionQuestionsCount(int sectionNumber) {
         int totalQuestions = 0;
-        for (int i = 0; i <= required_questions.length - 1; i++) {
-            if(required_questions[i][2] == sectionNumber) {
+        for (int i = 0; i <= all_questions.length - 1; i++) {
+            if (all_questions[i][3] == sectionNumber) {
                 totalQuestions++;
             }
         }
+
+        Log.w(logId, "Perguntas da seção " + sectionNumber + ": " + totalQuestions);
         return totalQuestions;
     }
 
@@ -663,44 +937,53 @@ public class Form3Activity extends AppCompatActivity {
     /* Evento para verificar se as perguntas obrigatórias foram respondidas */
     private boolean checkRequiredQuestions() {
         int answered = 0;
-        for (int i = 0; i <= required_questions.length - 1; i++) {
-            /* Verificando se a seção de perguntas a pergunta está escondida */
-            if(!arrayContains(hiddenQuestions, required_questions[i][2])) {
-                if (required_questions[i][1] == 0) { // EditText
-                    EditText editText = findViewById(required_questions[i][0]);
-                    if (!editText.getText().toString().isEmpty()) {
-                        answered++;
-                        editText.setBackgroundResource(R.drawable.edit_text);
-                    } else {
-                        editText.setBackgroundResource(R.drawable.edit_text_error);
-                    }
-                } else if (required_questions[i][1] == 1) { // Spinner
-                    Spinner spinner = findViewById(required_questions[i][0]);
-                    if (!spinner.getSelectedItem().toString().equals("Selecione uma opção")) {
-                        answered++;
-                        spinner.setBackgroundResource(R.drawable.edit_text);
-                    } else {
-                        spinner.setBackgroundResource(R.drawable.edit_text_error);
-                    }
-                } else if (required_questions[i][1] == 2) { // RadioGroup
-                    RadioGroup radioGroup = findViewById(required_questions[i][0]);
-                    int selectedId = radioGroup.getCheckedRadioButtonId();
-                    boolean groupSelected = selectedId != -1;
-                    if (groupSelected) {
-                        answered++;
-                    }
-                } else if (required_questions[i][1] == 3) { // Checkbox
-                    if (checkboxIsSelected(required_questions[i][0])) {
-                        answered++;
+        for (int i = 0; i <= all_questions.length - 1; i++) {
+            if (all_questions[i][0] == 1) { // Verificando se a pergunta é obrigatória
+                /* Verificando se a seção de perguntas a pergunta está escondida */
+                if (!arrayContains(hiddenQuestions, all_questions[i][3])) {
+                    if (all_questions[i][2] == 0) { // EditText
+                        EditText editText = findViewById(all_questions[i][1]);
+                        if (!editText.getText().toString().isEmpty()) {
+                            answered++;
+                            editText.setBackgroundResource(R.drawable.edit_text);
+                        } else {
+                            editText.setBackgroundResource(R.drawable.edit_text_error);
+                        }
+                    } else if (all_questions[i][2] == 1) { // Spinner
+                        Spinner spinner = findViewById(all_questions[i][1]);
+                        if (!spinner.getSelectedItem().toString().equals("Selecione uma opção")) {
+                            answered++;
+                            spinner.setBackgroundResource(R.drawable.edit_text);
+                        } else {
+                            spinner.setBackgroundResource(R.drawable.edit_text_error);
+                        }
+                    } else if (all_questions[i][2] == 2) { // RadioGroup
+                        RadioGroup radioGroup = findViewById(all_questions[i][1]);
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+                        boolean groupSelected = selectedId != -1;
+                        if (groupSelected) {
+                            answered++;
+                        }
+                    } else if (all_questions[i][2] == 3) { // Checkbox
+                        if (checkboxIsSelected(all_questions[i][1])) {
+                            answered++;
+                        }
                     }
                 }
             }
         }
 
-        if(answered == getNotHiddenQuestionsCount()) {
+        if(answered == getRequiredAndNotHiddenQuestionsCount()) {
             return true;
         } else {
-            Toast.makeText(Form3Activity.this, answered + " perguntas respondidas de " + getNotHiddenQuestionsCount(), Toast.LENGTH_SHORT).show();
+            /*Log.d(logId, "all_questions.length: Total de perguntas: " + all_questions.length);
+            Log.d(logId, "getHiddenQuestionsCount(): Perguntas que estão escondidas: " + getHiddenQuestionsCount());
+            Log.d(logId, "getNotHiddenQuestionsCount(): Perguntas que não estão escondidas: " + getNotHiddenQuestionsCount());
+            Log.d(logId, "Seções escondidas: " + Arrays.toString(hiddenQuestions));
+            Log.d(logId, "getNotRequiredAndHiddenQuestionsCount(): Perguntas não obrigatórias que estão escondidas: " + getNotRequiredAndHiddenQuestionsCount());
+            Log.d(logId, "getNotRequiredAndNotHiddenQuestionsCount(): Perguntas não obrigatórias que não estão escondidas: " + getNotRequiredAndNotHiddenQuestionsCount());
+            Log.i(logId, "getRequiredAndNotHiddenQuestionsCount(): Perguntas obrigatórias que não estão escondidas: " + getRequiredAndNotHiddenQuestionsCount());*/
+            Log.w(logId, answered + " perguntas obrigatórias respondidas de " + getRequiredAndNotHiddenQuestionsCount());
             return false;
         }
     }

@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         Button buttonToFormRedirect = findViewById(R.id.Criar_brat);
         buttonToFormRedirect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, Form4Activity.class);
+                Intent intent = new Intent(HomeActivity.this, Form1Activity.class);
                 startActivity(intent);
             }
         });
