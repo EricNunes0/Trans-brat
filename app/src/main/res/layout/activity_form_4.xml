@@ -16,33 +16,7 @@
         tools:context=".Form4">
 
         <!-- Barra de navegação -->
-        <View
-            android:id="@+id/navigation_bar"
-            style="@style/navigation_bar"
-            app:layout_constraintStart_toStartOf="@+id/form_layout"
-            app:layout_constraintTop_toTopOf="@+id/form_layout" />
-
-        <!-- Logo da barra de navegação -->
-        <ImageView
-            android:id="@+id/navigation_bar_logo"
-            style="@style/navigation_bar_logo"
-            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
-            tools:ignore="MissingConstraints" />
-
-        <!-- Botão da barra de navegação -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigation_bar_button"
-            style="@style/navigation_bar_button"
-            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
-            tools:ignore="MissingConstraints" />
-
-        <!-- Ícone do botão da barra de navegação -->
-        <ImageView
-            android:id="@+id/navigation_bar_button_icon"
-            style="@style/navigation_bar_button_icon"
-            app:layout_constraintStart_toStartOf="@+id/navigation_bar_button"
-            app:layout_constraintTop_toTopOf="@+id/navigation_bar_button"
-            tools:ignore="MissingConstraints"/>
+        <include layout="@layout/navigation_bar" />
 
         <TextView
             android:id="@+id/form_title"
@@ -127,7 +101,6 @@
         <LinearLayout
             android:id="@+id/section_1"
             style="@style/form_group"
-            android:background="#F60"
             app:layout_constraintEnd_toEndOf="@+id/section_0_question_1_input"
             app:layout_constraintStart_toStartOf="@+id/section_0_question_1_input"
             app:layout_constraintTop_toBottomOf="@id/section_0_question_1_input" >
@@ -1284,7 +1257,6 @@
         <LinearLayout
             android:id="@+id/section_2"
             style="@style/form_group"
-            android:background="#FF0"
             app:layout_constraintEnd_toEndOf="@+id/section_1"
             app:layout_constraintStart_toStartOf="@+id/section_1"
             app:layout_constraintTop_toBottomOf="@id/section_1" >
@@ -2441,7 +2413,6 @@
         <LinearLayout
             android:id="@+id/section_3"
             style="@style/form_group"
-            android:background="#0F0"
             app:layout_constraintEnd_toEndOf="@+id/section_2"
             app:layout_constraintStart_toStartOf="@+id/section_2"
             app:layout_constraintTop_toBottomOf="@id/section_2" >
@@ -3598,7 +3569,6 @@
         <LinearLayout
             android:id="@+id/section_4"
             style="@style/form_group"
-            android:background="#0FF"
             app:layout_constraintEnd_toEndOf="@+id/section_3"
             app:layout_constraintStart_toStartOf="@+id/section_3"
             app:layout_constraintTop_toBottomOf="@id/section_3" >

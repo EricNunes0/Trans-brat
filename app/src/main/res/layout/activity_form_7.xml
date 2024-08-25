@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/form_6"
+    android:id="@+id/form_7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".Form6Activity">
+    tools:context=".Form7Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/form_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFF"
-        tools:context=".Form6">
+        tools:context=".Form7">
 
         <!-- Barra de navegação -->
         <include layout="@layout/navigation_bar" />
@@ -25,7 +25,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Detalhes"
+            android:text="Confirmação de dados"
             android:textAlignment="center"
             android:textColor="@color/blue1"
             android:textSize="28dp"
@@ -58,78 +58,23 @@
             app:layout_constraintTop_toBottomOf="@+id/form_title"
             />
 
-
-        <!-- Pergunta 1 -->
-        <TextView
-            android:id="@+id/section_1_question_1"
-            style="@style/form_question"
-            android:text="Descreva o acidente"
-            app:layout_constraintStart_toStartOf="@+id/form_title_line"
-            app:layout_constraintEnd_toEndOf="@+id/form_title_line"
-            app:layout_constraintTop_toBottomOf="@+id/form_title_line" />
-
-        <!-- Texto do Input 1 -->
-        <TextView
-            android:id="@+id/section_1_question_2"
-            style="@style/form_subquestion"
-            android:text="Forneça informações complementares que julgar relevantes. Este campo de descrição é muito importante para o entendimento do acidente.\n\nNeste espaço devem ser relatados detalhadamente os fatos relacionados ao acidente."
-            app:layout_constraintStart_toStartOf="@+id/section_1_question_1"
-            app:layout_constraintEnd_toEndOf="@+id/section_1_question_1"
-            app:layout_constraintTop_toBottomOf="@+id/section_1_question_1" />
-
-        <!-- Input 1 -->
-        <EditText
-            android:id="@+id/section_1_question_2_input"
-            style="@style/form_input_text"
-            android:drawableRight="@drawable/icon_select"
-            android:inputType="textMultiLine"
-            android:gravity="top"
-            android:minLines="5"
-            android:maxLength="500"
-            android:scrollbars="vertical"
-            android:hint="Descreva..."
-            app:layout_constraintEnd_toEndOf="@+id/section_1_question_2"
-            app:layout_constraintStart_toStartOf="@+id/section_1_question_2"
-            app:layout_constraintTop_toBottomOf="@id/section_1_question_2" />
-
-        <!-- Pergunta 2 -->
-        <TextView
-            android:id="@+id/section_2_question_1"
-            style="@style/form_question"
-            android:text="Upload de arquivos"
-            app:layout_constraintStart_toStartOf="@+id/section_1_question_2_input"
-            app:layout_constraintEnd_toEndOf="@+id/section_1_question_2_input"
-            app:layout_constraintTop_toBottomOf="@+id/section_1_question_2_input" />
-
-        <!-- Input 1 -->
+        <!-- Botão de criar PDF -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/section_2_question_1_input"
-            style="@style/form_image_button"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_1"
-            app:layout_constraintTop_toBottomOf="@id/section_2_question_1" />
-
-        <!-- Visualizar imagens -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/section_2_question_1_picture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp"
-            android:clipToPadding="false"
-            android:scaleType="centerCrop"
-            android:scrollbars="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_1_input"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_1_input"
-            app:layout_constraintTop_toBottomOf="@id/section_2_question_1_input"/>
+            android:id="@+id/create_pdf_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Criar PDF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_title_line"
+            />
 
         <!-- Botões inferiores -->
         <View
             android:id="@+id/buttons_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_2_question_1_picture"
+            app:layout_constraintTop_toBottomOf="@+id/create_pdf_button"
             />
 
         <androidx.appcompat.widget.AppCompatButton

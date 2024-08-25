@@ -114,7 +114,6 @@ public class Form4Activity extends AppCompatActivity {
             "F3_S8_Q6"
     };
 
-
     /* Respostas para enviar para o formulário seguinte */
     private final String[] toSendAnswersIds = {
             "F4_S0_Q1",
@@ -698,6 +697,7 @@ public class Form4Activity extends AppCompatActivity {
                     int requiredQuestionId = all_questions[i][1];
                     int requiredQuestionType = all_questions[i][2];
                     String answer = getInputAnswer(requiredQuestionId, requiredQuestionType);
+                    intent.putExtra(toSendAnswerId, answer);
                     Log.i(logId, toSendAnswerId + " - " + answer);
                     j += 0;
                 }

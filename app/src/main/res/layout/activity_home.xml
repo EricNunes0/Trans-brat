@@ -16,33 +16,7 @@
         tools:context=".Navigation">
 
         <!-- Barra de navegação -->
-        <View
-            android:id="@+id/navigation_bar"
-            style="@style/navigation_bar"
-            app:layout_constraintStart_toStartOf="@+id/navigation_layout"
-            app:layout_constraintTop_toTopOf="@+id/navigation_layout" />
-
-        <!-- Logo da barra de navegação -->
-        <ImageView
-            android:id="@+id/navigation_bar_logo"
-            style="@style/navigation_bar_logo"
-            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
-            tools:ignore="MissingConstraints" />
-
-        <!-- Botão da barra de navegação -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigation_bar_button"
-            style="@style/navigation_bar_button"
-            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
-            tools:ignore="MissingConstraints" />
-
-        <!-- Ícone do botão da barra de navegação -->
-        <ImageView
-            android:id="@+id/navigation_bar_button_icon"
-            style="@style/navigation_bar_button_icon"
-            app:layout_constraintStart_toStartOf="@+id/navigation_bar_button"
-            app:layout_constraintTop_toTopOf="@+id/navigation_bar_button"
-            tools:ignore="MissingConstraints"/>
+        <include layout="@layout/navigation_bar" />
 
         <View
             android:id="@+id/username_container"

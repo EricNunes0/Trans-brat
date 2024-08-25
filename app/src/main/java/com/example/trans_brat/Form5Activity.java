@@ -1,19 +1,18 @@
 package com.example.trans_brat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -310,6 +309,37 @@ public class Form5Activity extends AppCompatActivity {
             "F4_S4_M8_Q6"
     };
 
+    /* Respostas para enviar para o formulário seguinte */
+    private final String[] toSendAnswersIds = {
+            "F5_S1_Q2",
+            "F5_S1_Q3",
+            "F5_S1_Q4",
+            "F5_S2_Q2",
+            "F5_S2_Q3",
+            "F5_S2_Q4",
+            "F5_S3_Q2",
+            "F5_S3_Q3",
+            "F5_S3_Q4",
+            "F5_S4_Q2",
+            "F5_S4_Q3",
+            "F5_S4_Q4"
+    };
+
+    private final int[][] all_questions = {
+            {0, R.id.section_1_question_2_input, 0, 1},
+            {0, R.id.section_1_question_3_input, 0, 1},
+            {0, R.id.section_1_question_4_input, 0, 1},
+            {0, R.id.section_2_question_2_input, 0, 2},
+            {0, R.id.section_2_question_3_input, 0, 2},
+            {0, R.id.section_2_question_4_input, 0, 2},
+            {0, R.id.section_3_question_2_input, 0, 3},
+            {0, R.id.section_3_question_3_input, 0, 3},
+            {0, R.id.section_3_question_4_input, 0, 3},
+            {0, R.id.section_4_question_2_input, 0, 4},
+            {0, R.id.section_4_question_3_input, 0, 4},
+            {0, R.id.section_4_question_4_input, 0, 4}
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -351,6 +381,11 @@ public class Form5Activity extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(Form5Activity.this, Form6Activity.class);
+                try {
+                    sendAnswersToNextForm(intent);
+                } catch (Exception e) {
+                    Log.e(logId, "Erro ao enviar respostas:" + e);
+                }
                 startActivity(intent);
             }
         });
@@ -367,6 +402,211 @@ public class Form5Activity extends AppCompatActivity {
                 Log.e(logId, "" + e);
             }
         }
+    }
+
+    /* Função para enviar respostas para o formulário seguinte */
+    private void sendAnswersToNextForm(Intent intent) {
+        /* Enviando respostas dos formulários anteriores */
+        for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
+            String toSendAnswerId = previousAnswersIds[i];
+            String answer = getIntent().getStringExtra(toSendAnswerId);
+            intent.putExtra(toSendAnswerId, answer);
+            Log.i(logId, toSendAnswerId + " - " + answer);
+        }
+        /* Enviando respostas deste formulário */
+        int j = 0;
+        for(int i = 0; i <= toSendAnswersIds.length - 1; i++) {
+            if(i < all_questions.length) {
+                //Log.e(logId, i + " Index do all_questions: " + toSendAnswersIds[i + j] + "\nTipo do Index: " + all_questions[i][2]);
+                if (all_questions[i][2] == 3) {
+                    getCheckboxAnswers(intent, i, i + j);
+                    j += 5;
+                } else {
+                    String toSendAnswerId = toSendAnswersIds[i + j];
+                    int requiredQuestionId = all_questions[i][1];
+                    int requiredQuestionType = all_questions[i][2];
+                    String answer = getInputAnswer(requiredQuestionId, requiredQuestionType);
+                    intent.putExtra(toSendAnswerId, answer);
+                    Log.i(logId, toSendAnswerId + " - " + answer);
+                    j += 0;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    /* Função para obter resposta de diferentes inputs */
+    private String getInputAnswer(int questionId, int questionType) {
+        if(questionType == 0) {
+            EditText editText = findViewById(questionId);
+            return editText.getText().toString();
+        } else if(questionType == 1) {
+            Spinner spinner = findViewById(questionId);
+            return spinner.getSelectedItem().toString();
+        } else if(questionType == 2) {
+            RadioGroup radioGroup = findViewById(questionId);
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+            if (selectedId != -1) {
+                RadioButton selectedRadioButton = findViewById(selectedId);
+                return selectedRadioButton.getText().toString();
+            } else {
+                return null;
+            }
+        } else if(questionType == 3) {
+            CheckBox checkBox1 = null;
+            CheckBox checkBox2 = null;
+            CheckBox checkBox3 = null;
+            CheckBox checkBox4 = null;
+            CheckBox checkBox5 = null;
+            CheckBox checkBox6 = null;
+            if(questionId == 0) {
+                checkBox1 = findViewById(R.id.section_1_damage_button_top_left);
+                checkBox2 = findViewById(R.id.section_1_damage_button_top_center);
+                checkBox3 = findViewById(R.id.section_1_damage_button_top_right);
+                checkBox4 = findViewById(R.id.section_1_damage_button_bottom_left);
+                checkBox5 = findViewById(R.id.section_1_damage_button_bottom_center);
+                checkBox6 = findViewById(R.id.section_1_damage_button_bottom_right);
+            } else if(questionId == 1) {
+                checkBox1 = findViewById(R.id.section_2_damage_button_top_left);
+                checkBox2 = findViewById(R.id.section_2_damage_button_top_center);
+                checkBox3 = findViewById(R.id.section_2_damage_button_top_right);
+                checkBox4 = findViewById(R.id.section_2_damage_button_bottom_left);
+                checkBox5 = findViewById(R.id.section_2_damage_button_bottom_center);
+                checkBox6 = findViewById(R.id.section_2_damage_button_bottom_right);
+            } else if(questionId == 2) {
+                checkBox1 = findViewById(R.id.section_3_damage_button_top_left);
+                checkBox2 = findViewById(R.id.section_3_damage_button_top_center);
+                checkBox3 = findViewById(R.id.section_3_damage_button_top_right);
+                checkBox4 = findViewById(R.id.section_3_damage_button_bottom_left);
+                checkBox5 = findViewById(R.id.section_3_damage_button_bottom_center);
+                checkBox6 = findViewById(R.id.section_3_damage_button_bottom_right);
+            } else if(questionId == 3) {
+                checkBox1 = findViewById(R.id.section_4_damage_button_top_left);
+                checkBox2 = findViewById(R.id.section_4_damage_button_top_center);
+                checkBox3 = findViewById(R.id.section_4_damage_button_top_right);
+                checkBox4 = findViewById(R.id.section_4_damage_button_bottom_left);
+                checkBox5 = findViewById(R.id.section_4_damage_button_bottom_center);
+                checkBox6 = findViewById(R.id.section_4_damage_button_bottom_right);
+            }
+
+            StringBuilder selectedOptions = new StringBuilder("Selecionado:");
+            if (checkBox1.isChecked()) {
+                selectedOptions.append("\n").append(checkBox1.getText().toString());
+            }
+            if (checkBox2.isChecked()) {
+                selectedOptions.append("\n").append(checkBox2.getText().toString());
+            }
+            if (checkBox3.isChecked()) {
+                selectedOptions.append("\n").append(checkBox3.getText().toString());
+            }
+            if (checkBox4.isChecked()) {
+                selectedOptions.append("\n").append(checkBox4.getText().toString());
+            }
+            if (checkBox5.isChecked()) {
+                selectedOptions.append("\n").append(checkBox5.getText().toString());
+            }
+            if (checkBox6.isChecked()) {
+                selectedOptions.append("\n").append(checkBox6.getText().toString());
+            }
+
+            if (selectedOptions.toString().equals("Selecionado:")) {
+                selectedOptions = new StringBuilder("Nenhuma opção selecionada");
+            }
+            return selectedOptions.toString();
+        } else {
+            return null;
+        }
+    }
+
+    /* Função para obter resposta de checkboxes */
+    private void getCheckboxAnswers(Intent intent, int allQuestionsIndex, int j) {
+        CheckBox checkBox1 = null;
+        CheckBox checkBox2 = null;
+        CheckBox checkBox3 = null;
+        CheckBox checkBox4 = null;
+        CheckBox checkBox5 = null;
+        CheckBox checkBox6 = null;
+        if(all_questions[allQuestionsIndex][1] == 0) {
+            checkBox1 = findViewById(R.id.section_1_damage_button_top_left);
+            checkBox2 = findViewById(R.id.section_1_damage_button_top_center);
+            checkBox3 = findViewById(R.id.section_1_damage_button_top_right);
+            checkBox4 = findViewById(R.id.section_1_damage_button_bottom_left);
+            checkBox5 = findViewById(R.id.section_1_damage_button_bottom_center);
+            checkBox6 = findViewById(R.id.section_1_damage_button_bottom_right);
+        } else if(all_questions[allQuestionsIndex][1] == 1) {
+            checkBox1 = findViewById(R.id.section_2_damage_button_top_left);
+            checkBox2 = findViewById(R.id.section_2_damage_button_top_center);
+            checkBox3 = findViewById(R.id.section_2_damage_button_top_right);
+            checkBox4 = findViewById(R.id.section_2_damage_button_bottom_left);
+            checkBox5 = findViewById(R.id.section_2_damage_button_bottom_center);
+            checkBox6 = findViewById(R.id.section_2_damage_button_bottom_right);
+        } else if(all_questions[allQuestionsIndex][1] == 2) {
+            checkBox1 = findViewById(R.id.section_3_damage_button_top_left);
+            checkBox2 = findViewById(R.id.section_3_damage_button_top_center);
+            checkBox3 = findViewById(R.id.section_3_damage_button_top_right);
+            checkBox4 = findViewById(R.id.section_3_damage_button_bottom_left);
+            checkBox5 = findViewById(R.id.section_3_damage_button_bottom_center);
+            checkBox6 = findViewById(R.id.section_3_damage_button_bottom_right);
+        } else if(all_questions[allQuestionsIndex][1] == 3) {
+            checkBox1 = findViewById(R.id.section_4_damage_button_top_left);
+            checkBox2 = findViewById(R.id.section_4_damage_button_top_center);
+            checkBox3 = findViewById(R.id.section_4_damage_button_top_right);
+            checkBox4 = findViewById(R.id.section_4_damage_button_bottom_left);
+            checkBox5 = findViewById(R.id.section_4_damage_button_bottom_center);
+            checkBox6 = findViewById(R.id.section_4_damage_button_bottom_right);
+        }
+
+        String checkBox1Text = null;
+        String checkBox2Text = null;
+        String checkBox3Text = null;
+        String checkBox4Text = null;
+        String checkBox5Text = null;
+        String checkBox6Text = null;
+
+        assert checkBox1 != null;
+        if (checkBox1.isChecked()) {
+            checkBox1Text = checkBox1.getText().toString();
+        }
+        assert checkBox2 != null;
+        if (checkBox2.isChecked()) {
+            checkBox2Text = checkBox2.getText().toString();
+        }
+        assert checkBox3 != null;
+        if (checkBox3.isChecked()) {
+            checkBox3Text = checkBox3.getText().toString();
+        }
+        assert checkBox4 != null;
+        if (checkBox4.isChecked()) {
+            checkBox4Text = checkBox4.getText().toString();
+        }
+        assert checkBox5 != null;
+        if (checkBox5.isChecked()) {
+            checkBox5Text = checkBox5.getText().toString();
+        }
+        assert checkBox6 != null;
+        if (checkBox6.isChecked()) {
+            checkBox6Text = checkBox6.getText().toString();
+        }
+
+        String questionId1 = toSendAnswersIds[j];
+        String questionId2 = toSendAnswersIds[j + 1];
+        String questionId3 = toSendAnswersIds[j + 2];
+        String questionId4 = toSendAnswersIds[j + 3];
+        String questionId5 = toSendAnswersIds[j + 4];
+        String questionId6 = toSendAnswersIds[j + 5];
+        intent.putExtra(questionId1, checkBox1Text);
+        intent.putExtra(questionId2, checkBox2Text);
+        intent.putExtra(questionId3, checkBox3Text);
+        intent.putExtra(questionId4, checkBox4Text);
+        intent.putExtra(questionId5, checkBox5Text);
+        intent.putExtra(questionId6, checkBox6Text);
+        Log.w(logId, questionId1 + " - " + checkBox1Text);
+        Log.w(logId, questionId2 + " - " + checkBox2Text);
+        Log.w(logId, questionId3 + " - " + checkBox3Text);
+        Log.w(logId, questionId4 + " - " + checkBox4Text);
+        Log.w(logId, questionId5 + " - " + checkBox5Text);
+        Log.w(logId, questionId6 + " - " + checkBox6Text);
     }
 
     /* Função para formatar CPF */

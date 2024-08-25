@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/form_1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".Form1Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,33 +17,7 @@
         tools:context=".Form1">
 
         <!-- Barra de navegação -->
-        <View
-            android:id="@+id/navigation_bar"
-            style="@style/navigation_bar"
-            app:layout_constraintStart_toStartOf="@+id/form_layout"
-            app:layout_constraintTop_toTopOf="@+id/form_layout" />
-
-        <!-- Logo da barra de navegação -->
-        <ImageView
-            android:id="@+id/navigation_bar_logo"
-            style="@style/navigation_bar_logo"
-            app:layout_constraintEnd_toEndOf="@+id/navigation_bar"
-            tools:ignore="MissingConstraints" />
-
-        <!-- Botão da barra de navegação -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigation_bar_button"
-            style="@style/navigation_bar_button"
-            app:layout_constraintStart_toStartOf="@+id/navigation_bar"
-            tools:ignore="MissingConstraints" />
-
-        <!-- Ícone do botão da barra de navegação -->
-        <ImageView
-            android:id="@+id/navigation_bar_button_icon"
-            style="@style/navigation_bar_button_icon"
-            app:layout_constraintStart_toStartOf="@+id/navigation_bar_button"
-            app:layout_constraintTop_toTopOf="@+id/navigation_bar_button"
-            tools:ignore="MissingConstraints"/>
+        <include layout="@layout/navigation_bar" />
 
         <TextView
             android:id="@+id/form_title"
