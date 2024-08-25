@@ -16,6 +16,7 @@
     <string name="form_2_section_1_question_2_placeholder">Escolha uma data</string>
     <string name="form_2_section_1_question_3">Horário</string>
     <string name="form_2_section_1_question_3_placeholder">--:--</string>
+    <!-- Formulário 2 - Pergunta 2 -->
     <string name="form_2_section_2_question_1">Onde ocorreu o acidente?</string>
     <string name="form_2_section_2_question_2">Local do acidente</string>
     <string name="form_2_section_2_question_2_placeholder">Selecione uma opção</string>

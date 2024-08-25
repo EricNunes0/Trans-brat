@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -25,33 +26,34 @@ import androidx.core.view.WindowInsetsCompat;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Form7Activity extends AppCompatActivity {
     private final String logId = "Form7Activity_LOG";
-    /* Respostas do formulário anterior */
-    private final String[] previousAnswersIds = {
-            "F1_S1_Q1",
-            "F1_S2_Q1",
-            "F1_S3_Q1",
-            "F1_S4_Q1",
-            "F1_S5_Q1",
-            "F2_S1_Q2",
-            "F2_S1_Q3",
-            "F2_S2_Q2",
-            "F2_S2_Q3",
-            "F2_S3_Q2",
-            "F2_S3_Q3",
-            "F2_S3_Q4",
-            "F2_S3_Q5",
-            "F2_S3_Q6",
-            "F2_S3_Q7",
-            "F2_S3_Q8",
-            "F2_S3_Q9",
-            "F2_S4_Q2",
-            "F2_S4_Q3",
-            "F2_S4_Q4",
-            "F2_S5_Q1",
-            "F3_S1_Q2",
+    /* Respostas do formulário anterior
+    [0] Id da resposta
+    [1] Id do TextView de exibição
+    [2] Tipo de resposta
+    -> 0: Texto
+    */
+    private final String[][] allAnswers = {
+            {"F2_S1_Q2", String.valueOf(R.id.F2_S1_Q2), "0"},
+            {"F2_S1_Q3", String.valueOf(R.id.F2_S1_Q3), "0"},
+            {"F2_S2_Q2", String.valueOf(R.id.F2_S2_Q2), "0"},
+            {"F2_S2_Q3", String.valueOf(R.id.F2_S2_Q3), "0"},
+            {"F2_S3_Q2", String.valueOf(R.id.F2_S3_Q2), "0"},
+            {"F2_S3_Q3", String.valueOf(R.id.F2_S3_Q3), "0"},
+            {"F2_S3_Q4", String.valueOf(R.id.F2_S3_Q4), "0"},
+            {"F2_S3_Q5", String.valueOf(R.id.F2_S3_Q5), "0"},
+            {"F2_S3_Q6", String.valueOf(R.id.F2_S3_Q6), "0"},
+            {"F2_S3_Q7", String.valueOf(R.id.F2_S3_Q7), "0"},
+            {"F2_S3_Q8", String.valueOf(R.id.F2_S3_Q8), "0"},
+            {"F2_S3_Q9", String.valueOf(R.id.F2_S3_Q9), "0"},
+            {"F2_S4_Q2", String.valueOf(R.id.F2_S4_Q2), "0"},
+            {"F2_S4_Q3", String.valueOf(R.id.F2_S4_Q3), "0"},
+            {"F2_S4_Q4", String.valueOf(R.id.F2_S4_Q4), "0"},
+            {"F2_S5_Q1", String.valueOf(R.id.F2_S5_Q1), "0"},
+            /*"F3_S1_Q2",
             "F3_S1_Q3",
             "F3_S1_Q4",
             "F3_S1_Q5",
@@ -325,7 +327,7 @@ public class Form7Activity extends AppCompatActivity {
             "F5_S4_Q3",
             "F5_S4_Q4",
             "F6_S1_Q2",
-            "F6_S2_Q1"
+            "F6_S2_Q1"*/
     };
 
 
@@ -343,12 +345,12 @@ public class Form7Activity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
 
-        /* Obtendo respostas dos formulários anteriores */
-        getPreviousFormAnswers();
+        /* Adicionando respostas dos formulários anteriores ao formulário atual */
+        addPreviousFormAnswersToConfirmation();
 
         /* Criando PDF */
-        Button buttonPDF = findViewById(R.id.create_pdf_button);
-        buttonPDF.setOnClickListener(v -> createPDF());
+        //Button buttonPDF = findViewById(R.id.create_pdf_button);
+        //buttonPDF.setOnClickListener(v -> createPDF());
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -375,13 +377,17 @@ public class Form7Activity extends AppCompatActivity {
         });
     }
 
-    /* Função para obter respostas dos formulários anteriores */
-    private void getPreviousFormAnswers() {
-        for(String answerId : previousAnswersIds) {
+    /* Adicionando respostas dos formulários anteriores ao formulário atual */
+    private void addPreviousFormAnswersToConfirmation() {
+        for(String[] answer : allAnswers) {
             try {
-                String answer = getIntent().getStringExtra(answerId);
-                //assert answer != null;
-                Log.d(logId, answerId + " - " + answer);
+                String answerType = answer[2];
+                if(Objects.equals(answerType, "0")) {// Se a resposta for do tipo texto
+                    String answerContent = getIntent().getStringExtra(answer[0]);
+                    TextView answerTextView = findViewById(Integer.parseInt(answer[1]));
+                    answerTextView.setText(answerContent);
+                    Log.d(logId, answer[0] + " - " + answerContent);
+                }
             } catch (Exception e) {
                 Log.e(logId, "" + e);
             }
@@ -391,12 +397,12 @@ public class Form7Activity extends AppCompatActivity {
     /* Função para enviar respostas para o formulário seguinte */
     private void sendAnswersToNextForm(Intent intent) {
         /* Enviando respostas dos formulários anteriores */
-        for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
+        /*for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
             String toSendAnswerId = previousAnswersIds[i];
             String answer = getIntent().getStringExtra(toSendAnswerId);
             intent.putExtra(toSendAnswerId, answer);
             Log.i(logId, toSendAnswerId + " - " + answer);
-        }
+        }*/
         /* Enviando respostas deste formulário */
         /*int j = 0;
         for(int i = 0; i <= toSendAnswersIds.length - 1; i++) {
