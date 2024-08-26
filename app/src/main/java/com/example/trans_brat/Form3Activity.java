@@ -345,22 +345,22 @@ public class Form3Activity extends AppCompatActivity {
             String checkBox6Text = null;
 
             if (checkBox1.isChecked()) {
-                checkBox1Text = checkBox1.getText().toString();
+                checkBox1Text = String.valueOf(true);
             }
             if (checkBox2.isChecked()) {
-                checkBox2Text = checkBox2.getText().toString();
+                checkBox2Text = String.valueOf(true);
             }
             if (checkBox3.isChecked()) {
-                checkBox3Text = checkBox3.getText().toString();
+                checkBox3Text = String.valueOf(true);
             }
             if (checkBox4.isChecked()) {
-                checkBox4Text = checkBox4.getText().toString();
+                checkBox4Text = String.valueOf(true);
             }
             if (checkBox5.isChecked()) {
-                checkBox5Text = checkBox5.getText().toString();
+                checkBox5Text = String.valueOf(true);
             }
             if (checkBox6.isChecked()) {
-                checkBox6Text = checkBox6.getText().toString();
+                checkBox6Text = String.valueOf(true);
             }
 
             String questionId1 = toSendAnswersIds[allQuestionsIndex];
@@ -973,7 +973,7 @@ public class Form3Activity extends AppCompatActivity {
             }
         }
 
-        if(answered == getRequiredAndNotHiddenQuestionsCount()) {
+        if(answered == getRequiredAndNotHiddenQuestionsCount()) { // JÁ FOI INVERTIDO
             return true;
         } else {
             /*Log.d(logId, "all_questions.length: Total de perguntas: " + all_questions.length);

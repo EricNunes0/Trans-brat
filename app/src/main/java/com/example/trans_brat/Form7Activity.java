@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,10 +25,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Form7Activity extends AppCompatActivity {
@@ -35,6 +42,7 @@ public class Form7Activity extends AppCompatActivity {
     [1] Id do TextView de exibição
     [2] Tipo de resposta
     -> 0: Texto
+    -> 1: Checkbox
     */
     private final String[][] allAnswers = {
             {"F2_S1_Q2", String.valueOf(R.id.F2_S1_Q2), "0"},
@@ -53,283 +61,297 @@ public class Form7Activity extends AppCompatActivity {
             {"F2_S4_Q3", String.valueOf(R.id.F2_S4_Q3), "0"},
             {"F2_S4_Q4", String.valueOf(R.id.F2_S4_Q4), "0"},
             {"F2_S5_Q1", String.valueOf(R.id.F2_S5_Q1), "0"},
-            /*"F3_S1_Q2",
-            "F3_S1_Q3",
-            "F3_S1_Q4",
-            "F3_S1_Q5",
-            "F3_S1_Q6",
-            "F3_S1_Q7",
-            "F3_S1_Q8",
-            "F3_S1_Q9",
-            "F3_S1_Q10",
-            "F3_S1_Q11",
-            "F3_S1_Q12",
-            "F3_S2_Q2",
-            "F3_S2_Q3",
-            "F3_S3_Q2",
-            "F3_S3_Q3",
-            "F3_S3_Q4",
-            "F3_S3_Q5",
-            "F3_S4_Q2",
-            "F3_S4_Q3",
-            "F3_S4_Q4",
-            "F3_S4_Q5",
-            "F3_S4_Q6",
-            "F3_S4_Q7",
-            "F3_S4_Q8",
-            "F3_S4_Q9",
-            "F3_S5_Q2",
-            "F3_S5_Q3",
-            "F3_S5_Q4",
-            "F3_S5_Q5",
-            "F3_S5_Q6",
-            "F3_S5_Q7",
-            "F3_S5_Q8",
-            "F3_S5_Q9",
-            "F3_S5_Q10",
-            "F3_S6_Q2",
-            "F3_S6_Q3",
-            "F3_S6_Q4",
-            "F3_S6_Q5",
-            "F3_S6_Q6",
-            "F3_S7_Q2",
-            "F3_S7_Q3",
-            "F3_S7_Q4",
-            "F3_S7_Q5",
-            "F3_S7_Q6",
-            "F3_S7_Q7",
-            "F3_S7_Q8",
-            "F3_S8_Q1",
-            "F3_S8_Q2",
-            "F3_S8_Q3",
-            "F3_S8_Q4",
-            "F3_S8_Q5",
-            "F3_S8_Q6",
-            "F4_S0_Q1",
-            "F4_S1_M1_Q2",
-            "F4_S1_M1_Q3",
-            "F4_S1_M1_Q4",
-            "F4_S1_M1_Q5",
-            "F4_S1_M1_Q6",
-            "F4_S1_M1_Q7",
-            "F4_S1_M1_Q8",
-            "F4_S1_M1_Q9",
-            "F4_S1_M1_Q10",
-            "F4_S1_M1_Q11",
-            "F4_S1_M1_Q12",
-            "F4_S1_M2_Q2",
-            "F4_S1_M2_Q3",
-            "F4_S1_M3_Q2",
-            "F4_S1_M3_Q3",
-            "F4_S1_M3_Q4",
-            "F4_S1_M3_Q5",
-            "F4_S1_M4_Q2",
-            "F4_S1_M4_Q3",
-            "F4_S1_M4_Q4",
-            "F4_S1_M4_Q5",
-            "F4_S1_M4_Q6",
-            "F4_S1_M4_Q7",
-            "F4_S1_M4_Q8",
-            "F4_S1_M4_Q9",
-            "F4_S1_M5_Q2",
-            "F4_S1_M5_Q3",
-            "F4_S1_M5_Q4",
-            "F4_S1_M5_Q5",
-            "F4_S1_M5_Q6",
-            "F4_S1_M5_Q7",
-            "F4_S1_M5_Q8",
-            "F4_S1_M5_Q9",
-            "F4_S1_M5_Q10",
-            "F4_S1_M6_Q2",
-            "F4_S1_M6_Q3",
-            "F4_S1_M6_Q4",
-            "F4_S1_M6_Q5",
-            "F4_S1_M6_Q6",
-            "F4_S1_M7_Q2",
-            "F4_S1_M7_Q3",
-            "F4_S1_M7_Q4",
-            "F4_S1_M7_Q5",
-            "F4_S1_M7_Q6",
-            "F4_S1_M7_Q7",
-            "F4_S1_M7_Q8",
-            "F4_S1_M8_Q1",
-            "F4_S1_M8_Q2",
-            "F4_S1_M8_Q3",
-            "F4_S1_M8_Q4",
-            "F4_S1_M8_Q5",
-            "F4_S1_M8_Q6",
-            "F4_S2_M1_Q2",
-            "F4_S2_M1_Q3",
-            "F4_S2_M1_Q4",
-            "F4_S2_M1_Q5",
-            "F4_S2_M1_Q6",
-            "F4_S2_M1_Q7",
-            "F4_S2_M1_Q8",
-            "F4_S2_M1_Q9",
-            "F4_S2_M1_Q10",
-            "F4_S2_M1_Q11",
-            "F4_S2_M1_Q12",
-            "F4_S2_M2_Q2",
-            "F4_S2_M2_Q3",
-            "F4_S2_M3_Q2",
-            "F4_S2_M3_Q3",
-            "F4_S2_M3_Q4",
-            "F4_S2_M3_Q5",
-            "F4_S2_M4_Q2",
-            "F4_S2_M4_Q3",
-            "F4_S2_M4_Q4",
-            "F4_S2_M4_Q5",
-            "F4_S2_M4_Q6",
-            "F4_S2_M4_Q7",
-            "F4_S2_M4_Q8",
-            "F4_S2_M4_Q9",
-            "F4_S2_M5_Q2",
-            "F4_S2_M5_Q3",
-            "F4_S2_M5_Q4",
-            "F4_S2_M5_Q5",
-            "F4_S2_M5_Q6",
-            "F4_S2_M5_Q7",
-            "F4_S2_M5_Q8",
-            "F4_S2_M5_Q9",
-            "F4_S2_M5_Q10",
-            "F4_S2_M6_Q2",
-            "F4_S2_M6_Q3",
-            "F4_S2_M6_Q4",
-            "F4_S2_M6_Q5",
-            "F4_S2_M6_Q6",
-            "F4_S2_M7_Q2",
-            "F4_S2_M7_Q3",
-            "F4_S2_M7_Q4",
-            "F4_S2_M7_Q5",
-            "F4_S2_M7_Q6",
-            "F4_S2_M7_Q7",
-            "F4_S2_M7_Q8",
-            "F4_S2_M8_Q1",
-            "F4_S2_M8_Q2",
-            "F4_S2_M8_Q3",
-            "F4_S2_M8_Q4",
-            "F4_S2_M8_Q5",
-            "F4_S2_M8_Q6",
-            "F4_S3_M1_Q2",
-            "F4_S3_M1_Q3",
-            "F4_S3_M1_Q4",
-            "F4_S3_M1_Q5",
-            "F4_S3_M1_Q6",
-            "F4_S3_M1_Q7",
-            "F4_S3_M1_Q8",
-            "F4_S3_M1_Q9",
-            "F4_S3_M1_Q10",
-            "F4_S3_M1_Q11",
-            "F4_S3_M1_Q12",
-            "F4_S3_M2_Q2",
-            "F4_S3_M2_Q3",
-            "F4_S3_M3_Q2",
-            "F4_S3_M3_Q3",
-            "F4_S3_M3_Q4",
-            "F4_S3_M3_Q5",
-            "F4_S3_M4_Q2",
-            "F4_S3_M4_Q3",
-            "F4_S3_M4_Q4",
-            "F4_S3_M4_Q5",
-            "F4_S3_M4_Q6",
-            "F4_S3_M4_Q7",
-            "F4_S3_M4_Q8",
-            "F4_S3_M4_Q9",
-            "F4_S3_M5_Q2",
-            "F4_S3_M5_Q3",
-            "F4_S3_M5_Q4",
-            "F4_S3_M5_Q5",
-            "F4_S3_M5_Q6",
-            "F4_S3_M5_Q7",
-            "F4_S3_M5_Q8",
-            "F4_S3_M5_Q9",
-            "F4_S3_M5_Q10",
-            "F4_S3_M6_Q2",
-            "F4_S3_M6_Q3",
-            "F4_S3_M6_Q4",
-            "F4_S3_M6_Q5",
-            "F4_S3_M6_Q6",
-            "F4_S3_M7_Q2",
-            "F4_S3_M7_Q3",
-            "F4_S3_M7_Q4",
-            "F4_S3_M7_Q5",
-            "F4_S3_M7_Q6",
-            "F4_S3_M7_Q7",
-            "F4_S3_M7_Q8",
-            "F4_S3_M8_Q1",
-            "F4_S3_M8_Q2",
-            "F4_S3_M8_Q3",
-            "F4_S3_M8_Q4",
-            "F4_S3_M8_Q5",
-            "F4_S3_M8_Q6",
-            "F4_S4_M1_Q2",
-            "F4_S4_M1_Q3",
-            "F4_S4_M1_Q4",
-            "F4_S4_M1_Q5",
-            "F4_S4_M1_Q6",
-            "F4_S4_M1_Q7",
-            "F4_S4_M1_Q8",
-            "F4_S4_M1_Q9",
-            "F4_S4_M1_Q10",
-            "F4_S4_M1_Q11",
-            "F4_S4_M1_Q12",
-            "F4_S4_M2_Q2",
-            "F4_S4_M2_Q3",
-            "F4_S4_M3_Q2",
-            "F4_S4_M3_Q3",
-            "F4_S4_M3_Q4",
-            "F4_S4_M3_Q5",
-            "F4_S4_M4_Q2",
-            "F4_S4_M4_Q3",
-            "F4_S4_M4_Q4",
-            "F4_S4_M4_Q5",
-            "F4_S4_M4_Q6",
-            "F4_S4_M4_Q7",
-            "F4_S4_M4_Q8",
-            "F4_S4_M4_Q9",
-            "F4_S4_M5_Q2",
-            "F4_S4_M5_Q3",
-            "F4_S4_M5_Q4",
-            "F4_S4_M5_Q5",
-            "F4_S4_M5_Q6",
-            "F4_S4_M5_Q7",
-            "F4_S4_M5_Q8",
-            "F4_S4_M5_Q9",
-            "F4_S4_M5_Q10",
-            "F4_S4_M6_Q2",
-            "F4_S4_M6_Q3",
-            "F4_S4_M6_Q4",
-            "F4_S4_M6_Q5",
-            "F4_S4_M6_Q6",
-            "F4_S4_M7_Q2",
-            "F4_S4_M7_Q3",
-            "F4_S4_M7_Q4",
-            "F4_S4_M7_Q5",
-            "F4_S4_M7_Q6",
-            "F4_S4_M7_Q7",
-            "F4_S4_M7_Q8",
-            "F4_S4_M8_Q1",
-            "F4_S4_M8_Q2",
-            "F4_S4_M8_Q3",
-            "F4_S4_M8_Q4",
-            "F4_S4_M8_Q5",
-            "F4_S4_M8_Q6",
-            "F5_S1_Q2",
-            "F5_S1_Q3",
-            "F5_S1_Q4",
-            "F5_S2_Q2",
-            "F5_S2_Q3",
-            "F5_S2_Q4",
-            "F5_S3_Q2",
-            "F5_S3_Q3",
-            "F5_S3_Q4",
-            "F5_S4_Q2",
-            "F5_S4_Q3",
-            "F5_S4_Q4",
-            "F6_S1_Q2",
-            "F6_S2_Q1"*/
+            {"F3_S1_Q2", String.valueOf(R.id.F3_S1_Q2), "0"},
+            {"F3_S1_Q3", String.valueOf(R.id.F3_S1_Q3), "0"},
+            {"F3_S1_Q4", String.valueOf(R.id.F3_S1_Q4), "0"},
+            {"F3_S1_Q5", String.valueOf(R.id.F3_S1_Q5), "0"},
+            {"F3_S1_Q6", String.valueOf(R.id.F3_S1_Q6), "0"},
+            {"F3_S1_Q7", String.valueOf(R.id.F3_S1_Q7), "0"},
+            {"F3_S1_Q8", String.valueOf(R.id.F3_S1_Q8), "0"},
+            {"F3_S1_Q9", String.valueOf(R.id.F3_S1_Q9), "0"},
+            {"F3_S1_Q10", String.valueOf(R.id.F3_S1_Q10), "0"},
+            {"F3_S1_Q11", String.valueOf(R.id.F3_S1_Q11), "0"},
+            {"F3_S1_Q12", String.valueOf(R.id.F3_S1_Q12), "0"},
+            {"F3_S2_Q2", String.valueOf(R.id.F3_S2_Q2), "0"},
+            {"F3_S2_Q3", String.valueOf(R.id.F3_S2_Q3), "0"},
+            {"F3_S3_Q2", String.valueOf(R.id.F3_S3_Q2), "0"},
+            {"F3_S3_Q3", String.valueOf(R.id.F3_S3_Q3), "0"},
+            {"F3_S3_Q4", String.valueOf(R.id.F3_S3_Q4), "0"},
+            {"F3_S3_Q5", String.valueOf(R.id.F3_S3_Q5), "0"},
+            {"F3_S4_Q2", String.valueOf(R.id.F3_S4_Q2), "0"},
+            {"F3_S4_Q3", String.valueOf(R.id.F3_S4_Q3), "0"},
+            {"F3_S4_Q4", String.valueOf(R.id.F3_S4_Q4), "0"},
+            {"F3_S4_Q5", String.valueOf(R.id.F3_S4_Q5), "0"},
+            {"F3_S4_Q6", String.valueOf(R.id.F3_S4_Q6), "0"},
+            {"F3_S4_Q7", String.valueOf(R.id.F3_S4_Q7), "0"},
+            {"F3_S4_Q8", String.valueOf(R.id.F3_S4_Q8), "0"},
+            {"F3_S4_Q9", String.valueOf(R.id.F3_S4_Q9), "0"},
+            {"F3_S5_Q2", String.valueOf(R.id.F3_S5_Q2), "0"},
+            {"F3_S5_Q3", String.valueOf(R.id.F3_S5_Q3), "0"},
+            {"F3_S5_Q4", String.valueOf(R.id.F3_S5_Q4), "0"},
+            {"F3_S5_Q5", String.valueOf(R.id.F3_S5_Q5), "0"},
+            {"F3_S5_Q6", String.valueOf(R.id.F3_S5_Q6), "0"},
+            {"F3_S5_Q7", String.valueOf(R.id.F3_S5_Q7), "0"},
+            {"F3_S5_Q8", String.valueOf(R.id.F3_S5_Q8), "0"},
+            {"F3_S5_Q9", String.valueOf(R.id.F3_S5_Q9), "0"},
+            {"F3_S5_Q10", String.valueOf(R.id.F3_S5_Q10), "0"},
+            {"F3_S6_Q2", String.valueOf(R.id.F3_S6_Q2), "0"},
+            {"F3_S6_Q3", String.valueOf(R.id.F3_S6_Q3), "0"},
+            {"F3_S6_Q4", String.valueOf(R.id.F3_S6_Q4), "0"},
+            {"F3_S6_Q5", String.valueOf(R.id.F3_S6_Q5), "0"},
+            {"F3_S6_Q6", String.valueOf(R.id.F3_S6_Q6), "0"},
+            {"F3_S7_Q2", String.valueOf(R.id.F3_S7_Q2), "0"},
+            {"F3_S7_Q3", String.valueOf(R.id.F3_S7_Q3), "0"},
+            {"F3_S7_Q4", String.valueOf(R.id.F3_S7_Q4), "0"},
+            {"F3_S7_Q5", String.valueOf(R.id.F3_S7_Q5), "0"},
+            {"F3_S7_Q6", String.valueOf(R.id.F3_S7_Q6), "0"},
+            {"F3_S7_Q7", String.valueOf(R.id.F3_S7_Q7), "0"},
+            {"F3_S7_Q8", String.valueOf(R.id.F3_S7_Q8), "0"},
+            {"F3_S8_Q1", String.valueOf(R.id.F3_S8_Q1), "1"},
+            {"F3_S8_Q2", String.valueOf(R.id.F3_S8_Q2), "1"},
+            {"F3_S8_Q3", String.valueOf(R.id.F3_S8_Q3), "1"},
+            {"F3_S8_Q4", String.valueOf(R.id.F3_S8_Q4), "1"},
+            {"F3_S8_Q5", String.valueOf(R.id.F3_S8_Q5), "1"},
+            {"F3_S8_Q6", String.valueOf(R.id.F3_S8_Q6), "1"},
+            {"F4_S0_Q1", String.valueOf(R.id.F4_S0_Q1), "0"},
+            {"F4_S1_M1_Q2", String.valueOf(R.id.F4_S1_M1_Q2), "0"},
+            {"F4_S1_M1_Q3", String.valueOf(R.id.F4_S1_M1_Q3), "0"},
+            {"F4_S1_M1_Q4", String.valueOf(R.id.F4_S1_M1_Q4), "0"},
+            {"F4_S1_M1_Q5", String.valueOf(R.id.F4_S1_M1_Q5), "0"},
+            {"F4_S1_M1_Q6", String.valueOf(R.id.F4_S1_M1_Q6), "0"},
+            {"F4_S1_M1_Q7", String.valueOf(R.id.F4_S1_M1_Q7), "0"},
+            {"F4_S1_M1_Q8", String.valueOf(R.id.F4_S1_M1_Q8), "0"},
+            {"F4_S1_M1_Q9", String.valueOf(R.id.F4_S1_M1_Q9), "0"},
+            {"F4_S1_M1_Q10", String.valueOf(R.id.F4_S1_M1_Q10), "0"},
+            {"F4_S1_M1_Q11", String.valueOf(R.id.F4_S1_M1_Q11), "0"},
+            {"F4_S1_M1_Q12", String.valueOf(R.id.F4_S1_M1_Q12), "0"},
+            {"F4_S1_M2_Q2", String.valueOf(R.id.F4_S1_M2_Q2), "0"},
+            {"F4_S1_M2_Q3", String.valueOf(R.id.F4_S1_M2_Q3), "0"},
+            {"F4_S1_M3_Q2", String.valueOf(R.id.F4_S1_M3_Q2), "0"},
+            {"F4_S1_M3_Q3", String.valueOf(R.id.F4_S1_M3_Q3), "0"},
+            {"F4_S1_M3_Q4", String.valueOf(R.id.F4_S1_M3_Q4), "0"},
+            {"F4_S1_M3_Q5", String.valueOf(R.id.F4_S1_M3_Q5), "0"},
+            {"F4_S1_M4_Q2", String.valueOf(R.id.F4_S1_M4_Q2), "0"},
+            {"F4_S1_M4_Q3", String.valueOf(R.id.F4_S1_M4_Q3), "0"},
+            {"F4_S1_M4_Q4", String.valueOf(R.id.F4_S1_M4_Q4), "0"},
+            {"F4_S1_M4_Q5", String.valueOf(R.id.F4_S1_M4_Q5), "0"},
+            {"F4_S1_M4_Q6", String.valueOf(R.id.F4_S1_M4_Q6), "0"},
+            {"F4_S1_M4_Q7", String.valueOf(R.id.F4_S1_M4_Q7), "0"},
+            {"F4_S1_M4_Q8", String.valueOf(R.id.F4_S1_M4_Q8), "0"},
+            {"F4_S1_M4_Q9", String.valueOf(R.id.F4_S1_M4_Q9), "0"},
+            {"F4_S1_M5_Q2", String.valueOf(R.id.F4_S1_M5_Q2), "0"},
+            {"F4_S1_M5_Q3", String.valueOf(R.id.F4_S1_M5_Q3), "0"},
+            {"F4_S1_M5_Q4", String.valueOf(R.id.F4_S1_M5_Q4), "0"},
+            {"F4_S1_M5_Q5", String.valueOf(R.id.F4_S1_M5_Q5), "0"},
+            {"F4_S1_M5_Q6", String.valueOf(R.id.F4_S1_M5_Q6), "0"},
+            {"F4_S1_M5_Q7", String.valueOf(R.id.F4_S1_M5_Q7), "0"},
+            {"F4_S1_M5_Q8", String.valueOf(R.id.F4_S1_M5_Q8), "0"},
+            {"F4_S1_M5_Q9", String.valueOf(R.id.F4_S1_M5_Q9), "0"},
+            {"F4_S1_M5_Q10", String.valueOf(R.id.F4_S1_M5_Q10), "0"},
+            {"F4_S1_M6_Q2", String.valueOf(R.id.F4_S1_M6_Q2), "0"},
+            {"F4_S1_M6_Q3", String.valueOf(R.id.F4_S1_M6_Q3), "0"},
+            {"F4_S1_M6_Q4", String.valueOf(R.id.F4_S1_M6_Q4), "0"},
+            {"F4_S1_M6_Q5", String.valueOf(R.id.F4_S1_M6_Q5), "0"},
+            {"F4_S1_M6_Q6", String.valueOf(R.id.F4_S1_M6_Q6), "0"},
+            {"F4_S1_M7_Q2", String.valueOf(R.id.F4_S1_M7_Q2), "0"},
+            {"F4_S1_M7_Q3", String.valueOf(R.id.F4_S1_M7_Q3), "0"},
+            {"F4_S1_M7_Q4", String.valueOf(R.id.F4_S1_M7_Q4), "0"},
+            {"F4_S1_M7_Q5", String.valueOf(R.id.F4_S1_M7_Q5), "0"},
+            {"F4_S1_M7_Q6", String.valueOf(R.id.F4_S1_M7_Q6), "0"},
+            {"F4_S1_M7_Q7", String.valueOf(R.id.F4_S1_M7_Q7), "0"},
+            {"F4_S1_M7_Q8", String.valueOf(R.id.F4_S1_M7_Q8), "0"},
+            {"F4_S1_M8_Q1", String.valueOf(R.id.F4_S1_M8_Q1), "1"},
+            {"F4_S1_M8_Q2", String.valueOf(R.id.F4_S1_M8_Q2), "1"},
+            {"F4_S1_M8_Q3", String.valueOf(R.id.F4_S1_M8_Q3), "1"},
+            {"F4_S1_M8_Q4", String.valueOf(R.id.F4_S1_M8_Q4), "1"},
+            {"F4_S1_M8_Q5", String.valueOf(R.id.F4_S1_M8_Q5), "1"},
+            {"F4_S1_M8_Q6", String.valueOf(R.id.F4_S1_M8_Q6), "1"},
+            {"F4_S2_M1_Q2", String.valueOf(R.id.F4_S2_M1_Q2), "0"},
+            {"F4_S2_M1_Q3", String.valueOf(R.id.F4_S2_M1_Q3), "0"},
+            {"F4_S2_M1_Q4", String.valueOf(R.id.F4_S2_M1_Q4), "0"},
+            {"F4_S2_M1_Q5", String.valueOf(R.id.F4_S2_M1_Q5), "0"},
+            {"F4_S2_M1_Q6", String.valueOf(R.id.F4_S2_M1_Q6), "0"},
+            {"F4_S2_M1_Q7", String.valueOf(R.id.F4_S2_M1_Q7), "0"},
+            {"F4_S2_M1_Q8", String.valueOf(R.id.F4_S2_M1_Q8), "0"},
+            {"F4_S2_M1_Q9", String.valueOf(R.id.F4_S2_M1_Q9), "0"},
+            {"F4_S2_M1_Q10", String.valueOf(R.id.F4_S2_M1_Q10), "0"},
+            {"F4_S2_M1_Q11", String.valueOf(R.id.F4_S2_M1_Q11), "0"},
+            {"F4_S2_M1_Q12", String.valueOf(R.id.F4_S2_M1_Q12), "0"},
+            {"F4_S2_M2_Q2", String.valueOf(R.id.F4_S2_M2_Q2), "0"},
+            {"F4_S2_M2_Q3", String.valueOf(R.id.F4_S2_M2_Q3), "0"},
+            {"F4_S2_M3_Q2", String.valueOf(R.id.F4_S2_M3_Q2), "0"},
+            {"F4_S2_M3_Q3", String.valueOf(R.id.F4_S2_M3_Q3), "0"},
+            {"F4_S2_M3_Q4", String.valueOf(R.id.F4_S2_M3_Q4), "0"},
+            {"F4_S2_M3_Q5", String.valueOf(R.id.F4_S2_M3_Q5), "0"},
+            {"F4_S2_M4_Q2", String.valueOf(R.id.F4_S2_M4_Q2), "0"},
+            {"F4_S2_M4_Q3", String.valueOf(R.id.F4_S2_M4_Q3), "0"},
+            {"F4_S2_M4_Q4", String.valueOf(R.id.F4_S2_M4_Q4), "0"},
+            {"F4_S2_M4_Q5", String.valueOf(R.id.F4_S2_M4_Q5), "0"},
+            {"F4_S2_M4_Q6", String.valueOf(R.id.F4_S2_M4_Q6), "0"},
+            {"F4_S2_M4_Q7", String.valueOf(R.id.F4_S2_M4_Q7), "0"},
+            {"F4_S2_M4_Q8", String.valueOf(R.id.F4_S2_M4_Q8), "0"},
+            {"F4_S2_M4_Q9", String.valueOf(R.id.F4_S2_M4_Q9), "0"},
+            {"F4_S2_M5_Q2", String.valueOf(R.id.F4_S2_M5_Q2), "0"},
+            {"F4_S2_M5_Q3", String.valueOf(R.id.F4_S2_M5_Q3), "0"},
+            {"F4_S2_M5_Q4", String.valueOf(R.id.F4_S2_M5_Q4), "0"},
+            {"F4_S2_M5_Q5", String.valueOf(R.id.F4_S2_M5_Q5), "0"},
+            {"F4_S2_M5_Q6", String.valueOf(R.id.F4_S2_M5_Q6), "0"},
+            {"F4_S2_M5_Q7", String.valueOf(R.id.F4_S2_M5_Q7), "0"},
+            {"F4_S2_M5_Q8", String.valueOf(R.id.F4_S2_M5_Q8), "0"},
+            {"F4_S2_M5_Q9", String.valueOf(R.id.F4_S2_M5_Q9), "0"},
+            {"F4_S2_M5_Q10", String.valueOf(R.id.F4_S2_M5_Q10), "0"},
+            {"F4_S2_M6_Q2", String.valueOf(R.id.F4_S2_M6_Q2), "0"},
+            {"F4_S2_M6_Q3", String.valueOf(R.id.F4_S2_M6_Q3), "0"},
+            {"F4_S2_M6_Q4", String.valueOf(R.id.F4_S2_M6_Q4), "0"},
+            {"F4_S2_M6_Q5", String.valueOf(R.id.F4_S2_M6_Q5), "0"},
+            {"F4_S2_M6_Q6", String.valueOf(R.id.F4_S2_M6_Q6), "0"},
+            {"F4_S2_M7_Q2", String.valueOf(R.id.F4_S2_M7_Q2), "0"},
+            {"F4_S2_M7_Q3", String.valueOf(R.id.F4_S2_M7_Q3), "0"},
+            {"F4_S2_M7_Q4", String.valueOf(R.id.F4_S2_M7_Q4), "0"},
+            {"F4_S2_M7_Q5", String.valueOf(R.id.F4_S2_M7_Q5), "0"},
+            {"F4_S2_M7_Q6", String.valueOf(R.id.F4_S2_M7_Q6), "0"},
+            {"F4_S2_M7_Q7", String.valueOf(R.id.F4_S2_M7_Q7), "0"},
+            {"F4_S2_M7_Q8", String.valueOf(R.id.F4_S2_M7_Q8), "0"},
+            {"F4_S2_M8_Q1", String.valueOf(R.id.F4_S2_M8_Q1), "1"},
+            {"F4_S2_M8_Q2", String.valueOf(R.id.F4_S2_M8_Q2), "1"},
+            {"F4_S2_M8_Q3", String.valueOf(R.id.F4_S2_M8_Q3), "1"},
+            {"F4_S2_M8_Q4", String.valueOf(R.id.F4_S2_M8_Q4), "1"},
+            {"F4_S2_M8_Q5", String.valueOf(R.id.F4_S2_M8_Q5), "1"},
+            {"F4_S2_M8_Q6", String.valueOf(R.id.F4_S2_M8_Q6), "1"},
+            {"F4_S3_M1_Q2", String.valueOf(R.id.F4_S3_M1_Q2), "0"},
+            {"F4_S3_M1_Q3", String.valueOf(R.id.F4_S3_M1_Q3), "0"},
+            {"F4_S3_M1_Q4", String.valueOf(R.id.F4_S3_M1_Q4), "0"},
+            {"F4_S3_M1_Q5", String.valueOf(R.id.F4_S3_M1_Q5), "0"},
+            {"F4_S3_M1_Q6", String.valueOf(R.id.F4_S3_M1_Q6), "0"},
+            {"F4_S3_M1_Q7", String.valueOf(R.id.F4_S3_M1_Q7), "0"},
+            {"F4_S3_M1_Q8", String.valueOf(R.id.F4_S3_M1_Q8), "0"},
+            {"F4_S3_M1_Q9", String.valueOf(R.id.F4_S3_M1_Q9), "0"},
+            {"F4_S3_M1_Q10", String.valueOf(R.id.F4_S3_M1_Q10), "0"},
+            {"F4_S3_M1_Q11", String.valueOf(R.id.F4_S3_M1_Q11), "0"},
+            {"F4_S3_M1_Q12", String.valueOf(R.id.F4_S3_M1_Q12), "0"},
+            {"F4_S3_M2_Q2", String.valueOf(R.id.F4_S3_M2_Q2), "0"},
+            {"F4_S3_M2_Q3", String.valueOf(R.id.F4_S3_M2_Q3), "0"},
+            {"F4_S3_M3_Q2", String.valueOf(R.id.F4_S3_M3_Q2), "0"},
+            {"F4_S3_M3_Q3", String.valueOf(R.id.F4_S3_M3_Q3), "0"},
+            {"F4_S3_M3_Q4", String.valueOf(R.id.F4_S3_M3_Q4), "0"},
+            {"F4_S3_M3_Q5", String.valueOf(R.id.F4_S3_M3_Q5), "0"},
+            {"F4_S3_M4_Q2", String.valueOf(R.id.F4_S3_M4_Q2), "0"},
+            {"F4_S3_M4_Q3", String.valueOf(R.id.F4_S3_M4_Q3), "0"},
+            {"F4_S3_M4_Q4", String.valueOf(R.id.F4_S3_M4_Q4), "0"},
+            {"F4_S3_M4_Q5", String.valueOf(R.id.F4_S3_M4_Q5), "0"},
+            {"F4_S3_M4_Q6", String.valueOf(R.id.F4_S3_M4_Q6), "0"},
+            {"F4_S3_M4_Q7", String.valueOf(R.id.F4_S3_M4_Q7), "0"},
+            {"F4_S3_M4_Q8", String.valueOf(R.id.F4_S3_M4_Q8), "0"},
+            {"F4_S3_M4_Q9", String.valueOf(R.id.F4_S3_M4_Q9), "0"},
+            {"F4_S3_M5_Q2", String.valueOf(R.id.F4_S3_M5_Q2), "0"},
+            {"F4_S3_M5_Q3", String.valueOf(R.id.F4_S3_M5_Q3), "0"},
+            {"F4_S3_M5_Q4", String.valueOf(R.id.F4_S3_M5_Q4), "0"},
+            {"F4_S3_M5_Q5", String.valueOf(R.id.F4_S3_M5_Q5), "0"},
+            {"F4_S3_M5_Q6", String.valueOf(R.id.F4_S3_M5_Q6), "0"},
+            {"F4_S3_M5_Q7", String.valueOf(R.id.F4_S3_M5_Q7), "0"},
+            {"F4_S3_M5_Q8", String.valueOf(R.id.F4_S3_M5_Q8), "0"},
+            {"F4_S3_M5_Q9", String.valueOf(R.id.F4_S3_M5_Q9), "0"},
+            {"F4_S3_M5_Q10", String.valueOf(R.id.F4_S3_M5_Q10), "0"},
+            {"F4_S3_M6_Q2", String.valueOf(R.id.F4_S3_M6_Q2), "0"},
+            {"F4_S3_M6_Q3", String.valueOf(R.id.F4_S3_M6_Q3), "0"},
+            {"F4_S3_M6_Q4", String.valueOf(R.id.F4_S3_M6_Q4), "0"},
+            {"F4_S3_M6_Q5", String.valueOf(R.id.F4_S3_M6_Q5), "0"},
+            {"F4_S3_M6_Q6", String.valueOf(R.id.F4_S3_M6_Q6), "0"},
+            {"F4_S3_M7_Q2", String.valueOf(R.id.F4_S3_M7_Q2), "0"},
+            {"F4_S3_M7_Q3", String.valueOf(R.id.F4_S3_M7_Q3), "0"},
+            {"F4_S3_M7_Q4", String.valueOf(R.id.F4_S3_M7_Q4), "0"},
+            {"F4_S3_M7_Q5", String.valueOf(R.id.F4_S3_M7_Q5), "0"},
+            {"F4_S3_M7_Q6", String.valueOf(R.id.F4_S3_M7_Q6), "0"},
+            {"F4_S3_M7_Q7", String.valueOf(R.id.F4_S3_M7_Q7), "0"},
+            {"F4_S3_M7_Q8", String.valueOf(R.id.F4_S3_M7_Q8), "0"},
+            {"F4_S3_M8_Q1", String.valueOf(R.id.F4_S3_M8_Q1), "1"},
+            {"F4_S3_M8_Q2", String.valueOf(R.id.F4_S3_M8_Q2), "1"},
+            {"F4_S3_M8_Q3", String.valueOf(R.id.F4_S3_M8_Q3), "1"},
+            {"F4_S3_M8_Q4", String.valueOf(R.id.F4_S3_M8_Q4), "1"},
+            {"F4_S3_M8_Q5", String.valueOf(R.id.F4_S3_M8_Q5), "1"},
+            {"F4_S3_M8_Q6", String.valueOf(R.id.F4_S3_M8_Q6), "1"},
+            {"F4_S4_M1_Q2", String.valueOf(R.id.F4_S4_M1_Q2), "0"},
+            {"F4_S4_M1_Q3", String.valueOf(R.id.F4_S4_M1_Q3), "0"},
+            {"F4_S4_M1_Q4", String.valueOf(R.id.F4_S4_M1_Q4), "0"},
+            {"F4_S4_M1_Q5", String.valueOf(R.id.F4_S4_M1_Q5), "0"},
+            {"F4_S4_M1_Q6", String.valueOf(R.id.F4_S4_M1_Q6), "0"},
+            {"F4_S4_M1_Q7", String.valueOf(R.id.F4_S4_M1_Q7), "0"},
+            {"F4_S4_M1_Q8", String.valueOf(R.id.F4_S4_M1_Q8), "0"},
+            {"F4_S4_M1_Q9", String.valueOf(R.id.F4_S4_M1_Q9), "0"},
+            {"F4_S4_M1_Q10", String.valueOf(R.id.F4_S4_M1_Q10), "0"},
+            {"F4_S4_M1_Q11", String.valueOf(R.id.F4_S4_M1_Q11), "0"},
+            {"F4_S4_M1_Q12", String.valueOf(R.id.F4_S4_M1_Q12), "0"},
+            {"F4_S4_M2_Q2", String.valueOf(R.id.F4_S4_M2_Q2), "0"},
+            {"F4_S4_M2_Q3", String.valueOf(R.id.F4_S4_M2_Q3), "0"},
+            {"F4_S4_M3_Q2", String.valueOf(R.id.F4_S4_M3_Q2), "0"},
+            {"F4_S4_M3_Q3", String.valueOf(R.id.F4_S4_M3_Q3), "0"},
+            {"F4_S4_M3_Q4", String.valueOf(R.id.F4_S4_M3_Q4), "0"},
+            {"F4_S4_M3_Q5", String.valueOf(R.id.F4_S4_M3_Q5), "0"},
+            {"F4_S4_M4_Q2", String.valueOf(R.id.F4_S4_M4_Q2), "0"},
+            {"F4_S4_M4_Q3", String.valueOf(R.id.F4_S4_M4_Q3), "0"},
+            {"F4_S4_M4_Q4", String.valueOf(R.id.F4_S4_M4_Q4), "0"},
+            {"F4_S4_M4_Q5", String.valueOf(R.id.F4_S4_M4_Q5), "0"},
+            {"F4_S4_M4_Q6", String.valueOf(R.id.F4_S4_M4_Q6), "0"},
+            {"F4_S4_M4_Q7", String.valueOf(R.id.F4_S4_M4_Q7), "0"},
+            {"F4_S4_M4_Q8", String.valueOf(R.id.F4_S4_M4_Q8), "0"},
+            {"F4_S4_M4_Q9", String.valueOf(R.id.F4_S4_M4_Q9), "0"},
+            {"F4_S4_M5_Q2", String.valueOf(R.id.F4_S4_M5_Q2), "0"},
+            {"F4_S4_M5_Q3", String.valueOf(R.id.F4_S4_M5_Q3), "0"},
+            {"F4_S4_M5_Q4", String.valueOf(R.id.F4_S4_M5_Q4), "0"},
+            {"F4_S4_M5_Q5", String.valueOf(R.id.F4_S4_M5_Q5), "0"},
+            {"F4_S4_M5_Q6", String.valueOf(R.id.F4_S4_M5_Q6), "0"},
+            {"F4_S4_M5_Q7", String.valueOf(R.id.F4_S4_M5_Q7), "0"},
+            {"F4_S4_M5_Q8", String.valueOf(R.id.F4_S4_M5_Q8), "0"},
+            {"F4_S4_M5_Q9", String.valueOf(R.id.F4_S4_M5_Q9), "0"},
+            {"F4_S4_M5_Q10", String.valueOf(R.id.F4_S4_M5_Q10), "0"},
+            {"F4_S4_M6_Q2", String.valueOf(R.id.F4_S4_M6_Q2), "0"},
+            {"F4_S4_M6_Q3", String.valueOf(R.id.F4_S4_M6_Q3), "0"},
+            {"F4_S4_M6_Q4", String.valueOf(R.id.F4_S4_M6_Q4), "0"},
+            {"F4_S4_M6_Q5", String.valueOf(R.id.F4_S4_M6_Q5), "0"},
+            {"F4_S4_M6_Q6", String.valueOf(R.id.F4_S4_M6_Q6), "0"},
+            {"F4_S4_M7_Q2", String.valueOf(R.id.F4_S4_M7_Q2), "0"},
+            {"F4_S4_M7_Q3", String.valueOf(R.id.F4_S4_M7_Q3), "0"},
+            {"F4_S4_M7_Q4", String.valueOf(R.id.F4_S4_M7_Q4), "0"},
+            {"F4_S4_M7_Q5", String.valueOf(R.id.F4_S4_M7_Q5), "0"},
+            {"F4_S4_M7_Q6", String.valueOf(R.id.F4_S4_M7_Q6), "0"},
+            {"F4_S4_M7_Q7", String.valueOf(R.id.F4_S4_M7_Q7), "0"},
+            {"F4_S4_M7_Q8", String.valueOf(R.id.F4_S4_M7_Q8), "0"},
+            {"F4_S4_M8_Q1", String.valueOf(R.id.F4_S4_M8_Q1), "1"},
+            {"F4_S4_M8_Q2", String.valueOf(R.id.F4_S4_M8_Q2), "1"},
+            {"F4_S4_M8_Q3", String.valueOf(R.id.F4_S4_M8_Q3), "1"},
+            {"F4_S4_M8_Q4", String.valueOf(R.id.F4_S4_M8_Q4), "1"},
+            {"F4_S4_M8_Q5", String.valueOf(R.id.F4_S4_M8_Q5), "1"},
+            {"F4_S4_M8_Q6", String.valueOf(R.id.F4_S4_M8_Q6), "1"},
+            {"F5_S1_Q2", String.valueOf(R.id.F5_S1_Q2), "0"},
+            {"F5_S1_Q3", String.valueOf(R.id.F5_S1_Q3), "0"},
+            {"F5_S1_Q4", String.valueOf(R.id.F5_S1_Q4), "0"},
+            {"F5_S2_Q2", String.valueOf(R.id.F5_S2_Q2), "0"},
+            {"F5_S2_Q3", String.valueOf(R.id.F5_S2_Q3), "0"},
+            {"F5_S2_Q4", String.valueOf(R.id.F5_S2_Q4), "0"},
+            {"F5_S3_Q2", String.valueOf(R.id.F5_S3_Q2), "0"},
+            {"F5_S3_Q3", String.valueOf(R.id.F5_S3_Q3), "0"},
+            {"F5_S3_Q4", String.valueOf(R.id.F5_S3_Q4), "0"},
+            {"F5_S4_Q2", String.valueOf(R.id.F5_S4_Q2), "0"},
+            {"F5_S4_Q3", String.valueOf(R.id.F5_S4_Q3), "0"},
+            {"F5_S4_Q4", String.valueOf(R.id.F5_S4_Q4), "0"},
+            {"F6_S1_Q2", String.valueOf(R.id.F6_S1_Q2), "0"},
+            {"F6_S2_Q1", String.valueOf(R.id.F6_S2_Q1), "2"}
     };
 
+    private int[] linearLayouts = {
+            R.id.form_7_section_2_main,
+            R.id.form_7_section_3_main,
+            R.id.form_7_section_4_main,
+            R.id.form_7_section_5_main,
+            R.id.form_7_section_6_main
+    };
+    private int[] linearLayoutsToggleButtons = {
+            R.id.form_7_section_2_expansion,
+            R.id.form_7_section_3_expansion,
+            R.id.form_7_section_4_expansion,
+            R.id.form_7_section_5_expansion,
+            R.id.form_7_section_6_expansion
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -348,6 +370,12 @@ public class Form7Activity extends AppCompatActivity {
         /* Adicionando respostas dos formulários anteriores ao formulário atual */
         addPreviousFormAnswersToConfirmation();
 
+        /* Evento de toggle dos LinearLayout's */
+        linearLayoutsToggleEvent();
+
+        /* Escondendo todos os LinearLayout's */
+        linearLayoutsHide();
+
         /* Criando PDF */
         //Button buttonPDF = findViewById(R.id.create_pdf_button);
         //buttonPDF.setOnClickListener(v -> createPDF());
@@ -355,7 +383,7 @@ public class Form7Activity extends AppCompatActivity {
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
         Button buttonCancel = findViewById(R.id.cancel_button);
-        Button buttonNext = findViewById(R.id.next_button);
+        Button buttonSubmit = findViewById(R.id.submit_button);
 
         /* (Voltar) Voltando para o formulário 5 */
         buttonBack.setOnClickListener(v -> finish());
@@ -363,18 +391,8 @@ public class Form7Activity extends AppCompatActivity {
         /* (Cancelar) Voltando para o menu principal */
         buttonCancel.setOnClickListener(v -> cancel());
 
-        /* (Avançar) Avançando para o formulário ? */
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Form7Activity.this, Form7Activity.class);
-                try {
-                    sendAnswersToNextForm(intent);
-                } catch (Exception e) {
-                    Log.e(logId, "Erro ao enviar respostas:" + e);
-                }
-                //startActivity(intent);
-            }
-        });
+        /* (Enviar) Finalizando o e-brat */
+        buttonSubmit.setOnClickListener(v -> submit());
     }
 
     /* Adicionando respostas dos formulários anteriores ao formulário atual */
@@ -387,10 +405,67 @@ public class Form7Activity extends AppCompatActivity {
                     TextView answerTextView = findViewById(Integer.parseInt(answer[1]));
                     answerTextView.setText(answerContent);
                     Log.d(logId, answer[0] + " - " + answerContent);
+                } else if(Objects.equals(answerType, "1")) {// Se a resposta for do tipo checkbox
+                    String answerContent = getIntent().getStringExtra(answer[0]);
+                    CheckBox checkBox = findViewById(Integer.parseInt(answer[1]));
+                    checkBox.setChecked(Objects.equals(answerContent, String.valueOf(true)));
+                    //checkBox.setEnabled(false);
+                    Log.d(logId, answer[0] + " - " + answerContent);
+                } else if(Objects.equals(answerType, "2")) {// Se a resposta for do tipo imagem
+                    ArrayList<String> answerContent = getIntent().getStringArrayListExtra(answer[0]);
+                    RecyclerView recyclerView = findViewById(Integer.parseInt(answer[1]));
+                    recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+                    // Filtrando valores null
+                    List<String> filteredImages = new ArrayList<>();
+                    if (answerContent != null) {
+                        for (String imagePath : answerContent) {
+                            if (imagePath != null) {
+                                filteredImages.add(imagePath);
+                            }
+                        }
+                    }
+
+                    ImageAdapter7 imageAdapter = new ImageAdapter7((ArrayList<String>) filteredImages);
+                    recyclerView.setAdapter(imageAdapter);
+                    Log.d(logId, answer[0] + " - " + answerContent);
                 }
             } catch (Exception e) {
                 Log.e(logId, "" + e);
             }
+        }
+    }
+
+    /* Evento de toggle dos LinearLayout's */
+    private void linearLayoutsToggleEvent() {
+        for(int i = 0; i <= linearLayouts.length - 1; i++) {
+            LinearLayout linearLayout = findViewById(linearLayouts[i]);
+            Button linearLayoutToggleButton = findViewById(linearLayoutsToggleButtons[i]);
+            linearLayoutToggleButton.setOnClickListener(v -> linearLayoutToggleVisibility(linearLayout, linearLayoutToggleButton));
+        }
+    }
+
+    /* Função de toggle de um LinearLayout */
+    private void linearLayoutToggleVisibility(LinearLayout linearLayout, Button button) {
+        if (linearLayout.getVisibility() == View.VISIBLE) {
+            linearLayout.setVisibility(View.GONE);
+            Drawable drawableRight = ContextCompat.getDrawable(this, R.drawable.icon_expansion);
+            button.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableRight, null);
+        } else {
+            linearLayout.setVisibility(View.VISIBLE);
+            Drawable drawableRight = ContextCompat.getDrawable(this, R.drawable.icon_expansion_reverse);
+            button.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableRight, null);
+        }
+    }
+
+    /* Função para esconder LinearLayout's */
+    private void linearLayoutsHide() {
+        for(int i = 0; i <= linearLayouts.length - 1; i++) {
+            LinearLayout linearLayout = findViewById(linearLayouts[i]);
+            Button linearLayoutToggleButton = findViewById(linearLayoutsToggleButtons[i]);
+            linearLayout.setVisibility(View.GONE);
+            Drawable drawableRight = ContextCompat.getDrawable(this, R.drawable.icon_expansion);
+            linearLayoutToggleButton.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableRight, null);
         }
     }
 
@@ -444,6 +519,30 @@ public class Form7Activity extends AppCompatActivity {
             startActivity(intent);
         });
         builder.setNegativeButton("Voltar", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /* Função ao finalizar formulário */
+    private void submit() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Form7Activity.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogLayout = inflater.inflate(R.layout.alert_dialog_success, null);
+        builder.setView(dialogLayout);
+        builder.setTitle("Solicitação concluída!");
+        builder.setMessage("Solicitação concluída com sucesso!");
+        builder.setIcon(R.drawable.icon_success);
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+            Intent intent = new Intent(Form7Activity.this, HomeActivity.class);
+            try {
+                sendAnswersToNextForm(intent);
+            } catch (Exception e) {
+                Log.e(logId, "Erro ao enviar respostas:" + e);
+            }
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //startActivity(intent);
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
     }

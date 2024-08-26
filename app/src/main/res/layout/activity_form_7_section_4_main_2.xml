@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_7_section_4_main_2"
+    style="@style/form_group"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_1" >
+
+
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_1"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_2_title" >
+
+        <TextView
+            android:id="@+id/form_7_section_4_main_2_title"
+            style="@style/form_h2"
+            android:text="Veículo 3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_2_main_group_1" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q3_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_2"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_1" >
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q4_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q4"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q4_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q5_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q5"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q5_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q6_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q5" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q6"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q6_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q7_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q6" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q7"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q7_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q8_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q7" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q8"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q8_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q9_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q8" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q9"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q9_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q10_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q9" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q10"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q10_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q11_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q10" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q11"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q11_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q12_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_1_question_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q11" />
+
+        <TextView
+            android:id="@+id/F4_S2_M1_Q12"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M1_Q12_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_3"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_2" >
+
+        <TextView
+            android:id="@+id/F4_S2_M2_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_2_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_3" />
+
+        <TextView
+            android:id="@+id/F4_S2_M2_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M2_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M2_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_2_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M2_Q2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M2_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M2_Q3_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_4"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_3" >
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q3_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q4_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q3" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q4"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q4_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q5_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M3_Q5"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M3_Q5_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_5"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_4" >
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_5" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q3_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q4_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q3" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q4"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q4_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q5_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q5"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q5_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q6_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q5" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q6"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q6_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q7_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q6" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q7"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q7_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q8_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q7" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q8"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q8_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q9_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_4_question_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q8" />
+
+        <TextView
+            android:id="@+id/F4_S2_M4_Q9"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M4_Q9_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_6"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_5" >
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_6" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q3_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q4_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q3" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q4"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q4_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q5_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q5"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q5_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q6_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q5" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q6"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q6_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q7_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q6" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q7"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q7_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q8_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q7" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q8"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q8_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q9_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q8" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q9"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q9_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q10_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_5_question_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q9" />
+
+        <TextView
+            android:id="@+id/F4_S2_M5_Q10"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M5_Q10_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_7"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_6" >
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_6_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_7" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_6_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q3_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q4_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_6_question_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q3" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q4"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q4_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q5_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_6_question_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q5"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q5_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q6_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_6_question_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q5" />
+
+        <TextView
+            android:id="@+id/F4_S2_M6_Q6"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M6_Q6_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_8"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_7" >
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q2_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_8" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q2"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q2_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q3_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q2" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q3"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q3_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q4_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q3" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q4"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q4_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q5_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q4" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q5"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q5_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q6_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q5" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q6"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q6_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q7_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q6" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q7"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q7_label" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q8_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_7_question_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q7" />
+
+        <TextView
+            android:id="@+id/F4_S2_M7_Q8"
+            style="@style/form_subquestion"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/F4_S2_M7_Q8_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main_group_9"
+        style="@style/answers_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_main_group_8" >
+
+        <TextView
+            android:id="@+id/F4_S2_M8_Q1_label"
+            style="@style/form_question"
+            android:text="@string/form_3_section_8_question_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_group_9" />
+
+        <!-- Seleção de áreas danificadas do veículo - Imagem do veículo -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/section_8_group_constraint"
+            style="@style/form_group_constraint"
+            app:layout_constraintEnd_toEndOf="@+id/F4_S2_M8_Q1_label"
+            app:layout_constraintStart_toStartOf="@+id/F4_S2_M8_Q1_label"
+            app:layout_constraintTop_toBottomOf="@id/F4_S2_M8_Q1_label" >
+
+            <ImageView
+                android:id="@+id/F4_S2_M8_damage_vehicle"
+                style="@style/form_damage_image"
+                android:src="@drawable/carro"
+                android:contentDescription="Carro"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <!-- Canto superior esquerdo -->
+            <CheckBox
+                android:id="@+id/F4_S2_M8_Q1"
+                style="@style/disabled_damage_button"
+                app:layout_constraintStart_toStartOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintTop_toTopOf="@+id/F4_S2_M8_damage_vehicle" />
+
+            <!-- Canto superior central -->
+            <CheckBox
+                android:id="@+id/F4_S2_M8_Q2"
+                style="@style/disabled_damage_button"
+                app:layout_constraintStart_toStartOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintEnd_toEndOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintTop_toTopOf="@+id/F4_S2_M8_damage_vehicle" />
+
+            <!-- Canto superior direito -->
+            <CheckBox
+                android:id="@+id/F4_S2_M8_Q3"
+                style="@style/disabled_damage_button"
+                app:layout_constraintEnd_toEndOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintTop_toTopOf="@+id/F4_S2_M8_damage_vehicle" />
+
+            <!-- Canto inferior esquerdo -->
+            <CheckBox
+                android:id="@+id/F4_S2_M8_Q4"
+                style="@style/disabled_damage_button"
+                app:layout_constraintStart_toStartOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintBottom_toBottomOf="@+id/F4_S2_M8_damage_vehicle" />
+
+            <!-- Canto inferior central -->
+            <CheckBox
+                android:id="@+id/F4_S2_M8_Q5"
+                style="@style/disabled_damage_button"
+                app:layout_constraintStart_toStartOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintEnd_toEndOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintBottom_toBottomOf="@+id/F4_S2_M8_damage_vehicle" />
+
+            <!-- Canto inferior direito -->
+            <CheckBox
+                android:id="@+id/F4_S2_M8_Q6"
+                style="@style/disabled_damage_button"
+                app:layout_constraintEnd_toEndOf="@+id/F4_S2_M8_damage_vehicle"
+                app:layout_constraintBottom_toBottomOf="@+id/F4_S2_M8_damage_vehicle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</LinearLayout>

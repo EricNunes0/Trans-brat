@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_7_section_4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@+id/form_7_section_3">
+
+    <!-- Botão de expansão -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/form_7_section_4_expansion"
+        style="@style/form_input_expansion"
+        android:text="Outros veículos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4"
+        />
+
+    <LinearLayout
+        android:id="@+id/form_7_section_4_main"
+        style="@style/form_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_4_expansion" >
+
+        <!-- Quantidade de veículos envolvidos -->
+        <include layout="@layout/activity_form_7_section_4_main_0"></include>
+
+        <!-- Veículo 1 -->
+        <include layout="@layout/activity_form_7_section_4_main_1"></include>
+
+        <!-- Veículo 2 -->
+        <include layout="@layout/activity_form_7_section_4_main_2"></include>
+
+        <!-- Veículo 3 -->
+        <include layout="@layout/activity_form_7_section_4_main_3"></include>
+
+        <!-- Veículo 4 -->
+        <include layout="@layout/activity_form_7_section_4_main_4"></include>
+
+    </LinearLayout>
+
+</LinearLayout>

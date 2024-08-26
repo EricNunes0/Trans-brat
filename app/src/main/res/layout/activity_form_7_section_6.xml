@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_7_section_6"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@+id/form_7_section_5">
+
+    <!-- Botão de expansão -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/form_7_section_6_expansion"
+        style="@style/form_input_expansion"
+        android:text="Detalhes do fato"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_6"
+        />
+
+    <LinearLayout
+        android:id="@+id/form_7_section_6_main"
+        style="@style/form_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/form_7_section_6_expansion" >
+
+        <LinearLayout
+            android:id="@+id/form_7_section_6_main_1"
+            style="@style/form_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_7_section_6_main" >
+
+            <LinearLayout
+                android:id="@+id/form_7_section_6_main_group_1"
+                style="@style/answers_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/form_7_section_6_main_1" >
+
+                <TextView
+                    android:id="@+id/form_7_section_6_main_1_title"
+                    style="@style/form_h2"
+                    android:text="Detalhes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/form_7_section_6_main_group_1" />
+
+                <TextView
+                    android:id="@+id/F6_S1_Q2"
+                    style="@style/form_subquestion"
+                    android:text=""
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/form_7_section_6_main_group_1" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/form_7_section_6_main_2"
+            style="@style/form_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_7_section_6_main_1" >
+
+            <LinearLayout
+                android:id="@+id/form_7_section_6_main_group_2"
+                style="@style/answers_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/form_7_section_6_main_2" >
+                >
+
+                <TextView
+                    android:id="@+id/form_7_section_6_main_2_title"
+                    style="@style/form_h2"
+                    android:text="Anexos"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/form_7_section_6_main_group_2" />
+
+                <!-- Visualizar imagens -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/F6_S2_Q1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:clipToPadding="false"
+                    android:scaleType="centerCrop"
+                    android:scrollbars="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/form_7_section_6_main_2_title"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

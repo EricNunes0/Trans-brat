@@ -129,7 +129,7 @@
             <EditText
                 android:id="@+id/section_1_question_3_input"
                 style="@style/form_input_text"
-                android:inputType="number"
+                android:inputType="text"
                 android:maxLength="8"
                 android:hint="@string/form_3_section_1_question_3_placeholder"
                 app:layout_constraintEnd_toEndOf="@+id/section_1_question_3"

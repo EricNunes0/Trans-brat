@@ -837,27 +837,27 @@ public class Form4Activity extends AppCompatActivity {
 
         assert checkBox1 != null;
         if (checkBox1.isChecked()) {
-            checkBox1Text = checkBox1.getText().toString();
+            checkBox1Text = String.valueOf(true);
         }
         assert checkBox2 != null;
         if (checkBox2.isChecked()) {
-            checkBox2Text = checkBox2.getText().toString();
+            checkBox2Text = String.valueOf(true);
         }
         assert checkBox3 != null;
         if (checkBox3.isChecked()) {
-            checkBox3Text = checkBox3.getText().toString();
+            checkBox3Text = String.valueOf(true);
         }
         assert checkBox4 != null;
         if (checkBox4.isChecked()) {
-            checkBox4Text = checkBox4.getText().toString();
+            checkBox4Text = String.valueOf(true);
         }
         assert checkBox5 != null;
         if (checkBox5.isChecked()) {
-            checkBox5Text = checkBox5.getText().toString();
+            checkBox5Text = String.valueOf(true);
         }
         assert checkBox6 != null;
         if (checkBox6.isChecked()) {
-            checkBox6Text = checkBox6.getText().toString();
+            checkBox6Text = String.valueOf(true);
         }
 
         String questionId1 = toSendAnswersIds[j];

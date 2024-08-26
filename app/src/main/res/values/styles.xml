@@ -114,6 +114,19 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="form_h2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">34dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="form_question">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -303,7 +316,25 @@
         <item name="android:layout_height">98.5dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:background">@drawable/damage_area</item>
-        <item name="android:button">@drawable/checkbox_unchecked</item>
+        <item name="android:button">@drawable/checkbox_selector</item>
+    </style>
+
+    <!-- Grupo de respostas -->
+    <style name="answers_group">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/container_answers</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Botão de área danificada do veículo desativado -->
+    <style name="disabled_damage_button">
+        <item name="android:layout_width">105dp</item>
+        <item name="android:layout_height">98.5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/damage_area</item>
+        <item name="android:button">@drawable/checkbox_selector</item>
+        <!--<item name="android:enabled">false</item>-->
     </style>
         
 </resources>

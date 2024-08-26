@@ -30,7 +30,7 @@
 
         <LinearLayout
             android:id="@+id/form_7_section_2_main_group_1"
-            style="@style/form_group"
+            style="@style/answers_group"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/form_7_section_2_main" >
@@ -71,7 +71,7 @@
 
         <LinearLayout
             android:id="@+id/form_7_section_2_main_group_2"
-            style="@style/form_group"
+            style="@style/answers_group"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/form_7_section_2_main_group_1" >
@@ -112,7 +112,7 @@
 
         <LinearLayout
             android:id="@+id/form_7_section_2_main_group_3"
-            style="@style/form_group"
+            style="@style/answers_group"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -250,7 +250,7 @@
 
         <LinearLayout
             android:id="@+id/form_7_section_2_main_group_4"
-            style="@style/form_group"
+            style="@style/answers_group"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
