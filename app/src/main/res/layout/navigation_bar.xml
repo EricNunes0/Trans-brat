@@ -29,4 +29,5 @@
     app:layout_constraintStart_toStartOf="@+id/navigation_bar_button"
     app:layout_constraintTop_toTopOf="@+id/navigation_bar_button"
     tools:ignore="MissingConstraints"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

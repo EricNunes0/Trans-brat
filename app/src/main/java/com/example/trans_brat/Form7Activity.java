@@ -615,18 +615,20 @@ public class Form7Activity extends AppCompatActivity {
 
         drawQuestion(canvas1, paint1, "CEP", column1X, 580);
         drawText(canvas1, paint1, "F2_S3_Q2", column1X, 600);
+        drawQuestion(canvas1, paint1, "Número", column2X, 580);
+        drawText(canvas1, paint1, "F2_S3_Q4", column2X, 600);
         drawQuestion(canvas1, paint1, "Endereço", column1X, 640);
         drawText(canvas1, paint1, "F2_S3_Q3", column1X, 660);
-        drawQuestion(canvas1, paint1, "Número", column1X, 700);
-        drawText(canvas1, paint1, "F2_S3_Q4", column1X, 720);
+        drawQuestion(canvas1, paint1, "Complemento", column1X, 700);
+        drawText(canvas1, paint1, "F2_S3_Q5", column1X, 720);
         drawQuestion(canvas1, paint1, "Bairro", column2X, 700);
-        drawText(canvas1, paint1, "F2_S3_Q5", column2X, 720);
+        drawText(canvas1, paint1, "F2_S3_Q6", column2X, 720);
         drawQuestion(canvas1, paint1, "Cidade", column1X, 760);
-        drawText(canvas1, paint1, "F2_S3_Q6", column1X, 780);
+        drawText(canvas1, paint1, "F2_S3_Q7", column1X, 780);
         drawQuestion(canvas1, paint1, "Estado", column2X, 760);
-        drawText(canvas1, paint1, "F2_S3_Q7", column2X, 780);
+        drawText(canvas1, paint1, "F2_S3_Q8", column2X, 780);
         drawQuestion(canvas1, paint1, "Ponto de referência", column1X, 820);
-        drawText(canvas1, paint1, "F2_S3_Q8", column1X, 840);
+        drawText(canvas1, paint1, "F2_S3_Q9", column1X, 840);
 
         pdfDocument.finishPage(page1);
 
@@ -1711,7 +1713,7 @@ public class Form7Activity extends AppCompatActivity {
     /* Função do PDF: Desenhando um texto */
     private void drawText(Canvas canvas, Paint paint, String answerId, int x, int y) {
         paint.setColor(Color.GRAY);
-        paint.setTextSize(24);
+        paint.setTextSize(20);
 
         try {
             TextView textView = (TextView) findViewByName(answerId);

@@ -22,6 +22,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordVisible = false;
 
@@ -29,9 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        getWindow().setExitTransition(new Fade());
-        getWindow().setExitTransition(new Slide(Gravity.RIGHT));
         setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -116,8 +123,10 @@ public class LoginActivity extends AppCompatActivity {
         }
         removeInputErrorBorders(new EditText[] {inputMatricula, inputSenha});
 
+        //loginUser(matricula, senha);
+
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+        startActivity(intent);
         finish();
     }
 
@@ -161,5 +170,35 @@ public class LoginActivity extends AppCompatActivity {
 
         /* Colocando o cursor no final do texto */
         editText.setSelection(editText.getText().length());
+    }
+
+    /* Função para fazer login do usuário */
+    private void loginUser(String matricula, String senha) {
+        final String matriculaContent = matricula.trim();
+        final String senhaContent = senha.trim();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://YOUR_SERVER_URL/login.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("matricula", matriculaContent);
+                params.put("senha", senhaContent);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }
