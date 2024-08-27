@@ -14,6 +14,9 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -565,6 +568,10 @@ public class Form7Activity extends AppCompatActivity {
         int pageHeight = 842; // Altura das páginas
         int column1X = 40;
         int column2X = 290;
+        int carWidth = 500; // Largura da imagem do carro
+        int carHeight = 320; // Altura da imagem do carro
+        int checkboxWidth = carWidth / 3; // Largura do checkbox do carro
+        int checkboxHeight = carHeight / 2; // Largura do checkbox do carro
 
         PdfDocument pdfDocument = new PdfDocument();
 
@@ -583,43 +590,43 @@ public class Form7Activity extends AppCompatActivity {
         // Seção 1
         drawRectWithText(canvas1, paint1, "Enviado por", column1X, 140, 500, 40);
 
-        /*drawQuestion(canvas1, paint1, "Nome", column1X, 210);
-        drawText(canvas1, paint1, "NOME DO USUÁRIO", column1X, 230);
+        drawQuestion(canvas1, paint1, "Nome", column1X, 210);
+        //drawText(canvas1, paint1, "username", column1X, 230);
         drawQuestion(canvas1, paint1, "Matrícula", column1X, 270);
-        drawText(canvas1, paint1, "12345678901234567890", column1X, 290);*/
+        //drawText(canvas1, paint1, "matricula", column1X, 290);
 
-        drawRectWithText(canvas1, paint1, "Dados da ocorrência", 40, 310, 500, 40);
+        drawRectWithText(canvas1, paint1, "Dados da ocorrência", 40, 300, 500, 40);
 
-        drawQuestion(canvas1, paint1, "Data", column1X, 380);
-        drawText(canvas1, paint1, "F2_S1_Q2", column1X, 400);
-        drawQuestion(canvas1, paint1, "Hora", column2X, 380);
-        drawText(canvas1, paint1, "F2_S1_Q3", column2X, 400);
-
-        paint1.setColor(Color.GRAY);
-        canvas1.drawLine(column1X, 420, 540, 420, paint1);
-
-        drawQuestion(canvas1, paint1, "Onde?", column1X, 460);
-        drawText(canvas1, paint1, "F2_S2_Q2", column1X, 480);
-        drawQuestion(canvas1, paint1, "Especifique", column2X, 460);
-        drawText(canvas1, paint1, "F2_S2_Q3", column2X, 480);
+        drawQuestion(canvas1, paint1, "Data", column1X, 360);
+        drawText(canvas1, paint1, "F2_S1_Q2", column1X, 380);
+        drawQuestion(canvas1, paint1, "Hora", column2X, 360);
+        drawText(canvas1, paint1, "F2_S1_Q3", column2X, 380);
 
         paint1.setColor(Color.GRAY);
-        canvas1.drawLine(column1X, 500, 540, 500, paint1);
+        canvas1.drawLine(column1X, 400, 540, 400, paint1);
 
-        drawQuestion(canvas1, paint1, "CEP", column1X, 540);
-        drawText(canvas1, paint1, "F2_S3_Q2", column1X, 560);
-        drawQuestion(canvas1, paint1, "Endereço", column1X, 600);
-        drawText(canvas1, paint1, "F2_S3_Q3", column1X, 620);
-        drawQuestion(canvas1, paint1, "Número", column1X, 660);
-        drawText(canvas1, paint1, "F2_S3_Q4", column1X, 680);
-        drawQuestion(canvas1, paint1, "Bairro", column2X, 660);
-        drawText(canvas1, paint1, "F2_S3_Q5", column2X, 680);
-        drawQuestion(canvas1, paint1, "Cidade", column1X, 720);
-        drawText(canvas1, paint1, "F2_S3_Q6", column1X, 740);
-        drawQuestion(canvas1, paint1, "Estado", column2X, 720);
-        drawText(canvas1, paint1, "F2_S3_Q7", column2X, 740);
-        drawQuestion(canvas1, paint1, "Ponto de referência", column1X, 780);
-        drawText(canvas1, paint1, "F2_S3_Q8", column1X, 800);
+        drawQuestion(canvas1, paint1, "Onde?", column1X, 440);
+        drawText(canvas1, paint1, "F2_S2_Q2", column1X, 460);
+        drawQuestion(canvas1, paint1, "Especifique", column1X, 500);
+        drawText(canvas1, paint1, "F2_S2_Q3", column1X, 520);
+
+        paint1.setColor(Color.GRAY);
+        canvas1.drawLine(column1X, 540, 540, 540, paint1);
+
+        drawQuestion(canvas1, paint1, "CEP", column1X, 580);
+        drawText(canvas1, paint1, "F2_S3_Q2", column1X, 600);
+        drawQuestion(canvas1, paint1, "Endereço", column1X, 640);
+        drawText(canvas1, paint1, "F2_S3_Q3", column1X, 660);
+        drawQuestion(canvas1, paint1, "Número", column1X, 700);
+        drawText(canvas1, paint1, "F2_S3_Q4", column1X, 720);
+        drawQuestion(canvas1, paint1, "Bairro", column2X, 700);
+        drawText(canvas1, paint1, "F2_S3_Q5", column2X, 720);
+        drawQuestion(canvas1, paint1, "Cidade", column1X, 760);
+        drawText(canvas1, paint1, "F2_S3_Q6", column1X, 780);
+        drawQuestion(canvas1, paint1, "Estado", column2X, 760);
+        drawText(canvas1, paint1, "F2_S3_Q7", column2X, 780);
+        drawQuestion(canvas1, paint1, "Ponto de referência", column1X, 820);
+        drawText(canvas1, paint1, "F2_S3_Q8", column1X, 840);
 
         pdfDocument.finishPage(page1);
 
@@ -825,10 +832,831 @@ public class Form7Activity extends AppCompatActivity {
         drawHeader(canvas6, paint6);
 
         drawTitle(canvas6, paint6, "Danos", column1X, 170);
-        drawImage(canvas6, paint6, R.drawable.carro, 40, 190, 540, 360);
-        drawCheckbox(canvas6, paint6, "F3_S8_Q1", 190, 100);
+        drawImage(canvas6, paint6, R.drawable.carro, 40, 190, carWidth, carHeight);
+        drawCheckbox(canvas6, paint6, "F3_S8_Q1", 40, 190, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas6, paint6, "F3_S8_Q2", 40 + checkboxWidth, 190, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas6, paint6, "F3_S8_Q3", 40 + (checkboxWidth * 2), 190, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas6, paint6, "F3_S8_Q4", 40, 190 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas6, paint6, "F3_S8_Q5", 40 + checkboxWidth, 190 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas6, paint6, "F3_S8_Q6", 40 + (checkboxWidth * 2), 190 + checkboxHeight, checkboxWidth, checkboxHeight);
 
         pdfDocument.finishPage(page6);
+
+        /* Página 7 */
+        PdfDocument.PageInfo pageInfo7 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 7).create();
+        PdfDocument.Page page7 = pdfDocument.startPage(pageInfo7);
+
+        Canvas canvas7 = page7.getCanvas();
+        Paint paint7 = new Paint();
+        paint7.setColor(Color.parseColor(pdfColorBlue));
+        paint7.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas7, paint7);
+
+        drawRectWithText(canvas7, paint7, "Veículo 2", 40, 150, 500, 40);
+
+        drawQuestion(canvas7, paint7, "Nº de ordem", column1X, 210);
+        drawText(canvas7, paint7, "F4_S1_M1_Q2", column1X, 230);
+        drawQuestion(canvas7, paint7, "Placa", column2X, 210);
+        drawText(canvas7, paint7, "F4_S1_M1_Q3", column2X, 230);
+
+        paint7.setColor(Color.GRAY);
+        canvas7.drawLine(column1X, 250, 540, 250, paint7);
+
+        drawQuestion(canvas7, paint7, "Marca/Modelo", column1X, 290);
+        drawText(canvas7, paint7, "F4_S1_M1_Q4", column1X, 310);
+        drawQuestion(canvas7, paint7, "Tipo do veículo", column2X, 290);
+        drawText(canvas7, paint7, "F4_S1_M1_Q5", column2X, 310);
+        drawQuestion(canvas7, paint7, "Cor predominante", column1X, 350);
+        drawText(canvas7, paint7, "F4_S1_M1_Q6", column1X, 370);
+        drawQuestion(canvas7, paint7, "UF", column2X, 350);
+        drawText(canvas7, paint7, "F4_S1_M1_Q7", column2X, 370);
+        drawQuestion(canvas7, paint7, "Ano de fabricação", column1X, 410);
+        drawText(canvas7, paint7, "F4_S1_M1_Q8", column1X, 430);
+        drawQuestion(canvas7, paint7, "Ano do modelo", column2X, 410);
+        drawText(canvas7, paint7, "F4_S1_M1_Q9", column2X, 430);
+        drawQuestion(canvas7, paint7, "Nº do Chassi", column1X, 470);
+        drawText(canvas7, paint7, "F4_S1_M1_Q10", column1X, 490);
+        drawQuestion(canvas7, paint7, "RENAVAM", column2X, 470);
+        drawText(canvas7, paint7, "F4_S1_M1_Q11", column2X, 490);
+        drawQuestion(canvas7, paint7, "Veículo é da empresa?", column1X, 530);
+        drawText(canvas7, paint7, "F4_S1_M1_Q12", column1X, 550);
+
+        drawTitle(canvas7, paint7, "Dados da empresa", column1X, 590);
+        drawQuestion(canvas7, paint7, "Razão social", column1X, 630);
+        drawText(canvas7, paint7, "F4_S1_M2_Q2", column1X, 650);
+        drawQuestion(canvas7, paint7, "CNPJ", column1X, 690);
+        drawText(canvas7, paint7, "F4_S1_M2_Q3", column1X, 710);
+
+        pdfDocument.finishPage(page7);
+
+        /* Página 8 */
+        PdfDocument.PageInfo pageInfo8 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 8).create();
+        PdfDocument.Page page8 = pdfDocument.startPage(pageInfo8);
+
+        Canvas canvas8 = page8.getCanvas();
+        Paint paint8 = new Paint();
+        paint8.setColor(Color.parseColor(pdfColorBlue));
+        paint8.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas8, paint8);
+
+        drawTitle(canvas8, paint8, "Dados do proprietário", column1X, 150);
+        drawQuestion(canvas8, paint8, "Nome", column1X, 190);
+        drawText(canvas8, paint8, "F4_S1_M3_Q2", column1X, 210);
+        drawQuestion(canvas8, paint8, "CPF", column1X, 250);
+        drawText(canvas8, paint8, "F4_S1_M3_Q3", column1X, 270);
+        drawQuestion(canvas8, paint8, "Data nascimento", column2X, 250);
+        drawText(canvas8, paint8, "F4_S1_M3_Q4", column2X, 270);
+        drawQuestion(canvas8, paint8, "O proprietário é o condutor?", column1X, 310);
+        drawText(canvas8, paint8, "F4_S1_M3_Q5", column1X, 330);
+
+        paint8.setColor(Color.GRAY);
+        canvas8.drawLine(column1X, 350, 540, 350, paint8);
+
+        drawTitle(canvas8, paint8, "Endereço", column1X, 390);
+        drawQuestion(canvas8, paint8, "CEP", column1X, 430);
+        drawText(canvas8, paint8, "F4_S1_M4_Q2", column1X, 450);
+        drawQuestion(canvas8, paint8, "Lograd.", column1X, 490);
+        drawText(canvas8, paint8, "F4_S1_M4_Q3", column1X, 510);
+        drawQuestion(canvas8, paint8, "Número", column1X, 550);
+        drawText(canvas8, paint8, "F4_S1_M4_Q4", column1X, 570);
+        drawQuestion(canvas8, paint8, "Complemento", column2X, 550);
+        drawText(canvas8, paint8, "F4_S1_M4_Q5", column2X, 570);
+        drawQuestion(canvas8, paint8, "Bairro", column1X, 610);
+        drawText(canvas8, paint8, "F4_S1_M4_Q6", column1X, 630);
+        drawQuestion(canvas8, paint8, "Cidade", column2X, 610);
+        drawText(canvas8, paint8, "F4_S1_M4_Q7", column2X, 630);
+        drawQuestion(canvas8, paint8, "UF", column1X, 670);
+        drawText(canvas8, paint8, "F4_S1_M4_Q8", column1X, 690);
+        drawQuestion(canvas8, paint8, "O proprietário é o condutor?", column2X, 670);
+        drawText(canvas8, paint8, "F4_S1_M4_Q9", column2X, 690);
+
+        pdfDocument.finishPage(page8);
+
+        /* Página 9 */
+        PdfDocument.PageInfo pageInfo9 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 9).create();
+        PdfDocument.Page page9 = pdfDocument.startPage(pageInfo9);
+
+        Canvas canvas9 = page9.getCanvas();
+        Paint paint9 = new Paint();
+        paint9.setColor(Color.parseColor(pdfColorBlue));
+        paint9.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas9, paint9);
+
+        drawTitle(canvas9, paint9, "Endereço do proprietário", column1X, 150);
+        drawQuestion(canvas9, paint9, "CEP", column1X, 190);
+        drawText(canvas9, paint9, "F4_S1_M5_Q2", column1X, 210);
+        drawQuestion(canvas9, paint9, "Lograd.", column1X, 250);
+        drawText(canvas9, paint9, "F4_S1_M5_Q3", column1X, 270);
+        drawQuestion(canvas9, paint9, "Número", column1X, 310);
+        drawText(canvas9, paint9, "F4_S1_M5_Q4", column1X, 330);
+        drawQuestion(canvas9, paint9, "Complemento", column2X, 310);
+        drawText(canvas9, paint9, "F4_S1_M5_Q5", column2X, 330);
+        drawQuestion(canvas9, paint9, "Bairro", column1X, 370);
+        drawText(canvas9, paint9, "F4_S1_M5_Q6", column1X, 390);
+        drawQuestion(canvas9, paint9, "Cidade", column2X, 370);
+        drawText(canvas9, paint9, "F4_S1_M5_Q7", column2X, 390);
+        drawQuestion(canvas9, paint9, "UF", column1X, 430);
+        drawText(canvas9, paint9, "F4_S1_M5_Q8", column1X, 450);
+        drawQuestion(canvas9, paint9, "Nº CNH", column2X, 430);
+        drawText(canvas9, paint9, "F4_S1_M5_Q9", column2X, 450);
+        drawQuestion(canvas9, paint9, "Validade", column1X, 490);
+        drawText(canvas9, paint9, "F4_S1_M5_Q10", column1X, 510);
+
+        paint9.setColor(Color.GRAY);
+        canvas9.drawLine(column1X, 530, 540, 530, paint9);
+
+        drawTitle(canvas9, paint9, "Dados do condutor", column1X, 570);
+        drawQuestion(canvas9, paint9, "Nome", column1X, 610);
+        drawText(canvas9, paint9, "F4_S1_M6_Q2", column1X, 630);
+        drawQuestion(canvas9, paint9, "CPF", column1X, 670);
+        drawText(canvas9, paint9, "F4_S1_M6_Q3", column1X, 690);
+        drawQuestion(canvas9, paint9, "Data de nascimento", column2X, 670);
+        drawText(canvas9, paint9, "F4_S1_M6_Q4", column2X, 690);
+        drawQuestion(canvas9, paint9, "Nº CNH", column1X, 730);
+        drawText(canvas9, paint9, "F4_S1_M6_Q5", column1X, 750);
+        drawQuestion(canvas9, paint9, "Validade", column2X, 730);
+        drawText(canvas9, paint9, "F4_S1_M6_Q6", column2X, 750);
+
+        pdfDocument.finishPage(page9);
+
+        /* Página 10 */
+        PdfDocument.PageInfo pageInfo10 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 10).create();
+        PdfDocument.Page page10 = pdfDocument.startPage(pageInfo10);
+
+        Canvas canvas10 = page10.getCanvas();
+        Paint paint10 = new Paint();
+        paint10.setColor(Color.parseColor(pdfColorBlue));
+        paint10.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas10, paint10);
+
+        drawTitle(canvas10, paint10, "Endereço do condutor", column1X, 150);
+        drawQuestion(canvas10, paint10, "CEP", column1X, 190);
+        drawText(canvas10, paint10, "F4_S1_M7_Q2", column1X, 210);
+        drawQuestion(canvas10, paint10, "Lograd.", column1X, 250);
+        drawText(canvas10, paint10, "F4_S1_M7_Q3", column1X, 270);
+        drawQuestion(canvas10, paint10, "Número", column1X, 310);
+        drawText(canvas10, paint10, "F4_S1_M7_Q4", column1X, 330);
+        drawQuestion(canvas10, paint10, "Complemento", column2X, 310);
+        drawText(canvas10, paint10, "F4_S1_M7_Q5", column2X, 330);
+        drawQuestion(canvas10, paint10, "Bairro", column1X, 370);
+        drawText(canvas10, paint10, "F4_S1_M7_Q6", column1X, 390);
+        drawQuestion(canvas10, paint10, "Cidade", column2X, 370);
+        drawText(canvas10, paint10, "F4_S1_M7_Q7", column2X, 390);
+        drawQuestion(canvas10, paint10, "UF", column1X, 430);
+        drawText(canvas10, paint10, "F4_S1_M7_Q8", column1X, 450);
+
+        paint10.setColor(Color.GRAY);
+        canvas10.drawLine(column1X, 470, 540, 470, paint10);
+
+        drawTitle(canvas10, paint10, "Danos", column1X, 510);
+        drawImage(canvas10, paint10, R.drawable.carro, 40, 530, carWidth, carHeight);
+        drawCheckbox(canvas10, paint10, "F4_S1_M8_Q1", 40, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas10, paint10, "F4_S1_M8_Q2", 40 + checkboxWidth, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas10, paint10, "F4_S1_M8_Q3", 40 + (checkboxWidth * 2), 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas10, paint10, "F4_S1_M8_Q4", 40, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas10, paint10, "F4_S1_M8_Q5", 40 + checkboxWidth, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas10, paint10, "F4_S1_M8_Q6", 40 + (checkboxWidth * 2), 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+
+        pdfDocument.finishPage(page10);
+
+        /* Página 11 */
+        PdfDocument.PageInfo pageInfo11 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 11).create();
+        PdfDocument.Page page11 = pdfDocument.startPage(pageInfo11);
+
+        Canvas canvas11 = page11.getCanvas();
+        Paint paint11 = new Paint();
+        paint11.setColor(Color.parseColor(pdfColorBlue));
+        paint11.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas11, paint11);
+
+        drawRectWithText(canvas11, paint11, "Veículo 3", 40, 150, 500, 40);
+
+        drawQuestion(canvas11, paint11, "Nº de ordem", column1X, 210);
+        drawText(canvas11, paint11, "F4_S2_M1_Q2", column1X, 230);
+        drawQuestion(canvas11, paint11, "Placa", column2X, 210);
+        drawText(canvas11, paint11, "F4_S2_M1_Q3", column2X, 230);
+
+        paint11.setColor(Color.GRAY);
+        canvas11.drawLine(column1X, 250, 540, 250, paint11);
+
+        drawQuestion(canvas11, paint11, "Marca/Modelo", column1X, 290);
+        drawText(canvas11, paint11, "F4_S2_M1_Q4", column1X, 310);
+        drawQuestion(canvas11, paint11, "Tipo do veículo", column2X, 290);
+        drawText(canvas11, paint11, "F4_S2_M1_Q5", column2X, 310);
+        drawQuestion(canvas11, paint11, "Cor predominante", column1X, 350);
+        drawText(canvas11, paint11, "F4_S2_M1_Q6", column1X, 370);
+        drawQuestion(canvas11, paint11, "UF", column2X, 350);
+        drawText(canvas11, paint11, "F4_S2_M1_Q7", column2X, 370);
+        drawQuestion(canvas11, paint11, "Ano de fabricação", column1X, 410);
+        drawText(canvas11, paint11, "F4_S2_M1_Q8", column1X, 430);
+        drawQuestion(canvas11, paint11, "Ano do modelo", column2X, 410);
+        drawText(canvas11, paint11, "F4_S2_M1_Q9", column2X, 430);
+        drawQuestion(canvas11, paint11, "Nº do Chassi", column1X, 470);
+        drawText(canvas11, paint11, "F4_S2_M1_Q10", column1X, 490);
+        drawQuestion(canvas11, paint11, "RENAVAM", column2X, 470);
+        drawText(canvas11, paint11, "F4_S2_M1_Q11", column2X, 490);
+        drawQuestion(canvas11, paint11, "Veículo é da empresa?", column1X, 530);
+        drawText(canvas11, paint11, "F4_S2_M1_Q12", column1X, 550);
+
+        drawTitle(canvas11, paint11, "Dados da empresa", column1X, 590);
+        drawQuestion(canvas11, paint11, "Razão social", column1X, 630);
+        drawText(canvas11, paint11, "F4_S2_M2_Q2", column1X, 650);
+        drawQuestion(canvas11, paint11, "CNPJ", column1X, 690);
+        drawText(canvas11, paint11, "F4_S2_M2_Q3", column1X, 710);
+
+        pdfDocument.finishPage(page11);
+
+        /* Página 12 */
+        PdfDocument.PageInfo pageInfo12 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 12).create();
+        PdfDocument.Page page12 = pdfDocument.startPage(pageInfo12);
+
+        Canvas canvas12 = page12.getCanvas();
+        Paint paint12 = new Paint();
+        paint12.setColor(Color.parseColor(pdfColorBlue));
+        paint12.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas12, paint12);
+
+        drawTitle(canvas12, paint12, "Dados do proprietário", column1X, 150);
+        drawQuestion(canvas12, paint12, "Nome", column1X, 190);
+        drawText(canvas12, paint12, "F4_S2_M3_Q2", column1X, 210);
+        drawQuestion(canvas12, paint12, "CPF", column1X, 250);
+        drawText(canvas12, paint12, "F4_S2_M3_Q3", column1X, 270);
+        drawQuestion(canvas12, paint12, "Data nascimento", column2X, 250);
+        drawText(canvas12, paint12, "F4_S2_M3_Q4", column2X, 270);
+        drawQuestion(canvas12, paint12, "O proprietário é o condutor?", column1X, 310);
+        drawText(canvas12, paint12, "F4_S2_M3_Q5", column1X, 330);
+
+        paint12.setColor(Color.GRAY);
+        canvas12.drawLine(column1X, 350, 540, 350, paint12);
+
+        drawTitle(canvas12, paint12, "Endereço", column1X, 390);
+        drawQuestion(canvas12, paint12, "CEP", column1X, 430);
+        drawText(canvas12, paint12, "F4_S2_M4_Q2", column1X, 450);
+        drawQuestion(canvas12, paint12, "Lograd.", column1X, 490);
+        drawText(canvas12, paint12, "F4_S2_M4_Q3", column1X, 510);
+        drawQuestion(canvas12, paint12, "Número", column1X, 550);
+        drawText(canvas12, paint12, "F4_S2_M4_Q4", column1X, 570);
+        drawQuestion(canvas12, paint12, "Complemento", column2X, 550);
+        drawText(canvas12, paint12, "F4_S2_M4_Q5", column2X, 570);
+        drawQuestion(canvas12, paint12, "Bairro", column1X, 610);
+        drawText(canvas12, paint12, "F4_S2_M4_Q6", column1X, 630);
+        drawQuestion(canvas12, paint12, "Cidade", column2X, 610);
+        drawText(canvas12, paint12, "F4_S2_M4_Q7", column2X, 630);
+        drawQuestion(canvas12, paint12, "UF", column1X, 670);
+        drawText(canvas12, paint12, "F4_S2_M4_Q8", column1X, 690);
+        drawQuestion(canvas12, paint12, "O proprietário é o condutor?", column2X, 670);
+        drawText(canvas12, paint12, "F4_S2_M4_Q9", column2X, 690);
+
+        pdfDocument.finishPage(page12);
+
+        /* Página 13 */
+        PdfDocument.PageInfo pageInfo13 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 13).create();
+        PdfDocument.Page page13 = pdfDocument.startPage(pageInfo13);
+
+        Canvas canvas13 = page13.getCanvas();
+        Paint paint13 = new Paint();
+        paint13.setColor(Color.parseColor(pdfColorBlue));
+        paint13.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas13, paint13);
+
+        drawTitle(canvas13, paint13, "Endereço do proprietário", column1X, 150);
+        drawQuestion(canvas13, paint13, "CEP", column1X, 190);
+        drawText(canvas13, paint13, "F4_S2_M5_Q2", column1X, 210);
+        drawQuestion(canvas13, paint13, "Lograd.", column1X, 250);
+        drawText(canvas13, paint13, "F4_S2_M5_Q3", column1X, 270);
+        drawQuestion(canvas13, paint13, "Número", column1X, 310);
+        drawText(canvas13, paint13, "F4_S2_M5_Q4", column1X, 330);
+        drawQuestion(canvas13, paint13, "Complemento", column2X, 310);
+        drawText(canvas13, paint13, "F4_S2_M5_Q5", column2X, 330);
+        drawQuestion(canvas13, paint13, "Bairro", column1X, 370);
+        drawText(canvas13, paint13, "F4_S2_M5_Q6", column1X, 390);
+        drawQuestion(canvas13, paint13, "Cidade", column2X, 370);
+        drawText(canvas13, paint13, "F4_S2_M5_Q7", column2X, 390);
+        drawQuestion(canvas13, paint13, "UF", column1X, 430);
+        drawText(canvas13, paint13, "F4_S2_M5_Q8", column1X, 450);
+        drawQuestion(canvas13, paint13, "Nº CNH", column2X, 430);
+        drawText(canvas13, paint13, "F4_S2_M5_Q9", column2X, 450);
+        drawQuestion(canvas13, paint13, "Validade", column1X, 490);
+        drawText(canvas13, paint13, "F4_S2_M5_Q10", column1X, 510);
+
+        paint13.setColor(Color.GRAY);
+        canvas13.drawLine(column1X, 530, 540, 530, paint13);
+
+        drawTitle(canvas13, paint13, "Dados do condutor", column1X, 570);
+        drawQuestion(canvas13, paint13, "Nome", column1X, 610);
+        drawText(canvas13, paint13, "F4_S2_M6_Q2", column1X, 630);
+        drawQuestion(canvas13, paint13, "CPF", column1X, 670);
+        drawText(canvas13, paint13, "F4_S2_M6_Q3", column1X, 690);
+        drawQuestion(canvas13, paint13, "Data de nascimento", column2X, 670);
+        drawText(canvas13, paint13, "F4_S2_M6_Q4", column2X, 690);
+        drawQuestion(canvas13, paint13, "Nº CNH", column1X, 730);
+        drawText(canvas13, paint13, "F4_S2_M6_Q5", column1X, 750);
+        drawQuestion(canvas13, paint13, "Validade", column2X, 730);
+        drawText(canvas13, paint13, "F4_S2_M6_Q6", column2X, 750);
+
+        pdfDocument.finishPage(page13);
+
+        /* Página 14 */
+        PdfDocument.PageInfo pageInfo14 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 14).create();
+        PdfDocument.Page page14 = pdfDocument.startPage(pageInfo14);
+
+        Canvas canvas14 = page14.getCanvas();
+        Paint paint14 = new Paint();
+        paint14.setColor(Color.parseColor(pdfColorBlue));
+        paint14.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas14, paint14);
+
+        drawTitle(canvas14, paint14, "Endereço do condutor", column1X, 150);
+        drawQuestion(canvas14, paint14, "CEP", column1X, 190);
+        drawText(canvas14, paint14, "F4_S2_M7_Q2", column1X, 210);
+        drawQuestion(canvas14, paint14, "Lograd.", column1X, 250);
+        drawText(canvas14, paint14, "F4_S2_M7_Q3", column1X, 270);
+        drawQuestion(canvas14, paint14, "Número", column1X, 310);
+        drawText(canvas14, paint14, "F4_S2_M7_Q4", column1X, 330);
+        drawQuestion(canvas14, paint14, "Complemento", column2X, 310);
+        drawText(canvas14, paint14, "F4_S2_M7_Q5", column2X, 330);
+        drawQuestion(canvas14, paint14, "Bairro", column1X, 370);
+        drawText(canvas14, paint14, "F4_S2_M7_Q6", column1X, 390);
+        drawQuestion(canvas14, paint14, "Cidade", column2X, 370);
+        drawText(canvas14, paint14, "F4_S2_M7_Q7", column2X, 390);
+        drawQuestion(canvas14, paint14, "UF", column1X, 430);
+        drawText(canvas14, paint14, "F4_S2_M7_Q8", column1X, 450);
+
+        paint14.setColor(Color.GRAY);
+        canvas14.drawLine(column1X, 470, 540, 470, paint14);
+
+        drawTitle(canvas14, paint14, "Danos", column1X, 510);
+        drawImage(canvas14, paint14, R.drawable.carro, 40, 530, carWidth, carHeight);
+        drawCheckbox(canvas14, paint14, "F4_S2_M8_Q1", 40, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas14, paint14, "F4_S2_M8_Q2", 40 + checkboxWidth, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas14, paint14, "F4_S2_M8_Q3", 40 + (checkboxWidth * 2), 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas14, paint14, "F4_S2_M8_Q4", 40, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas14, paint14, "F4_S2_M8_Q5", 40 + checkboxWidth, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas14, paint14, "F4_S2_M8_Q6", 40 + (checkboxWidth * 2), 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+
+        pdfDocument.finishPage(page14);
+
+        /* Página 15 */
+        PdfDocument.PageInfo pageInfo15 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 15).create();
+        PdfDocument.Page page15 = pdfDocument.startPage(pageInfo15);
+
+        Canvas canvas15 = page15.getCanvas();
+        Paint paint15 = new Paint();
+        paint15.setColor(Color.parseColor(pdfColorBlue));
+        paint15.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas15, paint15);
+
+        drawRectWithText(canvas15, paint15, "Veículo 4", 40, 150, 500, 40);
+
+        drawQuestion(canvas15, paint15, "Nº de ordem", column1X, 210);
+        drawText(canvas15, paint15, "F4_S3_M1_Q2", column1X, 230);
+        drawQuestion(canvas15, paint15, "Placa", column2X, 210);
+        drawText(canvas15, paint15, "F4_S3_M1_Q3", column2X, 230);
+
+        paint15.setColor(Color.GRAY);
+        canvas15.drawLine(column1X, 250, 540, 250, paint15);
+
+        drawQuestion(canvas15, paint15, "Marca/Modelo", column1X, 290);
+        drawText(canvas15, paint15, "F4_S3_M1_Q4", column1X, 310);
+        drawQuestion(canvas15, paint15, "Tipo do veículo", column2X, 290);
+        drawText(canvas15, paint15, "F4_S3_M1_Q5", column2X, 310);
+        drawQuestion(canvas15, paint15, "Cor predominante", column1X, 350);
+        drawText(canvas15, paint15, "F4_S3_M1_Q6", column1X, 370);
+        drawQuestion(canvas15, paint15, "UF", column2X, 350);
+        drawText(canvas15, paint15, "F4_S3_M1_Q7", column2X, 370);
+        drawQuestion(canvas15, paint15, "Ano de fabricação", column1X, 410);
+        drawText(canvas15, paint15, "F4_S3_M1_Q8", column1X, 430);
+        drawQuestion(canvas15, paint15, "Ano do modelo", column2X, 410);
+        drawText(canvas15, paint15, "F4_S3_M1_Q9", column2X, 430);
+        drawQuestion(canvas15, paint15, "Nº do Chassi", column1X, 470);
+        drawText(canvas15, paint15, "F4_S3_M1_Q10", column1X, 490);
+        drawQuestion(canvas15, paint15, "RENAVAM", column2X, 470);
+        drawText(canvas15, paint15, "F4_S3_M1_Q11", column2X, 490);
+        drawQuestion(canvas15, paint15, "Veículo é da empresa?", column1X, 530);
+        drawText(canvas15, paint15, "F4_S3_M1_Q12", column1X, 550);
+
+        drawTitle(canvas15, paint15, "Dados da empresa", column1X, 590);
+        drawQuestion(canvas15, paint15, "Razão social", column1X, 630);
+        drawText(canvas15, paint15, "F4_S3_M2_Q2", column1X, 650);
+        drawQuestion(canvas15, paint15, "CNPJ", column1X, 690);
+        drawText(canvas15, paint15, "F4_S3_M2_Q3", column1X, 710);
+
+        pdfDocument.finishPage(page15);
+
+        /* Página 16 */
+        PdfDocument.PageInfo pageInfo16 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 16).create();
+        PdfDocument.Page page16 = pdfDocument.startPage(pageInfo16);
+
+        Canvas canvas16 = page16.getCanvas();
+        Paint paint16 = new Paint();
+        paint16.setColor(Color.parseColor(pdfColorBlue));
+        paint16.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas16, paint16);
+
+        drawTitle(canvas16, paint16, "Dados do proprietário", column1X, 150);
+        drawQuestion(canvas16, paint16, "Nome", column1X, 190);
+        drawText(canvas16, paint16, "F4_S3_M3_Q2", column1X, 210);
+        drawQuestion(canvas16, paint16, "CPF", column1X, 250);
+        drawText(canvas16, paint16, "F4_S3_M3_Q3", column1X, 270);
+        drawQuestion(canvas16, paint16, "Data nascimento", column2X, 250);
+        drawText(canvas16, paint16, "F4_S3_M3_Q4", column2X, 270);
+        drawQuestion(canvas16, paint16, "O proprietário é o condutor?", column1X, 310);
+        drawText(canvas16, paint16, "F4_S3_M3_Q5", column1X, 330);
+
+        paint16.setColor(Color.GRAY);
+        canvas16.drawLine(column1X, 350, 540, 350, paint16);
+
+        drawTitle(canvas16, paint16, "Endereço", column1X, 390);
+        drawQuestion(canvas16, paint16, "CEP", column1X, 430);
+        drawText(canvas16, paint16, "F4_S3_M4_Q2", column1X, 450);
+        drawQuestion(canvas16, paint16, "Lograd.", column1X, 490);
+        drawText(canvas16, paint16, "F4_S3_M4_Q3", column1X, 510);
+        drawQuestion(canvas16, paint16, "Número", column1X, 550);
+        drawText(canvas16, paint16, "F4_S3_M4_Q4", column1X, 570);
+        drawQuestion(canvas16, paint16, "Complemento", column2X, 550);
+        drawText(canvas16, paint16, "F4_S3_M4_Q5", column2X, 570);
+        drawQuestion(canvas16, paint16, "Bairro", column1X, 610);
+        drawText(canvas16, paint16, "F4_S3_M4_Q6", column1X, 630);
+        drawQuestion(canvas16, paint16, "Cidade", column2X, 610);
+        drawText(canvas16, paint16, "F4_S3_M4_Q7", column2X, 630);
+        drawQuestion(canvas16, paint16, "UF", column1X, 670);
+        drawText(canvas16, paint16, "F4_S3_M4_Q8", column1X, 690);
+        drawQuestion(canvas16, paint16, "O proprietário é o condutor?", column2X, 670);
+        drawText(canvas16, paint16, "F4_S3_M4_Q9", column2X, 690);
+
+        pdfDocument.finishPage(page16);
+
+        /* Página 17 */
+        PdfDocument.PageInfo pageInfo17 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 17).create();
+        PdfDocument.Page page17 = pdfDocument.startPage(pageInfo17);
+
+        Canvas canvas17 = page17.getCanvas();
+        Paint paint17 = new Paint();
+        paint17.setColor(Color.parseColor(pdfColorBlue));
+        paint17.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas17, paint17);
+
+        drawTitle(canvas17, paint17, "Endereço do proprietário", column1X, 150);
+        drawQuestion(canvas17, paint17, "CEP", column1X, 190);
+        drawText(canvas17, paint17, "F4_S3_M5_Q2", column1X, 210);
+        drawQuestion(canvas17, paint17, "Lograd.", column1X, 250);
+        drawText(canvas17, paint17, "F4_S3_M5_Q3", column1X, 270);
+        drawQuestion(canvas17, paint17, "Número", column1X, 310);
+        drawText(canvas17, paint17, "F4_S3_M5_Q4", column1X, 330);
+        drawQuestion(canvas17, paint17, "Complemento", column2X, 310);
+        drawText(canvas17, paint17, "F4_S3_M5_Q5", column2X, 330);
+        drawQuestion(canvas17, paint17, "Bairro", column1X, 370);
+        drawText(canvas17, paint17, "F4_S3_M5_Q6", column1X, 390);
+        drawQuestion(canvas17, paint17, "Cidade", column2X, 370);
+        drawText(canvas17, paint17, "F4_S3_M5_Q7", column2X, 390);
+        drawQuestion(canvas17, paint17, "UF", column1X, 430);
+        drawText(canvas17, paint17, "F4_S3_M5_Q8", column1X, 450);
+        drawQuestion(canvas17, paint17, "Nº CNH", column2X, 430);
+        drawText(canvas17, paint17, "F4_S3_M5_Q9", column2X, 450);
+        drawQuestion(canvas17, paint17, "Validade", column1X, 490);
+        drawText(canvas17, paint17, "F4_S3_M5_Q10", column1X, 510);
+
+        paint17.setColor(Color.GRAY);
+        canvas17.drawLine(column1X, 530, 540, 530, paint17);
+
+        drawTitle(canvas17, paint17, "Dados do condutor", column1X, 570);
+        drawQuestion(canvas17, paint17, "Nome", column1X, 610);
+        drawText(canvas17, paint17, "F4_S3_M6_Q2", column1X, 630);
+        drawQuestion(canvas17, paint17, "CPF", column1X, 670);
+        drawText(canvas17, paint17, "F4_S3_M6_Q3", column1X, 690);
+        drawQuestion(canvas17, paint17, "Data de nascimento", column2X, 670);
+        drawText(canvas17, paint17, "F4_S3_M6_Q4", column2X, 690);
+        drawQuestion(canvas17, paint17, "Nº CNH", column1X, 730);
+        drawText(canvas17, paint17, "F4_S3_M6_Q5", column1X, 750);
+        drawQuestion(canvas17, paint17, "Validade", column2X, 730);
+        drawText(canvas17, paint17, "F4_S3_M6_Q6", column2X, 750);
+
+        pdfDocument.finishPage(page17);
+
+        /* Página 18 */
+        PdfDocument.PageInfo pageInfo18 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 18).create();
+        PdfDocument.Page page18 = pdfDocument.startPage(pageInfo18);
+
+        Canvas canvas18 = page18.getCanvas();
+        Paint paint18 = new Paint();
+        paint18.setColor(Color.parseColor(pdfColorBlue));
+        paint18.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas18, paint18);
+
+        drawTitle(canvas18, paint18, "Endereço do condutor", column1X, 150);
+        drawQuestion(canvas18, paint18, "CEP", column1X, 190);
+        drawText(canvas18, paint18, "F4_S3_M7_Q2", column1X, 210);
+        drawQuestion(canvas18, paint18, "Lograd.", column1X, 250);
+        drawText(canvas18, paint18, "F4_S3_M7_Q3", column1X, 270);
+        drawQuestion(canvas18, paint18, "Número", column1X, 310);
+        drawText(canvas18, paint18, "F4_S3_M7_Q4", column1X, 330);
+        drawQuestion(canvas18, paint18, "Complemento", column2X, 310);
+        drawText(canvas18, paint18, "F4_S3_M7_Q5", column2X, 330);
+        drawQuestion(canvas18, paint18, "Bairro", column1X, 370);
+        drawText(canvas18, paint18, "F4_S3_M7_Q6", column1X, 390);
+        drawQuestion(canvas18, paint18, "Cidade", column2X, 370);
+        drawText(canvas18, paint18, "F4_S3_M7_Q7", column2X, 390);
+        drawQuestion(canvas18, paint18, "UF", column1X, 430);
+        drawText(canvas18, paint18, "F4_S3_M7_Q8", column1X, 450);
+
+        paint18.setColor(Color.GRAY);
+        canvas18.drawLine(column1X, 470, 540, 470, paint18);
+
+        drawTitle(canvas18, paint18, "Danos", column1X, 510);
+        drawImage(canvas18, paint18, R.drawable.carro, 40, 530, carWidth, carHeight);
+        drawCheckbox(canvas18, paint18, "F4_S3_M8_Q1", 40, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas18, paint18, "F4_S3_M8_Q2", 40 + checkboxWidth, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas18, paint18, "F4_S3_M8_Q3", 40 + (checkboxWidth * 2), 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas18, paint18, "F4_S3_M8_Q4", 40, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas18, paint18, "F4_S3_M8_Q5", 40 + checkboxWidth, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas18, paint18, "F4_S3_M8_Q6", 40 + (checkboxWidth * 2), 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+
+        pdfDocument.finishPage(page18);
+
+        /* Página 19 */
+        PdfDocument.PageInfo pageInfo19 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 19).create();
+        PdfDocument.Page page19 = pdfDocument.startPage(pageInfo19);
+
+        Canvas canvas19 = page19.getCanvas();
+        Paint paint19 = new Paint();
+        paint19.setColor(Color.parseColor(pdfColorBlue));
+        paint19.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas19, paint19);
+
+        drawRectWithText(canvas19, paint19, "Veículo 5", 40, 150, 500, 40);
+
+        drawQuestion(canvas19, paint19, "Nº de ordem", column1X, 210);
+        drawText(canvas19, paint19, "F4_S4_M1_Q2", column1X, 230);
+        drawQuestion(canvas19, paint19, "Placa", column2X, 210);
+        drawText(canvas19, paint19, "F4_S4_M1_Q3", column2X, 230);
+
+        paint19.setColor(Color.GRAY);
+        canvas19.drawLine(column1X, 250, 540, 250, paint19);
+
+        drawQuestion(canvas19, paint19, "Marca/Modelo", column1X, 290);
+        drawText(canvas19, paint19, "F4_S4_M1_Q4", column1X, 310);
+        drawQuestion(canvas19, paint19, "Tipo do veículo", column2X, 290);
+        drawText(canvas19, paint19, "F4_S4_M1_Q5", column2X, 310);
+        drawQuestion(canvas19, paint19, "Cor predominante", column1X, 350);
+        drawText(canvas19, paint19, "F4_S4_M1_Q6", column1X, 370);
+        drawQuestion(canvas19, paint19, "UF", column2X, 350);
+        drawText(canvas19, paint19, "F4_S4_M1_Q7", column2X, 370);
+        drawQuestion(canvas19, paint19, "Ano de fabricação", column1X, 410);
+        drawText(canvas19, paint19, "F4_S4_M1_Q8", column1X, 430);
+        drawQuestion(canvas19, paint19, "Ano do modelo", column2X, 410);
+        drawText(canvas19, paint19, "F4_S4_M1_Q9", column2X, 430);
+        drawQuestion(canvas19, paint19, "Nº do Chassi", column1X, 470);
+        drawText(canvas19, paint19, "F4_S4_M1_Q10", column1X, 490);
+        drawQuestion(canvas19, paint19, "RENAVAM", column2X, 470);
+        drawText(canvas19, paint19, "F4_S4_M1_Q11", column2X, 490);
+        drawQuestion(canvas19, paint19, "Veículo é da empresa?", column1X, 530);
+        drawText(canvas19, paint19, "F4_S4_M1_Q12", column1X, 550);
+
+        drawTitle(canvas19, paint19, "Dados da empresa", column1X, 590);
+        drawQuestion(canvas19, paint19, "Razão social", column1X, 630);
+        drawText(canvas19, paint19, "F4_S4_M2_Q2", column1X, 650);
+        drawQuestion(canvas19, paint19, "CNPJ", column1X, 690);
+        drawText(canvas19, paint19, "F4_S4_M2_Q3", column1X, 710);
+
+        pdfDocument.finishPage(page19);
+
+        /* Página 20 */
+        PdfDocument.PageInfo pageInfo20 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 20).create();
+        PdfDocument.Page page20 = pdfDocument.startPage(pageInfo20);
+
+        Canvas canvas20 = page20.getCanvas();
+        Paint paint20 = new Paint();
+        paint20.setColor(Color.parseColor(pdfColorBlue));
+        paint20.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas20, paint20);
+
+        drawTitle(canvas20, paint20, "Dados do proprietário", column1X, 150);
+        drawQuestion(canvas20, paint20, "Nome", column1X, 190);
+        drawText(canvas20, paint20, "F4_S4_M3_Q2", column1X, 210);
+        drawQuestion(canvas20, paint20, "CPF", column1X, 250);
+        drawText(canvas20, paint20, "F4_S4_M3_Q3", column1X, 270);
+        drawQuestion(canvas20, paint20, "Data nascimento", column2X, 250);
+        drawText(canvas20, paint20, "F4_S4_M3_Q4", column2X, 270);
+        drawQuestion(canvas20, paint20, "O proprietário é o condutor?", column1X, 310);
+        drawText(canvas20, paint20, "F4_S4_M3_Q5", column1X, 330);
+
+        paint20.setColor(Color.GRAY);
+        canvas20.drawLine(column1X, 350, 540, 350, paint20);
+
+        drawTitle(canvas20, paint20, "Endereço", column1X, 390);
+        drawQuestion(canvas20, paint20, "CEP", column1X, 430);
+        drawText(canvas20, paint20, "F4_S4_M4_Q2", column1X, 450);
+        drawQuestion(canvas20, paint20, "Lograd.", column1X, 490);
+        drawText(canvas20, paint20, "F4_S4_M4_Q3", column1X, 510);
+        drawQuestion(canvas20, paint20, "Número", column1X, 550);
+        drawText(canvas20, paint20, "F4_S4_M4_Q4", column1X, 570);
+        drawQuestion(canvas20, paint20, "Complemento", column2X, 550);
+        drawText(canvas20, paint20, "F4_S4_M4_Q5", column2X, 570);
+        drawQuestion(canvas20, paint20, "Bairro", column1X, 610);
+        drawText(canvas20, paint20, "F4_S4_M4_Q6", column1X, 630);
+        drawQuestion(canvas20, paint20, "Cidade", column2X, 610);
+        drawText(canvas20, paint20, "F4_S4_M4_Q7", column2X, 630);
+        drawQuestion(canvas20, paint20, "UF", column1X, 670);
+        drawText(canvas20, paint20, "F4_S4_M4_Q8", column1X, 690);
+        drawQuestion(canvas20, paint20, "O proprietário é o condutor?", column2X, 670);
+        drawText(canvas20, paint20, "F4_S4_M4_Q9", column2X, 690);
+
+        pdfDocument.finishPage(page20);
+
+        /* Página 21 */
+        PdfDocument.PageInfo pageInfo21 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 21).create();
+        PdfDocument.Page page21 = pdfDocument.startPage(pageInfo21);
+
+        Canvas canvas21 = page21.getCanvas();
+        Paint paint21 = new Paint();
+        paint21.setColor(Color.parseColor(pdfColorBlue));
+        paint21.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas21, paint21);
+
+        drawTitle(canvas21, paint21, "Endereço do proprietário", column1X, 150);
+        drawQuestion(canvas21, paint21, "CEP", column1X, 190);
+        drawText(canvas21, paint21, "F4_S4_M5_Q2", column1X, 210);
+        drawQuestion(canvas21, paint21, "Lograd.", column1X, 250);
+        drawText(canvas21, paint21, "F4_S4_M5_Q3", column1X, 270);
+        drawQuestion(canvas21, paint21, "Número", column1X, 310);
+        drawText(canvas21, paint21, "F4_S4_M5_Q4", column1X, 330);
+        drawQuestion(canvas21, paint21, "Complemento", column2X, 310);
+        drawText(canvas21, paint21, "F4_S4_M5_Q5", column2X, 330);
+        drawQuestion(canvas21, paint21, "Bairro", column1X, 370);
+        drawText(canvas21, paint21, "F4_S4_M5_Q6", column1X, 390);
+        drawQuestion(canvas21, paint21, "Cidade", column2X, 370);
+        drawText(canvas21, paint21, "F4_S4_M5_Q7", column2X, 390);
+        drawQuestion(canvas21, paint21, "UF", column1X, 430);
+        drawText(canvas21, paint21, "F4_S4_M5_Q8", column1X, 450);
+        drawQuestion(canvas21, paint21, "Nº CNH", column2X, 430);
+        drawText(canvas21, paint21, "F4_S4_M5_Q9", column2X, 450);
+        drawQuestion(canvas21, paint21, "Validade", column1X, 490);
+        drawText(canvas21, paint21, "F4_S4_M5_Q10", column1X, 510);
+
+        paint21.setColor(Color.GRAY);
+        canvas21.drawLine(column1X, 530, 540, 530, paint21);
+
+        drawTitle(canvas21, paint21, "Dados do condutor", column1X, 570);
+        drawQuestion(canvas21, paint21, "Nome", column1X, 610);
+        drawText(canvas21, paint21, "F4_S4_M6_Q2", column1X, 630);
+        drawQuestion(canvas21, paint21, "CPF", column1X, 670);
+        drawText(canvas21, paint21, "F4_S4_M6_Q3", column1X, 690);
+        drawQuestion(canvas21, paint21, "Data de nascimento", column2X, 670);
+        drawText(canvas21, paint21, "F4_S4_M6_Q4", column2X, 690);
+        drawQuestion(canvas21, paint21, "Nº CNH", column1X, 730);
+        drawText(canvas21, paint21, "F4_S4_M6_Q5", column1X, 750);
+        drawQuestion(canvas21, paint21, "Validade", column2X, 730);
+        drawText(canvas21, paint21, "F4_S4_M6_Q6", column2X, 750);
+
+        pdfDocument.finishPage(page21);
+
+        /* Página 22 */
+        PdfDocument.PageInfo pageInfo22 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 22).create();
+        PdfDocument.Page page22 = pdfDocument.startPage(pageInfo22);
+
+        Canvas canvas22 = page22.getCanvas();
+        Paint paint22 = new Paint();
+        paint22.setColor(Color.parseColor(pdfColorBlue));
+        paint22.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas22, paint22);
+
+        drawTitle(canvas22, paint22, "Endereço do condutor", column1X, 150);
+        drawQuestion(canvas22, paint22, "CEP", column1X, 190);
+        drawText(canvas22, paint22, "F4_S4_M7_Q2", column1X, 210);
+        drawQuestion(canvas22, paint22, "Lograd.", column1X, 250);
+        drawText(canvas22, paint22, "F4_S4_M7_Q3", column1X, 270);
+        drawQuestion(canvas22, paint22, "Número", column1X, 310);
+        drawText(canvas22, paint22, "F4_S4_M7_Q4", column1X, 330);
+        drawQuestion(canvas22, paint22, "Complemento", column2X, 310);
+        drawText(canvas22, paint22, "F4_S4_M7_Q5", column2X, 330);
+        drawQuestion(canvas22, paint22, "Bairro", column1X, 370);
+        drawText(canvas22, paint22, "F4_S4_M7_Q6", column1X, 390);
+        drawQuestion(canvas22, paint22, "Cidade", column2X, 370);
+        drawText(canvas22, paint22, "F4_S4_M7_Q7", column2X, 390);
+        drawQuestion(canvas22, paint22, "UF", column1X, 430);
+        drawText(canvas22, paint22, "F4_S4_M7_Q8", column1X, 450);
+
+        paint22.setColor(Color.GRAY);
+        canvas22.drawLine(column1X, 470, 540, 470, paint22);
+
+        drawTitle(canvas22, paint22, "Danos", column1X, 510);
+        drawImage(canvas22, paint22, R.drawable.carro, 40, 530, carWidth, carHeight);
+        drawCheckbox(canvas22, paint22, "F4_S4_M8_Q1", 40, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas22, paint22, "F4_S4_M8_Q2", 40 + checkboxWidth, 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas22, paint22, "F4_S4_M8_Q3", 40 + (checkboxWidth * 2), 530, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas22, paint22, "F4_S4_M8_Q4", 40, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas22, paint22, "F4_S4_M8_Q5", 40 + checkboxWidth, 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+        drawCheckbox(canvas22, paint22, "F4_S4_M8_Q6", 40 + (checkboxWidth * 2), 530 + checkboxHeight, checkboxWidth, checkboxHeight);
+
+        pdfDocument.finishPage(page22);
+
+        /* Página 23 */
+        PdfDocument.PageInfo pageInfo23 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 23).create();
+        PdfDocument.Page page23 = pdfDocument.startPage(pageInfo23);
+
+        Canvas canvas23 = page23.getCanvas();
+        Paint paint23 = new Paint();
+        paint23.setColor(Color.parseColor(pdfColorBlue));
+        paint23.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas23, paint23);
+
+        drawTitle(canvas23, paint23, "Testemunha 1", column1X, 150);
+        drawQuestion(canvas23, paint23, "Nome", column1X, 190);
+        drawText(canvas23, paint23, "F5_S1_Q2", column1X, 210);
+        drawQuestion(canvas23, paint23, "CPF", column1X, 250);
+        drawText(canvas23, paint23, "F5_S1_Q3", column1X, 270);
+        drawQuestion(canvas23, paint23, "Celular", column2X, 250);
+        drawText(canvas23, paint23, "F5_S1_Q4", column2X, 270);
+
+        paint23.setColor(Color.GRAY);
+        canvas23.drawLine(column1X, 290, 540, 290, paint23);
+
+        drawTitle(canvas23, paint23, "Testemunha 2", column1X, 330);
+        drawQuestion(canvas23, paint23, "Nome", column1X, 370);
+        drawText(canvas23, paint23, "F5_S2_Q2", column1X, 390);
+        drawQuestion(canvas23, paint23, "CPF", column1X, 430);
+        drawText(canvas23, paint23, "F5_S2_Q3", column1X, 450);
+        drawQuestion(canvas23, paint23, "Celular", column2X, 430);
+        drawText(canvas23, paint23, "F5_S2_Q4", column2X, 450);
+
+        paint23.setColor(Color.GRAY);
+        canvas23.drawLine(column1X, 470, 540, 470, paint23);
+
+        drawTitle(canvas23, paint23, "Testemunha 3", column1X, 510);
+        drawQuestion(canvas23, paint23, "Nome", column1X, 550);
+        drawText(canvas23, paint23, "F5_S3_Q2", column1X, 570);
+        drawQuestion(canvas23, paint23, "CPF", column1X, 610);
+        drawText(canvas23, paint23, "F5_S3_Q3", column1X, 630);
+        drawQuestion(canvas23, paint23, "Celular", column2X, 610);
+        drawText(canvas23, paint23, "F5_S3_Q4", column2X, 630);
+
+        paint23.setColor(Color.GRAY);
+        canvas23.drawLine(column1X, 650, 540, 650, paint23);
+
+        drawTitle(canvas23, paint23, "Testemunha 4", column1X, 690);
+        drawQuestion(canvas23, paint23, "Nome", column1X, 730);
+        drawText(canvas23, paint23, "F5_S3_Q2", column1X, 750);
+        drawQuestion(canvas23, paint23, "CPF", column1X, 790);
+        drawText(canvas23, paint23, "F5_S3_Q3", column1X, 810);
+        drawQuestion(canvas23, paint23, "Celular", column2X, 790);
+        drawText(canvas23, paint23, "F5_S3_Q4", column2X, 810);
+
+        pdfDocument.finishPage(page23);
+
+        /* Página 24 */
+        PdfDocument.PageInfo pageInfo24 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 24).create();
+        PdfDocument.Page page24 = pdfDocument.startPage(pageInfo24);
+
+        Canvas canvas24 = page24.getCanvas();
+        Paint paint24 = new Paint();
+        paint24.setColor(Color.parseColor(pdfColorBlue));
+        paint24.setTextSize(42);
+        //
+        TextPaint paint24_2 = new TextPaint();
+        paint24_2.setColor(Color.parseColor(pdfColorBlue));
+        paint24_2.setTextSize(42);
+
+        /* Cabeçalho */
+        drawHeader(canvas24, paint24);
+
+        drawTitle(canvas24, paint24, "Detalhes do fato", column1X, 150);
+        drawMultiText(canvas24, paint24_2, "F6_S1_Q2", column1X, 170, 500);
+
+        pdfDocument.finishPage(page24);
 
         try {
             // Salvar o PDF no armazenamento do dispositivo
@@ -840,7 +1668,7 @@ public class Form7Activity extends AppCompatActivity {
         }
 
         pdfDocument.close();
-        //submitPDF(file);
+        submitPDF(file);
     }
 
     /* Função do PDF: Desenhando o cabeçalho */
@@ -900,6 +1728,38 @@ public class Form7Activity extends AppCompatActivity {
         }
     }
 
+    /* Função do PDF: Desenhando um texto com multiplas linhas */
+    private void drawMultiText(Canvas canvas, TextPaint paint, String answerId, int x, int y, int width) {
+        paint.setColor(Color.GRAY);
+        paint.setTextSize(24);
+
+        try {
+            TextView textView = (TextView) findViewByName(answerId);
+            if(textView != null) {
+                CharSequence text = textView.getText();
+                if(text.length() > 0) {
+                    StaticLayout staticLayout = new StaticLayout(
+                            text,
+                            paint,
+                            width,
+                            Layout.Alignment.ALIGN_NORMAL,
+                            1.0f,
+                            0.0f,
+                            false
+                    );
+                    canvas.save();
+                    canvas.translate(x, y);
+                    staticLayout.draw(canvas);
+                    canvas.restore();
+                } else {
+                    canvas.drawText("Não informado", x, y, paint);
+                }
+            }
+        } catch(Exception e) {
+            Log.e(logId, "" + e);
+        }
+    }
+
     /* Função do PDF: Desenhando uma imagem */
     private void drawImage(Canvas canvas, Paint paint, int image, int x, int y, int width, int height) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image);
@@ -908,19 +1768,22 @@ public class Form7Activity extends AppCompatActivity {
     }
 
     /* Função do PDF: Desenhando um checkbox */
-    private void drawCheckbox(Canvas canvas, Paint paint, String answerId, int x, int y) {
+    private void drawCheckbox(Canvas canvas, Paint paint, String answerId, int x, int y, int width, int height) {
         try {
             CheckBox checkBox = (CheckBox) findViewByName(answerId);
             if(checkBox != null) {
-                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.damage_area);
-                Bitmap bitmap = drawableToBitmap(canvas, drawable);
-                if (bitmap != null) {
-                    assert drawable != null;
-                    drawable.setBounds(0, 90, (500 / 3), (500 / 3));
-                    drawable.draw(canvas);
+                Paint borderPaint = new Paint();
+                borderPaint.setColor(Color.LTGRAY);
+                borderPaint.setStyle(Paint.Style.STROKE);
+                borderPaint.setStrokeWidth(3);
+                if(checkBox.isChecked()) {
+                    paint.setColor(Color.parseColor("#332090FF"));
                 } else {
-                    Log.e(logId, "E");
+                    paint.setColor(Color.parseColor("#00FFFFFF"));
                 }
+                paint.setStyle(Paint.Style.FILL);
+                canvas.drawRect(x, y, (x + width), (y + height), paint);
+                canvas.drawRect(x, y, (x + width), (y + height), borderPaint);
             }
         } catch(Exception e) {
             Log.e(logId, "" + e);
@@ -931,29 +1794,6 @@ public class Form7Activity extends AppCompatActivity {
     private View findViewByName(String viewName) {
         int viewId = getResources().getIdentifier(viewName, "id", getPackageName());
         return findViewById(viewId);
-    }
-
-    /* Função para converter drawable em bitmap */
-    private Bitmap drawableToBitmap(Canvas canvas, Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable) drawable).getBitmap();
-        }
-
-        int width = drawable.getIntrinsicWidth();
-        int height = drawable.getIntrinsicHeight();
-
-        if (width <= 0) {
-            width = 100;
-        }
-        if (height <= 0) {
-            height = 100;
-        }
-
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        //drawable.draw(canvas);
-
-        return bitmap;
     }
 
     /* Função para enviar o PDF por email */

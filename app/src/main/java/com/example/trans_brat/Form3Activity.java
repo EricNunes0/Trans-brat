@@ -542,7 +542,7 @@ public class Form3Activity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    String str = s.toString().replaceAll("[^\\d]", "");
+                    String str = s.toString().replaceAll("[^a-zA-Z0-9]", "");
 
                     if (isUpdating) {
                         isUpdating = false;
