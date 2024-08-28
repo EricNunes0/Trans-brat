@@ -6,6 +6,8 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="Title_login">Login</string>
     <string name="Title_cadastro">Cadastro</string>
+    <string name="form_1_section_0_question_1">Seu nome</string>
+    <string name="form_1_section_0_question_2">Sua matrícula</string>
     <string name="form_1_section_1_question_1">O acidente ocorreu no estado do Rio de Janeiro?</string>
     <string name="form_1_section_2_question_1">Sua nacionalidade é brasileira?</string>
     <string name="form_1_section_3_question_1">O acidente ocorreu em uma rodovia federal (BR)?</string>

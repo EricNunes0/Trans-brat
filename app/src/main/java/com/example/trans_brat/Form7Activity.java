@@ -54,6 +54,8 @@ public class Form7Activity extends AppCompatActivity {
     -> 1: Checkbox
     */
     private final String[][] allAnswers = {
+            {"F1_S0_Q1", String.valueOf(R.id.F1_S0_Q1), "0"},
+            {"F1_S0_Q2", String.valueOf(R.id.F1_S0_Q2), "0"},
             {"F2_S1_Q2", String.valueOf(R.id.F2_S1_Q2), "0"},
             {"F2_S1_Q3", String.valueOf(R.id.F2_S1_Q3), "0"},
             {"F2_S2_Q2", String.valueOf(R.id.F2_S2_Q2), "0"},
@@ -385,10 +387,6 @@ public class Form7Activity extends AppCompatActivity {
         /* Escondendo todos os LinearLayout's */
         linearLayoutsHide();
 
-        /* Criando PDF */
-        Button buttonPDF = findViewById(R.id.create_pdf_button);
-        buttonPDF.setOnClickListener(v -> createPDF());
-
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
         Button buttonCancel = findViewById(R.id.cancel_button);
@@ -478,40 +476,6 @@ public class Form7Activity extends AppCompatActivity {
         }
     }
 
-    /* Função para enviar respostas para o formulário seguinte */
-    private void sendAnswersToNextForm(Intent intent) {
-        /* Enviando respostas dos formulários anteriores */
-        /*for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
-            String toSendAnswerId = previousAnswersIds[i];
-            String answer = getIntent().getStringExtra(toSendAnswerId);
-            intent.putExtra(toSendAnswerId, answer);
-            Log.i(logId, toSendAnswerId + " - " + answer);
-        }*/
-        /* Enviando respostas deste formulário */
-        /*int j = 0;
-        for(int i = 0; i <= toSendAnswersIds.length - 1; i++) {
-            if(i < all_questions.length) {
-                //Log.e(logId, i + " Index do all_questions: " + toSendAnswersIds[i + j] + "\nTipo do Index: " + all_questions[i][2]);
-                if (all_questions[i][2] == 3) {
-                    getCheckboxAnswers(intent, i, i + j);
-                    j += 5;
-                } if (all_questions[i][2] == 4) {
-                    getRecyclerViewAnswers(intent, i);
-                    j += 9;
-                } else {
-                    String toSendAnswerId = toSendAnswersIds[i + j];
-                    int requiredQuestionId = all_questions[i][1];
-                    int requiredQuestionType = all_questions[i][2];
-                    String answer = getInputAnswer(requiredQuestionId, requiredQuestionType);
-                    Log.i(logId, toSendAnswerId + " - " + answer);
-                    j += 0;
-                }
-            } else {
-                break;
-            }
-        }*/
-    }
-
     /* Função ao cancelar formulário */
     private void cancel() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Form7Activity.this);
@@ -544,13 +508,9 @@ public class Form7Activity extends AppCompatActivity {
         builder.setPositiveButton("OK", (dialog, which) -> {
             dialog.dismiss();
             Intent intent = new Intent(Form7Activity.this, HomeActivity.class);
-            try {
-                sendAnswersToNextForm(intent);
-            } catch (Exception e) {
-                Log.e(logId, "Erro ao enviar respostas:" + e);
-            }
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             //startActivity(intent);
+            createPDF();
         });
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -559,7 +519,6 @@ public class Form7Activity extends AppCompatActivity {
     /* Função para criar PDF */
     private void createPDF() {
         // Cria um novo documento PDF
-        PdfDocument document = new PdfDocument();
         String fileName = "ebrat.pdf";
         String directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString();
         File file = new File(directoryPath, fileName);
@@ -591,9 +550,9 @@ public class Form7Activity extends AppCompatActivity {
         drawRectWithText(canvas1, paint1, "Enviado por", column1X, 140, 500, 40);
 
         drawQuestion(canvas1, paint1, "Nome", column1X, 210);
-        //drawText(canvas1, paint1, "username", column1X, 230);
+        drawText(canvas1, paint1, "F1_S0_Q1", column1X, 230);
         drawQuestion(canvas1, paint1, "Matrícula", column1X, 270);
-        //drawText(canvas1, paint1, "matricula", column1X, 290);
+        drawText(canvas1, paint1, "F1_S0_Q2", column1X, 290);
 
         drawRectWithText(canvas1, paint1, "Dados da ocorrência", 40, 300, 500, 40);
 

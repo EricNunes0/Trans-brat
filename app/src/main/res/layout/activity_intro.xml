@@ -52,14 +52,15 @@
         android:layout_width="fill_parent"
         android:layout_height="180dp"
         android:background="#FFF"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Button_to_Login"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="-60dp"
+        android:layout_marginTop="-30dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/blue_button"
         android:fontFamily="@font/poppins"
@@ -73,7 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Cidade" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <!--<androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Button_to_Cadastro"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -90,5 +91,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Cidade" />
+        app:layout_constraintTop_toBottomOf="@+id/Cidade" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

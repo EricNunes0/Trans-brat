@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         removeInputErrorBorders(new EditText[] {inputMatricula, inputSenha});
 
-        loginUser(matricula, senha);
+        /*loginUser(matricula, senha);*/
     }
 
     /* Função para adicionar borda vermelha em um input */
@@ -181,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /* Função para fazer login do usuário */
-    private void loginUser(String matricula, String senha) {
+    /*private void loginUser(String matricula, String senha) {
         final String matriculaContent = matricula.trim();
         final String senhaContent = senha.trim();
         String url = "http://192.168.1.8/php-folder/trans-brat/login.php";
@@ -237,5 +237,5 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }).start();
-    }
+    }*/
 }

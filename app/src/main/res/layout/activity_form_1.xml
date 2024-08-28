@@ -94,14 +94,58 @@
             app:layout_constraintEnd_toEndOf="@+id/form_info_1"
             app:layout_constraintTop_toBottomOf="@+id/form_info_1" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/section_0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_info_2"
+            >
+
+            <TextView
+                android:id="@+id/section_0_question_1"
+                style="@style/form_question"
+                android:text="Seu nome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/section_0" />
+
+            <EditText
+                android:id="@+id/section_0_question_1_input"
+                style="@style/form_input_text"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_0_question_1" />
+
+            <TextView
+                android:id="@+id/section_0_question_2"
+                style="@style/form_question"
+                android:text="Sua matrícula"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/section_0_question_1_input" />
+
+            <EditText
+                android:id="@+id/section_0_question_2_input"
+                style="@style/form_input_text"
+                android:inputType="number"
+                android:maxLength="8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_0_question_2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!-- Pergunta 1 -->
         <TextView
             android:id="@+id/section_1_question_1"
             style="@style/form_question"
             android:text="@string/form_1_section_1_question_1"
-            app:layout_constraintStart_toStartOf="@+id/form_info"
-            app:layout_constraintEnd_toEndOf="@+id/form_info"
-            app:layout_constraintTop_toBottomOf="@+id/form_info" />
+            app:layout_constraintStart_toStartOf="@+id/section_0"
+            app:layout_constraintEnd_toEndOf="@+id/section_0"
+            app:layout_constraintTop_toBottomOf="@+id/section_0" />
 
         <RadioGroup
             android:id="@+id/section_1_question_1_radio_group"

@@ -39,11 +39,8 @@ public class Form6Activity extends AppCompatActivity {
     private final String logId = "Form6Activity_LOG";
     /* Respostas do formulário anterior */
     private final String[] previousAnswersIds = {
-            "F1_S1_Q1",
-            "F1_S2_Q1",
-            "F1_S3_Q1",
-            "F1_S4_Q1",
-            "F1_S5_Q1",
+            "F1_S0_Q1",
+            "F1_S0_Q2",
             "F2_S1_Q2",
             "F2_S1_Q3",
             "F2_S2_Q2",

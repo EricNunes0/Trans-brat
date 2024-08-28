@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonCadastro = findViewById(R.id.Button_to_Cadastro);
+        /*Button buttonCadastro = findViewById(R.id.Button_to_Cadastro);
         buttonCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showWarning(MainActivity.this, "Cadastro");
             }
-        });
+        });*/
     }
 
     private void showWarning(Activity activity, String title) {
@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 if(title == "Login") {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class /*LoginActivity.class*/);
                     startActivity(intent);
-                } else if(title == "Cadastro") {
+                }/* else if(title == "Cadastro") {
                     Intent intent = new Intent(MainActivity.this, CadastroActivity.class);
                     startActivity(intent);
-                }
+                }*/
             }
         });
 

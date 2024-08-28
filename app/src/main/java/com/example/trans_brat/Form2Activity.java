@@ -39,11 +39,8 @@ public class Form2Activity extends AppCompatActivity {
     private final String logId = "Form2Activity_LOG";
     /* Respostas do formulário anterior */
     private final String[] previousAnswersIds = {
-            "F1_S1_Q1",
-            "F1_S2_Q1",
-            "F1_S3_Q1",
-            "F1_S4_Q1",
-            "F1_S5_Q1"
+            "F1_S0_Q1",
+            "F1_S0_Q2"
     };
     /* Respostas para enviar para o formulário seguinte */
     private final String[] toSendAnswersIds = {
@@ -107,7 +104,7 @@ public class Form2Activity extends AppCompatActivity {
         });
 
         /* Obtendo respostas dos formulários anteriores */
-        //getPreviousFormAnswers();
+        getPreviousFormAnswers();
 
         /* Definindo perguntas obrigatórias */
         requiredQuestions();
@@ -187,7 +184,7 @@ public class Form2Activity extends AppCompatActivity {
         }
     }
 
-    /* Função para obter respostas do formulário anterior */
+    /* Função para enviar respostas para o formulário seguinte */
     private void sendAnswersToNextForm(Intent intent) {
         /* Enviando respostas dos formulários anteriores */
         for(int i = 0; i <= previousAnswersIds.length - 1; i++) {
