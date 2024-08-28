@@ -8,6 +8,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.transition.Fade;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,10 +30,21 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+    private final String logId = "LoginActivity_LOG";
     private boolean isPasswordVisible = false;
 
     @Override
@@ -99,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         /* Verifica se a matrícula tem o mínimo de caracteres necessários e se são apenas números */
-        int matriculaRequired = 12;
+        int matriculaRequired = 8;
         if (matricula.length() < matriculaRequired) {
             Toast.makeText(LoginActivity.this, "Sua matrícula precisa ter " + matriculaRequired + " caracteres", Toast.LENGTH_SHORT).show();
             setInputErrorBorder(inputMatricula);
@@ -123,11 +135,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         removeInputErrorBorders(new EditText[] {inputMatricula, inputSenha});
 
-        //loginUser(matricula, senha);
-
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+        loginUser(matricula, senha);
     }
 
     /* Função para adicionar borda vermelha em um input */
@@ -176,29 +184,58 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser(String matricula, String senha) {
         final String matriculaContent = matricula.trim();
         final String senhaContent = senha.trim();
+        String url = "http://192.168.1.8/php-folder/trans-brat/login.php";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://YOUR_SERVER_URL/login.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
+        new Thread(() -> {
+            try {
+                URL serverUrl = new URL(url);
+                HttpURLConnection urlConnection = (HttpURLConnection) serverUrl.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoOutput(true);
+
+                // Dados a serem enviados
+                String postData = "matricula=" + URLEncoder.encode(matriculaContent, "UTF-8") +
+                        "&senha=" + URLEncoder.encode(senhaContent, "UTF-8");
+
+                OutputStream os = urlConnection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(postData);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                int responseCode = urlConnection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String inputLine;
+                    StringBuilder response = new StringBuilder();
+
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("matricula", matriculaContent);
-                params.put("senha", senhaContent);
-                return params;
-            }
-        };
+                    in.close();
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+                    String serverResponse = response.toString();
+                    JSONObject jsonResponse = new JSONObject(serverResponse);
+                    String status = jsonResponse.getString("status");
+                    String message = jsonResponse.getString("message");
+
+                    runOnUiThread(() -> {
+                        if (status.equals("success")) {
+                            Log.i(logId, "Login bem-sucedido");
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Log.e(logId, message);
+                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }
