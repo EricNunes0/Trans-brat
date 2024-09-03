@@ -3,6 +3,7 @@ package com.example.trans_brat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -351,6 +352,9 @@ public class Form5Activity extends AppCompatActivity {
         /* Obtendo respostas dos formulários anteriores */
         getPreviousFormAnswers();
 
+        /* Evento para permitir apenas textos com letras maiúsculas */
+        eventTextAllCaps();
+
         //requiredQuestions();
 
         /* Formatando inputs de CPF */
@@ -386,6 +390,18 @@ public class Form5Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    /* Evento para permitir apenas textos com letras maiúsculas */
+    private void eventTextAllCaps() {
+        for(int[] question : all_questions) {
+            if(question[2] == 0) {
+                EditText editText = findViewById(question[1]);
+                editText.setFilters(new InputFilter[]{
+                        new InputFilter.AllCaps()
+                });
+            }
+        }
     }
 
     /* Função para obter respostas dos formulários anteriores */

@@ -191,6 +191,7 @@
         <item name="android:background">@drawable/edit_text</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:padding">15dp</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/input_placeholder</item>
     </style>
@@ -222,19 +223,17 @@
 
     <!-- Botão de enviar imagens -->
     <style name="form_image_button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">150dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginTop">5dp</item>
         <item name="android:background">@drawable/button_image_upload</item>
         <item name="android:drawableTop">@drawable/icon_upload</item>
         <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:paddingTop">50dp</item>
-        <item name="android:paddingBottom">50dp</item>
+        <item name="android:padding">15dp</item>
         <item name="android:scrollbars">vertical</item>
-        <item name="android:text">Adicione até 10 imagens</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:textStyle">normal</item>
         <item name="textAllCaps">false</item>
     </style>

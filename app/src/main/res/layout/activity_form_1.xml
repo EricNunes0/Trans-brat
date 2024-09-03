@@ -115,6 +115,7 @@
                 android:id="@+id/section_0_question_1_input"
                 style="@style/form_input_text"
                 android:inputType="text"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/section_0_question_1" />

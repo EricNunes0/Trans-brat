@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core:1.9.0")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation(libs.recyclerview)

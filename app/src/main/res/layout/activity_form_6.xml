@@ -101,15 +101,35 @@
             app:layout_constraintEnd_toEndOf="@+id/section_1_question_2_input"
             app:layout_constraintTop_toBottomOf="@+id/section_1_question_2_input" />
 
+        <TextView
+            android:id="@+id/section_2_question_1_description"
+            style="@style/form_subquestion"
+            android:text="Adicione até 10 imagens de no máximo 1MB de tamanho"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_2_question_1" />
+
         <!-- Input 1 -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/section_2_question_1_input"
+            android:id="@+id/section_2_question_1_input_1"
+            style="@style/form_image_button"
+            android:drawableTop="@drawable/icon_camera"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Abrir câmera"
+            app:layout_constraintEnd_toStartOf="@id/section_2_question_1_input_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/section_2_question_1_description" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/section_2_question_1_input_2"
             style="@style/form_image_button"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_1"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_1"
-            app:layout_constraintTop_toBottomOf="@id/section_2_question_1" />
+            android:text="Selecionar do dispositivo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/section_2_question_1_input_1"
+            app:layout_constraintTop_toBottomOf="@id/section_2_question_1_description" />
 
         <!-- Visualizar imagens -->
         <androidx.recyclerview.widget.RecyclerView
@@ -120,9 +140,9 @@
             android:clipToPadding="false"
             android:scaleType="centerCrop"
             android:scrollbars="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/section_2_question_1_input"
-            app:layout_constraintStart_toStartOf="@+id/section_2_question_1_input"
-            app:layout_constraintTop_toBottomOf="@id/section_2_question_1_input"/>
+            app:layout_constraintEnd_toEndOf="@+id/section_2_question_1_input_2"
+            app:layout_constraintStart_toStartOf="@+id/section_2_question_1_input_2"
+            app:layout_constraintTop_toBottomOf="@id/section_2_question_1_input_2"/>
 
         <!-- Botões inferiores -->
         <View

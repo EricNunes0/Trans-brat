@@ -1,8 +1,10 @@
 package com.example.trans_brat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,9 +16,11 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,15 +41,23 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class Form7Activity extends AppCompatActivity {
     private final String logId = "Form7Activity_LOG";
+    private ArrayList<String> imagePaths;
     /* Respostas do formulário anterior
     [0] Id da resposta
     [1] Id do TextView de exibição
@@ -518,10 +530,14 @@ public class Form7Activity extends AppCompatActivity {
 
     /* Função para criar PDF */
     private void createPDF() {
-        // Cria um novo documento PDF
-        String fileName = "ebrat.pdf";
-        String directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString();
+        String fileName = "e-brat.pdf";
+        File directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        if (!directoryPath.exists()) {
+            directoryPath.mkdirs();
+        }
         File file = new File(directoryPath, fileName);
+        PdfDocument pdfDocument = new PdfDocument();
+
         String pdfColorBlue = "#0585FF";
         int pageWidth = 595; // Largura das páginas
         int pageHeight = 842; // Altura das páginas
@@ -532,7 +548,6 @@ public class Form7Activity extends AppCompatActivity {
         int checkboxWidth = carWidth / 3; // Largura do checkbox do carro
         int checkboxHeight = carHeight / 2; // Largura do checkbox do carro
 
-        PdfDocument pdfDocument = new PdfDocument();
 
         /* Página 1 */
         PdfDocument.PageInfo pageInfo1 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create();
@@ -1619,10 +1634,14 @@ public class Form7Activity extends AppCompatActivity {
 
         pdfDocument.finishPage(page24);
 
-        try {
+        if (file.exists()) {
+            file.delete();
+        }
+
+        try (FileOutputStream fos = new FileOutputStream(file)) {
             // Salvar o PDF no armazenamento do dispositivo
-            pdfDocument.writeTo(new FileOutputStream(file));
-            Log.i(logId, "PDF salvo com sucesso!");
+            pdfDocument.writeTo(fos);
+            Log.i(logId, "PDF salvo com sucesso em: " + directoryPath);
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(logId, "Erro ao salvar o PDF: " + e.getMessage());
@@ -1757,25 +1776,114 @@ public class Form7Activity extends AppCompatActivity {
         return findViewById(viewId);
     }
 
+    /* Função para converter imagem em arquivo */
+    public File base64ToFile(String base64String, String fileName) throws IOException {
+        byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
+        File file = new File(Form7Activity.this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), fileName);
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write(decodedBytes);
+        fos.close();
+        return file;
+    }
+
     /* Função para enviar o PDF por email */
-    private void submitPDF(File file) {
+    private void submitPDF(File pdfFile) {
         try {
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.setType("application/pdf");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"eric26052004@gmail.com"});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "E-brat gerado");
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "O PDF está em um anexo.");
-
-            Uri pdfUri = FileProvider.getUriForFile(this, "com.example.myapp.fileprovider", file);
-            emailIntent.putExtra(Intent.EXTRA_STREAM, pdfUri);
-
-            if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(Intent.createChooser(emailIntent, "Escolha um cliente de e-mail"));
-            } else {
-                Log.e(logId, "Nenhum cliente de e-mail encontrado");
+            if (!pdfFile.exists()) {
+                Log.e(logId, "O arquivo PDF não existe: " + pdfFile.getAbsolutePath());
+                return;
             }
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("application/zip");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{/*"josival@transriver.com.br"*/"eric26052004@gmail.com"});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "E-brat");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Segue em anexo o PDF e as imagens.");
+
+            Uri pdfUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", pdfFile);
+
+            imagePaths = getIntent().getStringArrayListExtra("F6_S2_Q1");
+            ArrayList<Uri> uris = new ArrayList<>();
+
+            List<Uri> imageUris = convertStringsToUris(imagePaths);
+
+            uris.add(pdfUri);
+            uris.addAll(imageUris);
+            Log.d(logId, uris.toString());
+
+            /* ZIP */
+            File zipFile = createZipFile(Form7Activity.this, uris, "documentos.zip");
+            Uri zipUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", zipFile);
+            emailIntent.putExtra(Intent.EXTRA_STREAM, zipUri);
+            //emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+            emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            startActivity(Intent.createChooser(emailIntent, "Escolha um aplicativo de e-mail"));
         } catch (Exception e) {
             Log.e(logId, "Erro ao enviar o PDF: " + e);
         }
+    }
+
+    public Uri stringToUri(String contentUriString) {
+        return Uri.parse(contentUriString);
+    }
+
+    public List<Uri> convertStringsToUris(List<String> contentUriStrings) {
+        List<Uri> uris = new ArrayList<>();
+        for (String uriString : contentUriStrings) {
+            if(uriString != null) {
+                uris.add(Uri.parse(uriString));
+            }
+        }
+        return uris;
+    }
+
+    public InputStream getInputStreamFromUri(Context context, Uri contentUri) throws IOException {
+        return context.getContentResolver().openInputStream(contentUri);
+    }
+
+    /* Converter PDF e imagens em ZIP */
+    public File createZipFile(Context context, List<Uri> fileUris, String zipFileName) throws IOException {
+        // Cria o arquivo ZIP no diretório de arquivos externos do aplicativo
+        File zipFile = new File(context.getExternalFilesDir(null), zipFileName);
+        Set<String> fileNames = new HashSet<>();
+
+        // Configura o ZipOutputStream
+        try (ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(zipFile)))) {
+            byte[] buffer = new byte[1024];
+
+            // Itera sobre as URIs dos arquivos que serão incluídos no ZIP
+            for (Uri uri : fileUris) {
+                String fileName = uri.getLastPathSegment();
+
+                int count = 1;
+                String originalFileName = fileName;
+                while (fileNames.contains(fileName)) {
+                    fileName = originalFileName + "(" + count + ")";
+                    count++;
+                }
+                fileNames.add(fileName);
+
+                try (BufferedInputStream bis = new BufferedInputStream(context.getContentResolver().openInputStream(uri))) {
+                    // Adiciona cada arquivo como uma nova entrada no ZIP
+                    ZipEntry entry = new ZipEntry(uri.getLastPathSegment());
+                    zos.putNextEntry(entry);
+
+                    // Lê o arquivo e escreve no ZIP
+                    int bytesRead;
+                    while ((bytesRead = bis.read(buffer)) != -1) {
+                        zos.write(buffer, 0, bytesRead);
+                    }
+
+                    // Fecha a entrada do ZIP
+                    zos.closeEntry();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e; // Propaga a exceção para que o chamador possa lidar com ela
+        }
+
+        // Retorna o arquivo ZIP criado
+        return zipFile;
     }
 }

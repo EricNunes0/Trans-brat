@@ -1,9 +1,16 @@
 package com.example.trans_brat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -13,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -22,17 +30,25 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Form6Activity extends AppCompatActivity {
@@ -348,6 +364,10 @@ public class Form6Activity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private List<Uri> selectedImages;
     private static final int IMAGES_MAX = 10;
+    private String currentPhotoPath;
+    private static final int REQUEST_TAKE_PHOTO = 1;
+    private static final int REQUEST_CAMERA_PERMISSION = 200;
+    private static final int REQUEST_STORAGE_PERMISSION = 201;
 
 
     @Override
@@ -363,6 +383,9 @@ public class Form6Activity extends AppCompatActivity {
 
         /* Obtendo respostas dos formulários anteriores */
         //getPreviousFormAnswers();
+
+        /* Evento para permitir apenas textos com letras maiúsculas */
+        eventTextAllCaps();
 
         requiredQuestions();
 
@@ -398,6 +421,18 @@ public class Form6Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /* Evento para permitir apenas textos com letras maiúsculas */
+    private void eventTextAllCaps() {
+        for(int[] question : all_questions) {
+            if(question[2] == 0) {
+                EditText editText = findViewById(question[1]);
+                editText.setFilters(new InputFilter[]{
+                        new InputFilter.AllCaps()
+                });
+            }
+        }
     }
 
     /* Função para obter respostas dos formulários anteriores */
@@ -749,9 +784,95 @@ public class Form6Activity extends AppCompatActivity {
                         imageAdapter.notifyDataSetChanged();
                     }
                 });
-        Button buttonOpenGallery = findViewById(R.id.section_2_question_1_input);
+
+        Button buttonOpenCamera = findViewById(R.id.section_2_question_1_input_1);
+        Button buttonOpenGallery = findViewById(R.id.section_2_question_1_input_2);
+        buttonOpenCamera.setOnClickListener(view -> openCamera());
         buttonOpenGallery.setOnClickListener(view -> openGallery());
     }
+
+    /* Câmera */
+
+    /* Função para abrir a câmera do celular ao clicar no botão */
+    private void openCamera() {
+        try {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA},
+                        REQUEST_CAMERA_PERMISSION);
+            } else {
+                dispatchTakePictureIntent();
+            }
+        } catch (Exception e) {
+            Log.e(logId, "openCamera(): " + e.toString());
+        }
+    }
+
+    private void dispatchTakePictureIntent() {
+        try {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+                    // Erro ao criar o arquivo
+                }
+                if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(this,
+                            "com.example.trans_brat.fileprovider.documents",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                }
+            }
+        } catch (Exception e) {
+            Log.e(logId, "openCamera(): " + e.toString());
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            File file = new File(currentPhotoPath);
+            Uri photoURI = Uri.fromFile(file);
+            if (selectedImages.size() < IMAGES_MAX) {
+                selectedImages.add(photoURI);
+                imageAdapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(this, "Você só pode selecionar até 10 imagens", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                dispatchTakePictureIntent();
+            } else {
+                Toast.makeText(this, "É necessária permissão da câmera para tirar fotos", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /* Galeria */
 
     /* Função para abrir a galeria do celular ao clicar no botão */
     private void openGallery() {
@@ -759,6 +880,21 @@ public class Form6Activity extends AppCompatActivity {
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         galleryLauncher.launch(intent);
+    }
+
+    /* Função para verificar se uma imagem ultrapassa 1MB */
+    private boolean isImageValid(Uri imageUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            if (inputStream != null) {
+                long fileSize = inputStream.available();
+                inputStream.close();
+                return fileSize <= 1 * 1024 * 1024; // 1 MB
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /* Evento para verificar se as perguntas obrigatórias foram respondidas */
@@ -793,20 +929,5 @@ public class Form6Activity extends AppCompatActivity {
             Log.w(logId, answered + " perguntas obrigatórias respondidas de " + all_questions.length);
             return false;
         }
-    }
-
-    /* Função para verificar se uma imagem ultrapassa 1MB */
-    private boolean isImageValid(Uri imageUri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(imageUri);
-            if (inputStream != null) {
-                long fileSize = inputStream.available();
-                inputStream.close();
-                return fileSize <= 1 * 1024 * 1024; // 1 MB
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }

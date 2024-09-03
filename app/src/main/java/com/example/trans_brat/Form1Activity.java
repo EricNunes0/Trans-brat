@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -73,6 +74,9 @@ public class Form1Activity extends AppCompatActivity {
 
         /* Evento para verificar se todos os inputs foram preenchidos corretamente */
         eventCheckInputs();
+
+        /* Evento para permitir apenas textos com letras maiúsculas */
+        eventTextAllCaps();
 
         /* Botões inferiores */
         Button buttonCancel = findViewById(R.id.cancel_button);
@@ -253,6 +257,18 @@ public class Form1Activity extends AppCompatActivity {
                         int selectedId = radioGroup.getCheckedRadioButtonId();
                         checkAllQuestions(selectedId);
                     }
+                });
+            }
+        }
+    }
+
+    /* Evento para permitir apenas textos com letras maiúsculas */
+    private void eventTextAllCaps() {
+        for(int[] question : all_questions) {
+            if(question[1] == 0) {
+                EditText editText = findViewById(question[0]);
+                editText.setFilters(new InputFilter[]{
+                        new InputFilter.AllCaps()
                 });
             }
         }
