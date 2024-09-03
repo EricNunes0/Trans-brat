@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.trans_brat"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -33,6 +33,8 @@ android {
 
 dependencies {
     implementation("androidx.core:core:1.9.0")
+    implementation("org.apache.poi:poi:5.2.3")
+    implementation("org.apache.poi:poi-ooxml:5.2.3")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation(libs.recyclerview)

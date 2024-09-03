@@ -1793,10 +1793,17 @@ public class Form7Activity extends AppCompatActivity {
                 Log.e(logId, "O arquivo PDF não existe: " + pdfFile.getAbsolutePath());
                 return;
             }
+
+            // Obtendo número de ordem
+            String numeroDeOrdem = getIntent().getStringExtra("F3_S1_Q2");
+            if(numeroDeOrdem == null) {
+                numeroDeOrdem = "0";
+            }
+
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("application/zip");
             emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{/*"josival@transriver.com.br"*/"eric26052004@gmail.com"});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "E-brat");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "E-brat " + numeroDeOrdem);
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Segue em anexo o PDF e as imagens.");
 
             Uri pdfUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", pdfFile);
@@ -1811,7 +1818,10 @@ public class Form7Activity extends AppCompatActivity {
             Log.d(logId, uris.toString());
 
             /* ZIP */
-            File zipFile = createZipFile(Form7Activity.this, uris, "documentos.zip");
+            // Nome do Zip
+            String zipFileName = "e-brat_" + numeroDeOrdem + ".zip";
+
+            File zipFile = createZipFile(Form7Activity.this, uris, zipFileName);
             Uri zipUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", zipFile);
             emailIntent.putExtra(Intent.EXTRA_STREAM, zipUri);
             //emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);

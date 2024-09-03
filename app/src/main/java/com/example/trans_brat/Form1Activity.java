@@ -162,31 +162,6 @@ public class Form1Activity extends AppCompatActivity {
 
     /* Função para verificar se as perguntas de radio foram respondidas */
     private boolean checkRadioQuestions(int radioSelectedId) {
-        int[] radios_block_ids = {
-                R.id.section_1_question_1_radio_2,
-                R.id.section_2_question_1_radio_2,
-                R.id.section_3_question_1_radio_1,
-                R.id.section_4_question_1_radio_1,
-                R.id.section_5_question_1_radio_1
-        };
-        List<Integer> radio_block_ids_list = new ArrayList<>();
-        for (int num : radios_block_ids) {
-            radio_block_ids_list.add(num);
-        }
-
-        String[] radios_warnings = {
-                "Acidentes ocorridos fora do estado do Rio de Janeiro ou em rodovias federais não podem ser registrados pela Polícia Militar do Estado do Rio de Janeiro.",
-                "Estrangeiros envolvidos em acidentes de trânsito sem vítimas devem fazer o registro da ocorrência no Batalhão de Polícia Militar mais próximo.",
-                "Acidentes ocorridos fora do estado do Rio de Janeiro ou em rodovias federais não podem ser registrados pela Polícia Militar do Estado do Rio de Janeiro.",
-                "Acidentes de trânsito com vítimas, feridos ou mortos, não podem ser registrados eletronicamente. Neste caso, a Polícia Militar deve ser acionada para fazer o registro no local do acidente.",
-                "Acidentes de trânsito sem vítimas com mais de 5 veículos envolvidos devem ser registrados no Batalhão de Polícia Militar mais próximo."
-        };
-
-        if(radio_block_ids_list.contains(radioSelectedId)) {
-            showPopup(radios_warnings[radio_block_ids_list.indexOf(radioSelectedId)]);
-            return false;
-        }
-
         int radioQuestions = 0;
         int answered = 0;
         for (int[] question : all_questions) {
@@ -200,6 +175,7 @@ public class Form1Activity extends AppCompatActivity {
                 }
             }
         }
+        checkBlockOptions(radioSelectedId);
 
         if(answered == radioQuestions) {
             Log.i(logId, answered + " perguntas de radio respondidas de " + radioQuestions);
@@ -210,13 +186,51 @@ public class Form1Activity extends AppCompatActivity {
         }
     }
 
+    /* Função para verificar se algum RadioButton proibido foi selecionado */
+    private boolean checkBlockOptions(int radioSelectedId) {
+        int[] radios_block_ids = {
+                R.id.section_1_question_1_radio_2,
+                R.id.section_2_question_1_radio_2,
+                R.id.section_3_question_1_radio_1,
+                R.id.section_4_question_1_radio_1,
+                R.id.section_5_question_1_radio_1
+        };
+
+        String[] radios_warnings = {
+                "Acidentes ocorridos fora do estado do Rio de Janeiro ou em rodovias federais não podem ser registrados pela Polícia Militar do Estado do Rio de Janeiro.",
+                "Estrangeiros envolvidos em acidentes de trânsito sem vítimas devem fazer o registro da ocorrência no Batalhão de Polícia Militar mais próximo.",
+                "Acidentes ocorridos fora do estado do Rio de Janeiro ou em rodovias federais não podem ser registrados pela Polícia Militar do Estado do Rio de Janeiro.",
+                "Acidentes de trânsito com vítimas, feridos ou mortos, não podem ser registrados eletronicamente. Neste caso, a Polícia Militar deve ser acionada para fazer o registro no local do acidente.",
+                "Acidentes de trânsito sem vítimas com mais de 5 veículos envolvidos devem ser registrados no Batalhão de Polícia Militar mais próximo."
+        };
+
+        boolean canProceed = true;
+        for(int i = 0; i <= radios_block_ids.length - 1; i++) {
+            int radioId = radios_block_ids[i];
+            RadioButton radioButton = findViewById(radioId);
+            if (radioButton.isChecked()) {
+                canProceed = false;
+                if(radioSelectedId == radioId) {
+                    showPopup(radios_warnings[i]);
+                }
+            }
+        }
+        return canProceed;
+    }
+
     /* Função para verificar se as perguntas de radio foram respondidas */
     private boolean checkAllQuestions(int radioSelectedId) {
         boolean textCheck = checkTextQuestions();
         boolean radioCheck = checkRadioQuestions(radioSelectedId);
         if(textCheck && radioCheck) {
-            enableNextButton();
             Log.i(logId, "Todas as perguntas obrigatórias foram respondidas!");
+            if(checkBlockOptions(radioSelectedId)) {
+                enableNextButton();
+                Log.i(logId, "ACERTO");
+            } else {
+                disableNextButton();
+                Log.w(logId, "ERRO");
+            };
             return true;
         } else {
             disableNextButton();

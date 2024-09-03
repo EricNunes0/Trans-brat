@@ -1,5 +1,6 @@
 package com.example.trans_brat;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -363,6 +364,7 @@ public class Form6Activity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> galleryLauncher;
     private ImageAdapter imageAdapter;
     private List<Uri> selectedImages;
+    private RecyclerView mainRecyclerView;
     private static final int IMAGES_MAX = 10;
     private String currentPhotoPath;
     private static final int REQUEST_TAKE_PHOTO = 1;
@@ -380,6 +382,7 @@ public class Form6Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+         mainRecyclerView = findViewById(R.id.section_2_question_1_picture);
 
         /* Obtendo respostas dos formulários anteriores */
         //getPreviousFormAnswers();
@@ -796,11 +799,8 @@ public class Form6Activity extends AppCompatActivity {
     /* Função para abrir a câmera do celular ao clicar no botão */
     private void openCamera() {
         try {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.CAMERA},
-                        REQUEST_CAMERA_PERMISSION);
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
             } else {
                 dispatchTakePictureIntent();
             }
@@ -809,6 +809,8 @@ public class Form6Activity extends AppCompatActivity {
         }
     }
 
+
+    /* Função para ativar câmera do dispositivo */
     private void dispatchTakePictureIntent() {
         try {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -820,27 +822,22 @@ public class Form6Activity extends AppCompatActivity {
                     // Erro ao criar o arquivo
                 }
                 if (photoFile != null) {
-                    Uri photoURI = FileProvider.getUriForFile(this,
-                            "com.example.trans_brat.fileprovider.documents",
-                            photoFile);
+                    Uri photoURI = FileProvider.getUriForFile(this, "com.example.trans_brat.fileprovider", photoFile);
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
             }
         } catch (Exception e) {
-            Log.e(logId, "openCamera(): " + e.toString());
+            Log.e(logId, "dispatchTakePictureIntent(): " + e.toString());
         }
     }
 
+    /* Função para criar arquivo temporário de imagem */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,
-                ".jpg",
-                storageDir
-        );
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
@@ -879,8 +876,32 @@ public class Form6Activity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        galleryLauncher.launch(intent);
+        startActivityForResult(Intent.createChooser(intent, "Selecionar imagens"), REQUEST_TAKE_PHOTO);
     }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK && data != null) {
+            if (data.getClipData() != null) {
+                ClipData clipData = data.getClipData();
+                int count = clipData.getItemCount();
+                for (int i = 0; i < count && i < IMAGES_MAX; i++) {
+                    Uri imageUri = clipData.getItemAt(i).getUri();
+                    selectedImages.add(imageUri);
+                }
+            } else if (data.getData() != null) {
+                Uri imageUri = data.getData();
+                selectedImages.add(imageUri);
+            }
+            updateRecyclerView();
+        }
+    }
+
+    private void updateRecyclerView() {
+        ImageAdapter adapter = new ImageAdapter(this, selectedImages);
+        mainRecyclerView.setAdapter(adapter);
+    }*/
 
     /* Função para verificar se uma imagem ultrapassa 1MB */
     private boolean isImageValid(Uri imageUri) {

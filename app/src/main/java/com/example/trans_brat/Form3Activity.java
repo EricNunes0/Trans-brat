@@ -2,6 +2,7 @@ package com.example.trans_brat;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -31,8 +32,24 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Form3Activity extends AppCompatActivity {
     private final String logId = "Form3Activity_LOG";
@@ -186,6 +203,7 @@ public class Form3Activity extends AppCompatActivity {
     };
 
     private int[] hiddenQuestions = {2, 4};
+    private Map<String, String[]> dataMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,7 +223,7 @@ public class Form3Activity extends AppCompatActivity {
         eventTextAllCaps();
 
         /* Função para preencher automaticamente campos de uma panilha */
-        //eventWorksheet();
+        eventWorksheet();
 
         requiredQuestions();
 
@@ -278,7 +296,69 @@ public class Form3Activity extends AppCompatActivity {
 
     /* Função para preencher automaticamente campos de uma panilha */
     private void eventWorksheet() {
-        EditText editText = findViewById(R.id.section_1_question_2_input);
+        EditText ordemEditText = findViewById(R.id.section_1_question_2_input);
+
+        ordemEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String ordemValue = s.toString();
+                if (!ordemValue.isEmpty()) {
+                    buscarDadosPorOrdem(ordemValue);
+                }
+            }
+        });
+    }
+
+    private void buscarDadosPorOrdem(String ordem) {
+        EditText placaEditText = findViewById(R.id.section_1_question_3_input);
+        EditText marcaModeloEditText = findViewById(R.id.section_1_question_4_input);
+        EditText tipoEditText = findViewById(R.id.section_1_question_5_input);
+        EditText corEditText = findViewById(R.id.section_1_question_6_input);
+        EditText ufEditText = findViewById(R.id.section_1_question_7_input);
+        EditText anoFabricacaoEditText = findViewById(R.id.section_1_question_8_input);
+        EditText anoModeloEditText = findViewById(R.id.section_1_question_9_input);
+        EditText chassiEditText = findViewById(R.id.section_1_question_10_input);
+        EditText renavamEditText = findViewById(R.id.section_1_question_11_input);
+
+        AssetManager assetManager = getAssets();
+        try {
+            InputStream inputStream = assetManager.open("frota.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] columns = line.split(";");
+                Log.i(logId, ordem + Arrays.toString(columns));
+
+                try {
+                    // Verifica se a "ORDEM" corresponde ao valor digitado
+                    if (columns[0].equals(ordem)) {
+                        // Preenche os EditTexts com os dados correspondentes
+                        placaEditText.setText(columns[1]);        // PLACA
+                        marcaModeloEditText.setText(columns[6]);        // MARCA/MODELO
+                        tipoEditText.setText("PASSAGEIRO ÔNIBUS");        // TIPO DO VEÍCULO
+                        corEditText.setText("FANTASIA");        // COR
+                        ufEditText.setText("RJ");        // UF
+                        anoFabricacaoEditText.setText(columns[7]);    // ANO DE FABRICAÇÃO
+                        anoModeloEditText.setText(columns[8]);    // ANO DO MODELO
+                        chassiEditText.setText(columns[3]);       // CHASSI
+                        renavamEditText.setText(columns[2]);      // RENAVAM
+                        break; // Encerra a leitura após encontrar a correspondência
+                    }
+                } catch (Exception e) {
+                    Log.e(logId, e.toString());
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            Log.e(logId, e.toString());
+            e.printStackTrace();
+        }
     }
 
     /* Função para obter respostas dos formulários anteriores */
