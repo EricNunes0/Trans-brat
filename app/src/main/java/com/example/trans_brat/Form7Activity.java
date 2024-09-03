@@ -47,7 +47,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -1794,6 +1796,21 @@ public class Form7Activity extends AppCompatActivity {
                 return;
             }
 
+            // Obtendo data do acidente
+            String dataDoAcidente = getIntent().getStringExtra("F2_S1_Q2");
+            Log.d(logId, "1");
+            if(dataDoAcidente == null) {
+                Log.d(logId, "2");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                Log.d(logId, "3");
+                Date date = new Date();
+                Log.d(logId, "4");
+                String data = formatter.format(date);
+                Log.d(logId, "5");
+                dataDoAcidente = data;
+                Log.v(logId, dataDoAcidente);
+            }
+
             // Obtendo número de ordem
             String numeroDeOrdem = getIntent().getStringExtra("F3_S1_Q2");
             if(numeroDeOrdem == null) {
@@ -1802,9 +1819,9 @@ public class Form7Activity extends AppCompatActivity {
 
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("application/zip");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{/*"josival@transriver.com.br"*/"eric26052004@gmail.com"});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "E-brat " + numeroDeOrdem);
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "Segue em anexo o PDF e as imagens.");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"josival@transriver.com.br"});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "E-brat " + numeroDeOrdem + " " + dataDoAcidente);
+            //emailIntent.putExtra(Intent.EXTRA_TEXT, "Segue em anexo o PDF e as imagens.");
 
             Uri pdfUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", pdfFile);
 

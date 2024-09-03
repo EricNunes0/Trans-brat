@@ -749,7 +749,7 @@ public class Form6Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // Grade de 3 colunas
         recyclerView.setAdapter(imageAdapter);
 
-        galleryLauncher = registerForActivityResult(
+        /*galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
@@ -770,7 +770,7 @@ public class Form6Activity extends AppCompatActivity {
                                 }
                             }
 
-                            /* Alertando caso alguma imagem ultrapasse 1MB */
+                            // Alertando caso alguma imagem ultrapasse 1MB
                             if(tooHeavy > 0) {
                                 if(tooHeavy == 1) {
                                     Toast.makeText(Form6Activity.this, tooHeavy + " imagem ultrapassa o limite de 1MB", Toast.LENGTH_SHORT).show();
@@ -786,12 +786,12 @@ public class Form6Activity extends AppCompatActivity {
                         }
                         imageAdapter.notifyDataSetChanged();
                     }
-                });
+                });*/
 
         Button buttonOpenCamera = findViewById(R.id.section_2_question_1_input_1);
-        Button buttonOpenGallery = findViewById(R.id.section_2_question_1_input_2);
+        //Button buttonOpenGallery = findViewById(R.id.section_2_question_1_input_2);
         buttonOpenCamera.setOnClickListener(view -> openCamera());
-        buttonOpenGallery.setOnClickListener(view -> openGallery());
+        //buttonOpenGallery.setOnClickListener(view -> openGallery());
     }
 
     /* Câmera */
@@ -904,7 +904,7 @@ public class Form6Activity extends AppCompatActivity {
     }*/
 
     /* Função para verificar se uma imagem ultrapassa 1MB */
-    private boolean isImageValid(Uri imageUri) {
+    /*private boolean isImageValid(Uri imageUri) {
         try {
             InputStream inputStream = getContentResolver().openInputStream(imageUri);
             if (inputStream != null) {
@@ -916,7 +916,7 @@ public class Form6Activity extends AppCompatActivity {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
     /* Evento para verificar se as perguntas obrigatórias foram respondidas */
     private boolean checkRequiredQuestions() {
