@@ -242,6 +242,15 @@ public class Form3Activity extends AppCompatActivity {
         /* Formatando inputs de CPF */
         cpfQuestions();
 
+        /* Formatando inputs de CNH */
+        cnhQuestions();
+
+        /* Formatando inputs de CHASSI */
+        chassiQuestions();
+
+        /* Formatando inputs de RENAVAM */
+        renavamQuestions();
+
         /* Marcando os dois RadioGroups como "não" */
         markRadioButton(R.id.section_1_question_12_radio_group, R.id.section_1_question_12_radio_2);
         markRadioButton(R.id.section_3_question_5_radio_group, R.id.section_3_question_5_radio_2);
@@ -254,8 +263,20 @@ public class Form3Activity extends AppCompatActivity {
         /* Adicionando campos preenchidos automaticamente */
         EditText razaoSocialEditText = findViewById(R.id.section_2_question_2_input);
         EditText cnpjEditText = findViewById(R.id.section_2_question_3_input);
+        EditText cepEditText = findViewById(R.id.section_4_question_2_input);
+        EditText logradEditText = findViewById(R.id.section_4_question_3_input);
+        EditText numeroEditText = findViewById(R.id.section_4_question_4_input);
+        EditText bairroEditText = findViewById(R.id.section_4_question_6_input);
+        EditText cidadeEditText = findViewById(R.id.section_4_question_7_input);
+        EditText ufEditText = findViewById(R.id.section_4_question_8_input);
         razaoSocialEditText.setText("TRANSRIVER TRANSPORTE LTDA"); // RAZÃO SOCIAL
         cnpjEditText.setText("27.608.256/0001-32"); // CNPJ
+        cepEditText.setText("23030-380"); // CEP
+        logradEditText.setText("ESTRADA DA PEDRA"); // LOGRAD.
+        numeroEditText.setText("3885"); // NÚMERO
+        bairroEditText.setText("GUARATIBA"); // BAIRRO
+        cidadeEditText.setText("RIO DE JANEIRO"); // CIDADE
+        ufEditText.setText("RJ"); // UF
 
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
@@ -664,6 +685,9 @@ public class Form3Activity extends AppCompatActivity {
                     } else if (!str.isEmpty()) {
                         formatted = str;
                     }
+                    if (str.length() > 7) {
+                        formatted = str.substring(0, 3) + "-" + str.substring(3, 7);
+                    }
 
                     isUpdating = true;
                     cepEditText.setText(formatted);
@@ -707,7 +731,9 @@ public class Form3Activity extends AppCompatActivity {
                     String formatted = "";
 
                     // Formatar o CEP no formato 12345-678
-                    if (str.length() > 5) {
+                    if (str.length() > 8) {
+                        formatted = str.substring(0, 5) + "-" + str.substring(5, 8);
+                    } else if (str.length() > 5) {
                         formatted = str.substring(0, 5) + "-" + str.substring(5);
                     } else if (!str.isEmpty()) {
                         formatted = str;
@@ -770,7 +796,10 @@ public class Form3Activity extends AppCompatActivity {
                         str = str.substring(0, 10) + "/" + str.substring(10);
                     }
                     if (str.length() > 15) {
-                        str = str.substring(0, 15) + "-" + str.substring(15);
+                         str = str.substring(0, 15) + "-" + str.substring(15);
+                    }
+                    if (str.length() > 18) {
+                        str = str.substring(0, 18);
                     }
 
                     isUpdating = true;
@@ -829,6 +858,166 @@ public class Form3Activity extends AppCompatActivity {
                     }
                     if (str.length() > 11) {
                         str = str.substring(0, 11) + "-" + str.substring(11);
+                    }
+                    if (str.length() > 14) {
+                        str = str.substring(0, 14);
+                    }
+
+                    isUpdating = true;
+                    cpfEditText.setText(str);
+                    cpfEditText.setSelection(str.length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+        }
+    }
+
+    /* Função para formatar CNH */
+    private void cnhQuestions() {
+        int[] cnhIds = {
+                R.id.section_5_question_9_input,
+                R.id.section_6_question_5_input
+        };
+
+        for (int cnhId : cnhIds) {
+            EditText cpfEditText = findViewById(cnhId);
+            cpfEditText.addTextChangedListener(new TextWatcher() {
+                private boolean isUpdating = false;
+                private String oldText = "";
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = s.toString().replaceAll("[^\\d]", "");
+
+                    if (isUpdating) {
+                        oldText = str;
+                        isUpdating = false;
+                        return;
+                    }
+
+                    if (str.length() < oldText.length()) {
+                        oldText = str;
+                        isUpdating = true;
+                        cpfEditText.setText(oldText);
+                        cpfEditText.setSelection(oldText.length());
+                        return;
+                    }
+
+                    // Formatação
+                    if (str.length() > 9) {
+                        str = str.substring(0, 9) + "-" + str.substring(9);
+                    }
+                    if (str.length() > 12) {
+                        str = str.substring(0, 12);
+                    }
+
+                    isUpdating = true;
+                    cpfEditText.setText(str);
+                    cpfEditText.setSelection(str.length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+        }
+    }
+
+    /* Função para formatar CHASSI */
+    private void chassiQuestions() {
+        int[] chassiIds = {
+                R.id.section_1_question_10_input
+        };
+
+        for (int chassiId : chassiIds) {
+            EditText cpfEditText = findViewById(chassiId);
+            cpfEditText.addTextChangedListener(new TextWatcher() {
+                private boolean isUpdating = false;
+                private String oldText = "";
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = s.toString();
+
+                    if (isUpdating) {
+                        oldText = str;
+                        isUpdating = false;
+                        return;
+                    }
+
+                    if (str.length() < oldText.length()) {
+                        oldText = str;
+                        isUpdating = true;
+                        cpfEditText.setText(oldText);
+                        cpfEditText.setSelection(oldText.length());
+                        return;
+                    }
+
+                    // Formatação
+                    if (str.length() > 17) {
+                        str = str.substring(0, 17);
+                    }
+
+                    isUpdating = true;
+                    cpfEditText.setText(str);
+                    cpfEditText.setSelection(str.length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+        }
+    }
+
+    /* Função para formatar RENAVAM */
+    private void renavamQuestions() {
+        int[] renavamIds = {
+                R.id.section_1_question_11_input
+        };
+
+        for (int renavamId : renavamIds) {
+            EditText cpfEditText = findViewById(renavamId);
+            cpfEditText.addTextChangedListener(new TextWatcher() {
+                private boolean isUpdating = false;
+                private String oldText = "";
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String str = s.toString();
+
+                    if (isUpdating) {
+                        oldText = str;
+                        isUpdating = false;
+                        return;
+                    }
+
+                    if (str.length() < oldText.length()) {
+                        oldText = str;
+                        isUpdating = true;
+                        cpfEditText.setText(oldText);
+                        cpfEditText.setSelection(oldText.length());
+                        return;
+                    }
+
+                    // Formatação
+                    if (str.length() > 11) {
+                        str = str.substring(0, 11);
                     }
 
                     isUpdating = true;

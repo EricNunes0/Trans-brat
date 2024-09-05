@@ -37,6 +37,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.text.AllCapsTransformationMethod;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -426,35 +427,24 @@ public class Form6Activity extends AppCompatActivity {
 
     /* Evento para permitir apenas textos com letras maiúsculas */
     private void eventTextAllCaps() {
-        for(int[] question : all_questions) {
-            if(question[2] == 0) {
-                EditText editText = findViewById(question[1]);
-                editText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        EditText editTextMultiLine = findViewById(R.id.section_1_question_2_input);
+        editTextMultiLine.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
+        editTextMultiLine.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-                editText.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                        // Não é necessário fazer nada aqui
-                    }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        // Não é necessário fazer nada aqui
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        String text = s.toString().toUpperCase();
-                        if (!text.equals(s.toString())) {
-                            editText.removeTextChangedListener(this);
-                            editText.setText(text);
-                            editText.setSelection(text.length());
-                            editText.addTextChangedListener(this);
-                        }
-                    }
-                });
+            @Override
+            public void afterTextChanged(Editable s) {
+                String upperCaseText = s.toString().toUpperCase();
+                if (!s.toString().equals(upperCaseText)) {
+                    editTextMultiLine.setText(upperCaseText);
+                    editTextMultiLine.setSelection(upperCaseText.length());
+                }
             }
-        }
+        });
     }
 
     /* Função para obter respostas dos formulários anteriores */

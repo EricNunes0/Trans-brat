@@ -407,7 +407,9 @@ public class Form2Activity extends AppCompatActivity {
                     String formatted = "";
 
                     // Formatar o CEP no formato 12345-678
-                    if (str.length() > 5) {
+                    if (str.length() > 8) {
+                        formatted = str.substring(0, 5) + "-" + str.substring(5, 8);
+                    } else if (str.length() > 5) {
                         formatted = str.substring(0, 5) + "-" + str.substring(5);
                     } else if (!str.isEmpty()) {
                         formatted = str;

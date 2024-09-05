@@ -665,6 +665,9 @@ public class Form5Activity extends AppCompatActivity {
                     if (str.length() > 11) {
                         str = str.substring(0, 11) + "-" + str.substring(11);
                     }
+                    if (str.length() > 14) {
+                        str = str.substring(0, 14);
+                    }
 
                     isUpdating = true;
                     cpfEditText.setText(str);
@@ -721,6 +724,9 @@ public class Form5Activity extends AppCompatActivity {
                     }
                     if (str.length() > 10) {
                         str = str.substring(0, 10) + "-" + str.substring(10);
+                    }
+                    if (str.length() > 15) {
+                        str = str.substring(0, 15);
                     }
 
                     isUpdating = true;
