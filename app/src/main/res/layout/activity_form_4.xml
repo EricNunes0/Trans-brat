@@ -140,25 +140,6 @@
                         app:layout_constraintEnd_toEndOf="@+id/section_1_main_group_1"
                         app:layout_constraintTop_toBottomOf="@+id/section_1_main_group_1" />
 
-                    <!-- Texto do Input 1 -->
-                    <TextView
-                        android:id="@+id/section_1_main_group_1_question_2"
-                        style="@style/form_subquestion"
-                        android:text="@string/form_3_section_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_1_main_group_1_question_1"
-                        app:layout_constraintEnd_toEndOf="@+id/section_1_main_group_1_question_1"
-                        app:layout_constraintTop_toBottomOf="@+id/section_1_main_group_1_question_1" />
-
-                    <!-- Input 1 -->
-                    <EditText
-                        android:id="@+id/section_1_main_group_1_question_2_input"
-                        style="@style/form_input_text"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        app:layout_constraintEnd_toEndOf="@+id/section_1_main_group_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_1_main_group_1_question_2"
-                        app:layout_constraintTop_toBottomOf="@id/section_1_main_group_1_question_2" />
-
                     <!-- Texto do Input 2 -->
                     <TextView
                         android:id="@+id/section_1_main_group_1_question_3"
@@ -1295,25 +1276,6 @@
                         app:layout_constraintStart_toStartOf="@+id/section_2_main_group_1"
                         app:layout_constraintEnd_toEndOf="@+id/section_2_main_group_1"
                         app:layout_constraintTop_toBottomOf="@+id/section_2_main_group_1" />
-
-                    <!-- Texto do Input 1 -->
-                    <TextView
-                        android:id="@+id/section_2_main_group_1_question_2"
-                        style="@style/form_subquestion"
-                        android:text="@string/form_3_section_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_2_main_group_1_question_1"
-                        app:layout_constraintEnd_toEndOf="@+id/section_2_main_group_1_question_1"
-                        app:layout_constraintTop_toBottomOf="@+id/section_2_main_group_1_question_1" />
-
-                    <!-- Input 1 -->
-                    <EditText
-                        android:id="@+id/section_2_main_group_1_question_2_input"
-                        style="@style/form_input_text"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        app:layout_constraintEnd_toEndOf="@+id/section_2_main_group_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_2_main_group_1_question_2"
-                        app:layout_constraintTop_toBottomOf="@id/section_2_main_group_1_question_2" />
 
                     <!-- Texto do Input 2 -->
                     <TextView
@@ -2452,25 +2414,6 @@
                         app:layout_constraintEnd_toEndOf="@+id/section_3_main_group_1"
                         app:layout_constraintTop_toBottomOf="@+id/section_3_main_group_1" />
 
-                    <!-- Texto do Input 1 -->
-                    <TextView
-                        android:id="@+id/section_3_main_group_1_question_2"
-                        style="@style/form_subquestion"
-                        android:text="@string/form_3_section_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_3_main_group_1_question_1"
-                        app:layout_constraintEnd_toEndOf="@+id/section_3_main_group_1_question_1"
-                        app:layout_constraintTop_toBottomOf="@+id/section_3_main_group_1_question_1" />
-
-                    <!-- Input 1 -->
-                    <EditText
-                        android:id="@+id/section_3_main_group_1_question_2_input"
-                        style="@style/form_input_text"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        app:layout_constraintEnd_toEndOf="@+id/section_3_main_group_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_3_main_group_1_question_2"
-                        app:layout_constraintTop_toBottomOf="@id/section_3_main_group_1_question_2" />
-
                     <!-- Texto do Input 2 -->
                     <TextView
                         android:id="@+id/section_3_main_group_1_question_3"
@@ -3607,25 +3550,6 @@
                         app:layout_constraintStart_toStartOf="@+id/section_4_main_group_1"
                         app:layout_constraintEnd_toEndOf="@+id/section_4_main_group_1"
                         app:layout_constraintTop_toBottomOf="@+id/section_4_main_group_1" />
-
-                    <!-- Texto do Input 1 -->
-                    <TextView
-                        android:id="@+id/section_4_main_group_1_question_2"
-                        style="@style/form_subquestion"
-                        android:text="@string/form_3_section_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_4_main_group_1_question_1"
-                        app:layout_constraintEnd_toEndOf="@+id/section_4_main_group_1_question_1"
-                        app:layout_constraintTop_toBottomOf="@+id/section_4_main_group_1_question_1" />
-
-                    <!-- Input 1 -->
-                    <EditText
-                        android:id="@+id/section_4_main_group_1_question_2_input"
-                        style="@style/form_input_text"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        app:layout_constraintEnd_toEndOf="@+id/section_4_main_group_1_question_2"
-                        app:layout_constraintStart_toStartOf="@+id/section_4_main_group_1_question_2"
-                        app:layout_constraintTop_toBottomOf="@id/section_4_main_group_1_question_2" />
 
                     <!-- Texto do Input 2 -->
                     <TextView

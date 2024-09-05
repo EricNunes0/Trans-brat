@@ -115,7 +115,6 @@ public class Form4Activity extends AppCompatActivity {
     /* Respostas para enviar para o formulário seguinte */
     private final String[] toSendAnswersIds = {
             "F4_S0_Q1",
-            "F4_S1_M1_Q2",
             "F4_S1_M1_Q3",
             "F4_S1_M1_Q4",
             "F4_S1_M1_Q5",
@@ -167,7 +166,6 @@ public class Form4Activity extends AppCompatActivity {
             "F4_S1_M8_Q4",
             "F4_S1_M8_Q5",
             "F4_S1_M8_Q6",
-            "F4_S2_M1_Q2",
             "F4_S2_M1_Q3",
             "F4_S2_M1_Q4",
             "F4_S2_M1_Q5",
@@ -219,7 +217,6 @@ public class Form4Activity extends AppCompatActivity {
             "F4_S2_M8_Q4",
             "F4_S2_M8_Q5",
             "F4_S2_M8_Q6",
-            "F4_S3_M1_Q2",
             "F4_S3_M1_Q3",
             "F4_S3_M1_Q4",
             "F4_S3_M1_Q5",
@@ -271,7 +268,6 @@ public class Form4Activity extends AppCompatActivity {
             "F4_S3_M8_Q4",
             "F4_S3_M8_Q5",
             "F4_S3_M8_Q6",
-            "F4_S4_M1_Q2",
             "F4_S4_M1_Q3",
             "F4_S4_M1_Q4",
             "F4_S4_M1_Q5",
@@ -327,7 +323,6 @@ public class Form4Activity extends AppCompatActivity {
 
     private final int[][] all_questions = {
             {0, R.id.section_0_question_1_input, 1, 1},
-            {0, R.id.section_1_main_group_1_question_2_input, 0, 1},
             {0, R.id.section_1_main_group_1_question_3_input, 0, 1},
             {0, R.id.section_1_main_group_1_question_4_input, 0, 1},
             {0, R.id.section_1_main_group_1_question_5_input, 0, 1},
@@ -374,7 +369,6 @@ public class Form4Activity extends AppCompatActivity {
             {0, R.id.section_1_main_group_7_question_7_input, 0, 7},
             {0, R.id.section_1_main_group_7_question_8_input, 0, 7},
             {0, 0, 3, 8}, // 46
-            {0, R.id.section_2_main_group_1_question_2_input, 0, 1},
             {0, R.id.section_2_main_group_1_question_3_input, 0, 1},
             {0, R.id.section_2_main_group_1_question_4_input, 0, 1},
             {0, R.id.section_2_main_group_1_question_5_input, 0, 1},
@@ -421,7 +415,6 @@ public class Form4Activity extends AppCompatActivity {
             {0, R.id.section_2_main_group_7_question_7_input, 0, 7},
             {0, R.id.section_2_main_group_7_question_8_input, 0, 7},
             {0, 1, 3, 8},
-            {0, R.id.section_3_main_group_1_question_2_input, 0, 1},
             {0, R.id.section_3_main_group_1_question_3_input, 0, 1},
             {0, R.id.section_3_main_group_1_question_4_input, 0, 1},
             {0, R.id.section_3_main_group_1_question_5_input, 0, 1},
@@ -468,7 +461,6 @@ public class Form4Activity extends AppCompatActivity {
             {0, R.id.section_3_main_group_7_question_7_input, 0, 7},
             {0, R.id.section_3_main_group_7_question_8_input, 0, 7},
             {0, 2, 3, 8},
-            {0, R.id.section_4_main_group_1_question_2_input, 0, 1},
             {0, R.id.section_4_main_group_1_question_3_input, 0, 1},
             {0, R.id.section_4_main_group_1_question_4_input, 0, 1},
             {0, R.id.section_4_main_group_1_question_5_input, 0, 1},

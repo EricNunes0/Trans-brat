@@ -251,6 +251,12 @@ public class Form3Activity extends AppCompatActivity {
         /* Evento para exibir/esconder partes do formulário ao marcar uma opção em um RadioGroup */
         editFormByRadioGroupEvent();
 
+        /* Adicionando campos preenchidos automaticamente */
+        EditText razaoSocialEditText = findViewById(R.id.section_2_question_2_input);
+        EditText cnpjEditText = findViewById(R.id.section_2_question_3_input);
+        razaoSocialEditText.setText("TRANSRIVER TRANSPORTE LTDA"); // RAZÃO SOCIAL
+        cnpjEditText.setText("27.608.256/0001-32"); // CNPJ
+
         /* Botões inferiores */
         Button buttonBack = findViewById(R.id.back_button);
         Button buttonCancel = findViewById(R.id.cancel_button);

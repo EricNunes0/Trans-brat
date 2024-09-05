@@ -11,9 +11,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -127,7 +129,6 @@ public class Form6Activity extends AppCompatActivity {
             "F3_S8_Q5",
             "F3_S8_Q6",
             "F4_S0_Q1",
-            "F4_S1_M1_Q2",
             "F4_S1_M1_Q3",
             "F4_S1_M1_Q4",
             "F4_S1_M1_Q5",
@@ -179,7 +180,6 @@ public class Form6Activity extends AppCompatActivity {
             "F4_S1_M8_Q4",
             "F4_S1_M8_Q5",
             "F4_S1_M8_Q6",
-            "F4_S2_M1_Q2",
             "F4_S2_M1_Q3",
             "F4_S2_M1_Q4",
             "F4_S2_M1_Q5",
@@ -231,7 +231,6 @@ public class Form6Activity extends AppCompatActivity {
             "F4_S2_M8_Q4",
             "F4_S2_M8_Q5",
             "F4_S2_M8_Q6",
-            "F4_S3_M1_Q2",
             "F4_S3_M1_Q3",
             "F4_S3_M1_Q4",
             "F4_S3_M1_Q5",
@@ -283,7 +282,6 @@ public class Form6Activity extends AppCompatActivity {
             "F4_S3_M8_Q4",
             "F4_S3_M8_Q5",
             "F4_S3_M8_Q6",
-            "F4_S4_M1_Q2",
             "F4_S4_M1_Q3",
             "F4_S4_M1_Q4",
             "F4_S4_M1_Q5",
@@ -431,8 +429,29 @@ public class Form6Activity extends AppCompatActivity {
         for(int[] question : all_questions) {
             if(question[2] == 0) {
                 EditText editText = findViewById(question[1]);
-                editText.setFilters(new InputFilter[]{
-                        new InputFilter.AllCaps()
+                editText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // Não é necessário fazer nada aqui
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // Não é necessário fazer nada aqui
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        String text = s.toString().toUpperCase();
+                        if (!text.equals(s.toString())) {
+                            editText.removeTextChangedListener(this);
+                            editText.setText(text);
+                            editText.setSelection(text.length());
+                            editText.addTextChangedListener(this);
+                        }
+                    }
                 });
             }
         }
@@ -789,9 +808,7 @@ public class Form6Activity extends AppCompatActivity {
                 });*/
 
         Button buttonOpenCamera = findViewById(R.id.section_2_question_1_input_1);
-        //Button buttonOpenGallery = findViewById(R.id.section_2_question_1_input_2);
         buttonOpenCamera.setOnClickListener(view -> openCamera());
-        //buttonOpenGallery.setOnClickListener(view -> openGallery());
     }
 
     /* Câmera */
@@ -868,55 +885,6 @@ public class Form6Activity extends AppCompatActivity {
             }
         }
     }
-
-    /* Galeria */
-
-    /* Função para abrir a galeria do celular ao clicar no botão */
-    private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        startActivityForResult(Intent.createChooser(intent, "Selecionar imagens"), REQUEST_TAKE_PHOTO);
-    }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK && data != null) {
-            if (data.getClipData() != null) {
-                ClipData clipData = data.getClipData();
-                int count = clipData.getItemCount();
-                for (int i = 0; i < count && i < IMAGES_MAX; i++) {
-                    Uri imageUri = clipData.getItemAt(i).getUri();
-                    selectedImages.add(imageUri);
-                }
-            } else if (data.getData() != null) {
-                Uri imageUri = data.getData();
-                selectedImages.add(imageUri);
-            }
-            updateRecyclerView();
-        }
-    }
-
-    private void updateRecyclerView() {
-        ImageAdapter adapter = new ImageAdapter(this, selectedImages);
-        mainRecyclerView.setAdapter(adapter);
-    }*/
-
-    /* Função para verificar se uma imagem ultrapassa 1MB */
-    /*private boolean isImageValid(Uri imageUri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(imageUri);
-            if (inputStream != null) {
-                long fileSize = inputStream.available();
-                inputStream.close();
-                return fileSize <= 1 * 1024 * 1024; // 1 MB
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }*/
 
     /* Evento para verificar se as perguntas obrigatórias foram respondidas */
     private boolean checkRequiredQuestions() {

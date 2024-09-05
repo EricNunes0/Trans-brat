@@ -25,22 +25,6 @@
             app:layout_constraintTop_toBottomOf="@+id/form_7_section_4_main_4" />
 
         <TextView
-            android:id="@+id/F4_S4_M1_Q2_label"
-            style="@style/form_question"
-            android:text="@string/form_3_section_1_question_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/form_7_section_2_main_group_1" />
-
-        <TextView
-            android:id="@+id/F4_S4_M1_Q2"
-            style="@style/form_subquestion"
-            android:text=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/F4_S4_M1_Q2_label" />
-
-        <TextView
             android:id="@+id/F4_S4_M1_Q3_label"
             style="@style/form_question"
             android:text="@string/form_3_section_1_question_3"
