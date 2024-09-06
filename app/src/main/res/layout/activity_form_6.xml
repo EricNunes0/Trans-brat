@@ -83,7 +83,7 @@
             style="@style/form_input_text"
             android:inputType="textMultiLine"
             android:gravity="top|start"
-            android:minLines="3"
+            android:minLines="10"
             android:maxLength="500"
             android:scrollbars="vertical"
             android:textAllCaps="false"
@@ -104,7 +104,7 @@
         <TextView
             android:id="@+id/section_2_question_1_description"
             style="@style/form_subquestion"
-            android:text="Adicione até 10 imagens"
+            android:text="Adicione até 8 imagens"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/section_2_question_1" />

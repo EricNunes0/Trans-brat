@@ -364,7 +364,7 @@ public class Form6Activity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private List<Uri> selectedImages;
     private RecyclerView mainRecyclerView;
-    private static final int IMAGES_MAX = 10;
+    private static final int IMAGES_MAX = 8;
     private String currentPhotoPath;
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
@@ -427,24 +427,8 @@ public class Form6Activity extends AppCompatActivity {
 
     /* Evento para permitir apenas textos com letras maiúsculas */
     private void eventTextAllCaps() {
-        EditText editTextMultiLine = findViewById(R.id.section_1_question_2_input);
-        editTextMultiLine.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
-        editTextMultiLine.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String upperCaseText = s.toString().toUpperCase();
-                if (!s.toString().equals(upperCaseText)) {
-                    editTextMultiLine.setText(upperCaseText);
-                    editTextMultiLine.setSelection(upperCaseText.length());
-                }
-            }
-        });
+        EditText editText = findViewById(R.id.section_1_question_2_input);
+        editText.setFilters(new InputFilter[] {new InputFilter.AllCaps(), new InputFilter.LengthFilter(500)});
     }
 
     /* Função para obter respostas dos formulários anteriores */
@@ -758,45 +742,6 @@ public class Form6Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // Grade de 3 colunas
         recyclerView.setAdapter(imageAdapter);
 
-        /*galleryLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        selectedImages.clear();
-                        if (result.getData().getClipData() != null) {
-                            int count = result.getData().getClipData().getItemCount();
-                            int tooHeavy = 0;
-                            if (count > IMAGES_MAX) {
-                                Toast.makeText(this, "Você só pode selecionar até 10 imagens", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            for (int i = 0; i < count; i++) {
-                                Uri imageUri = result.getData().getClipData().getItemAt(i).getUri();
-                                if (isImageValid(imageUri)) {
-                                    selectedImages.add(imageUri);
-                                } else {
-                                    tooHeavy++;
-                                }
-                            }
-
-                            // Alertando caso alguma imagem ultrapasse 1MB
-                            if(tooHeavy > 0) {
-                                if(tooHeavy == 1) {
-                                    Toast.makeText(Form6Activity.this, tooHeavy + " imagem ultrapassa o limite de 1MB", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(Form6Activity.this, tooHeavy + " imagens ultrapassam o limite de 1MB", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                        } else if (result.getData().getData() != null) {
-                            // Caso apenas uma imagem foi selecionada
-                            Uri imageUri = result.getData().getData();
-                            selectedImages.add(imageUri);
-                        }
-                        imageAdapter.notifyDataSetChanged();
-                    }
-                });*/
-
         Button buttonOpenCamera = findViewById(R.id.section_2_question_1_input_1);
         buttonOpenCamera.setOnClickListener(view -> openCamera());
     }
@@ -859,7 +804,7 @@ public class Form6Activity extends AppCompatActivity {
                 selectedImages.add(photoURI);
                 imageAdapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(this, "Você só pode selecionar até 10 imagens", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Você só pode selecionar até 8 imagens", Toast.LENGTH_SHORT).show();
             }
         }
     }

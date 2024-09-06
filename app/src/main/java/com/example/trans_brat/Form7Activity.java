@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
@@ -876,7 +877,7 @@ public class Form7Activity extends AppCompatActivity {
         }
 
         drawTitle(canvas4, paint4, "Danos", column1X, baseY);
-        drawImage(canvas4, paint4, R.drawable.carro, 40, baseY + 20, carWidth, carHeight);
+        drawImage(canvas4, paint4, R.drawable.carro, 40, baseY + 20, carWidth, carHeight, 180);
         drawCheckbox(canvas4, paint4, "F3_S8_Q1", 40, baseY + 20, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas4, paint4, "F3_S8_Q2", 40 + checkboxWidth, baseY + 20, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas4, paint4, "F3_S8_Q3", 40 + (checkboxWidth * 2), baseY + 20, checkboxWidth, checkboxHeight);
@@ -1061,7 +1062,7 @@ public class Form7Activity extends AppCompatActivity {
         }
 
         drawTitle(canvas7, paint7, "Danos", column1X, baseY);
-        drawImage(canvas7, paint7, R.drawable.carro, 40, baseY + 40, carWidth, carHeight);
+        drawImage(canvas7, paint7, R.drawable.carro, 40, baseY + 40, carWidth, carHeight, 180);
         drawCheckbox(canvas7, paint7, "F4_S1_M8_Q1", 40, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas7, paint7, "F4_S1_M8_Q2", 40 + checkboxWidth, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas7, paint7, "F4_S1_M8_Q3", 40 + (checkboxWidth * 2), baseY + 40, checkboxWidth, checkboxHeight);
@@ -1246,7 +1247,7 @@ public class Form7Activity extends AppCompatActivity {
         }
 
         drawTitle(canvas10, paint10, "Danos", column1X, baseY);
-        drawImage(canvas10, paint10, R.drawable.carro, 40, baseY + 40, carWidth, carHeight);
+        drawImage(canvas10, paint10, R.drawable.carro, 40, baseY + 40, carWidth, carHeight, 180);
         drawCheckbox(canvas10, paint10, "F4_S2_M8_Q1", 40, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas10, paint10, "F4_S2_M8_Q2", 40 + checkboxWidth, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas10, paint10, "F4_S2_M8_Q3", 40 + (checkboxWidth * 2), baseY + 40, checkboxWidth, checkboxHeight);
@@ -1431,7 +1432,7 @@ public class Form7Activity extends AppCompatActivity {
         }
 
         drawTitle(canvas13, paint13, "Danos", column1X, baseY);
-        drawImage(canvas13, paint13, R.drawable.carro, 40, baseY + 40, carWidth, carHeight);
+        drawImage(canvas13, paint13, R.drawable.carro, 40, baseY + 40, carWidth, carHeight, 180);
         drawCheckbox(canvas13, paint13, "F4_S3_M8_Q1", 40, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas13, paint13, "F4_S3_M8_Q2", 40 + checkboxWidth, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas13, paint13, "F4_S3_M8_Q3", 40 + (checkboxWidth * 2), baseY + 40, checkboxWidth, checkboxHeight);
@@ -1616,7 +1617,7 @@ public class Form7Activity extends AppCompatActivity {
         }
 
         drawTitle(canvas16, paint16, "Danos", column1X, baseY);
-        drawImage(canvas16, paint16, R.drawable.carro, 40, baseY + 40, carWidth, carHeight);
+        drawImage(canvas16, paint16, R.drawable.carro, 40, baseY + 40, carWidth, carHeight, 180);
         drawCheckbox(canvas16, paint16, "F4_S4_M8_Q1", 40, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas16, paint16, "F4_S4_M8_Q2", 40 + checkboxWidth, baseY + 40, checkboxWidth, checkboxHeight);
         drawCheckbox(canvas16, paint16, "F4_S4_M8_Q3", 40 + (checkboxWidth * 2), baseY + 40, checkboxWidth, checkboxHeight);
@@ -1786,10 +1787,15 @@ public class Form7Activity extends AppCompatActivity {
     }
 
     /* Função do PDF: Desenhando uma imagem */
-    private void drawImage(Canvas canvas, Paint paint, int image, int x, int y, int width, int height) {
+    private void drawImage(Canvas canvas, Paint paint, int image, int x, int y, int width, int height, int rotation) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
-        canvas.drawBitmap(scaledBitmap, x, y, paint);
+
+        Matrix matrix = new Matrix();
+        matrix.postRotate(rotation);
+        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+
+        canvas.drawBitmap(rotatedBitmap, x, y, paint);
     }
 
     /* Função do PDF: Desenhando um checkbox */
@@ -1933,10 +1939,6 @@ public class Form7Activity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(logId, "Erro ao enviar o PDF: " + e);
         }
-    }
-
-    public Uri stringToUri(String contentUriString) {
-        return Uri.parse(contentUriString);
     }
 
     public List<Uri> convertStringsToUris(List<String> contentUriStrings) {
